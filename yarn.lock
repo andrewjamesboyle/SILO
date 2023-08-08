@@ -4498,6 +4498,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@react-leaflet/core@npm:^2.1.0":
+  version: 2.1.0
+  resolution: "@react-leaflet/core@npm:2.1.0"
+  peerDependencies:
+    leaflet: ^1.9.0
+    react: ^18.0.0
+    react-dom: ^18.0.0
+  checksum: d5218c79ab9decd458e1fa8a0ec3757542e3ea4e569afa151a32ef0e9ceb63a13174f3fbc740fe0d514df8b0b3e30d913bfb0b8b661dac13924934d7e430bfc9
+  languageName: node
+  linkType: hard
+
 "@redwoodjs/api-server@npm:6.0.2":
   version: 6.0.2
   resolution: "@redwoodjs/api-server@npm:6.0.2"
@@ -5489,6 +5500,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/geojson@npm:*":
+  version: 7946.0.10
+  resolution: "@types/geojson@npm:7946.0.10"
+  checksum: 4abba554467494c1496a60622c2cb6f8c7f80b0dbb909ff898812a9f67799fd1b254802d7d266361974bd8b0c9ef32a7686183aac83b20c437f6d0eee89cd0a1
+  languageName: node
+  linkType: hard
+
 "@types/graceful-fs@npm:^4.1.3":
   version: 4.1.6
   resolution: "@types/graceful-fs@npm:4.1.6"
@@ -5611,6 +5629,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/leaflet@npm:^1.9.3":
+  version: 1.9.3
+  resolution: "@types/leaflet@npm:1.9.3"
+  dependencies:
+    "@types/geojson": "*"
+  checksum: c18ae40e30bd94d71e0adb57f76d3a66f38eb399e025646d524b11b9a4a0d106886da32663ec551e8f86cceb48bb23ef48a816a8a1ad1bc9224635ca57cd8dc7
+  languageName: node
+  linkType: hard
+
 "@types/line-column@npm:1.0.0":
   version: 1.0.0
   resolution: "@types/line-column@npm:1.0.0"
@@ -5727,6 +5754,15 @@ __metadata:
   dependencies:
     "@types/react": "*"
   checksum: bd090f5e1b13765fbc191d9eb720dd152d26c20558221963009189c4636ce11e4c1c976e4cde4a74335f997a2be651af27d3727474a8091424101a83a71eebfb
+  languageName: node
+  linkType: hard
+
+"@types/react-leaflet@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "@types/react-leaflet@npm:3.0.0"
+  dependencies:
+    react-leaflet: "*"
+  checksum: ea90ed346c2bb21950c8144a3319505bfceb8f98f49e624d1a821d578405c5a63da6224c46f7c948cf4031ebe0100f3aa8ed5204023ef0861705af32c99b126b
   languageName: node
   linkType: hard
 
@@ -14420,6 +14456,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"leaflet@npm:^1.9.4":
+  version: 1.9.4
+  resolution: "leaflet@npm:1.9.4"
+  checksum: f639441dbb7eb9ae3fcd29ffd7d3508f6c6106892441634b0232fafb9ffb1588b05a8244ec7085de2c98b5ed703894df246898477836cfd0ce5b96d4717b5ca1
+  languageName: node
+  linkType: hard
+
 "leven@npm:^3.1.0":
   version: 3.1.0
   resolution: "leven@npm:3.1.0"
@@ -17423,7 +17466,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-dom@npm:18.2.0":
+"react-dom@npm:^18.2.0":
   version: 18.2.0
   resolution: "react-dom@npm:18.2.0"
   dependencies:
@@ -17500,6 +17543,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-leaflet@npm:*, react-leaflet@npm:latest":
+  version: 4.2.1
+  resolution: "react-leaflet@npm:4.2.1"
+  dependencies:
+    "@react-leaflet/core": ^2.1.0
+  peerDependencies:
+    leaflet: ^1.9.0
+    react: ^18.0.0
+    react-dom: ^18.0.0
+  checksum: 2e9d1687e883fd7d2e9798e51a04600e1b14784dc98b981a44507e65eb39a24f08c7f237c7522ae5667e999eb53b8d565ebd0f5baa25ef73a0278d6bfcc369e1
+  languageName: node
+  linkType: hard
+
 "react-refresh@npm:0.14.0, react-refresh@npm:^0.14.0":
   version: 0.14.0
   resolution: "react-refresh@npm:0.14.0"
@@ -17507,7 +17563,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react@npm:18.2.0":
+"react@npm:18.2.0, react@npm:^18.2.0":
   version: 18.2.0
   resolution: "react@npm:18.2.0"
   dependencies:
@@ -20697,9 +20753,13 @@ __metadata:
     "@redwoodjs/router": 6.0.2
     "@redwoodjs/vite": 6.0.2
     "@redwoodjs/web": 6.0.2
+    "@types/leaflet": ^1.9.3
+    "@types/react-leaflet": ^3.0.0
+    leaflet: ^1.9.4
     prop-types: 15.8.1
-    react: 18.2.0
-    react-dom: 18.2.0
+    react: ^18.2.0
+    react-dom: ^18.2.0
+    react-leaflet: latest
   languageName: unknown
   linkType: soft
 
