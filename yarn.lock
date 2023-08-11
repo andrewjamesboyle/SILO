@@ -5629,7 +5629,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/leaflet@npm:^1.9.3":
+"@types/leaflet-draw@npm:^1.0.7":
+  version: 1.0.7
+  resolution: "@types/leaflet-draw@npm:1.0.7"
+  dependencies:
+    "@types/leaflet": "*"
+  checksum: 5a6c48d9f4b2728ec952615eb68c01647b2bae979bffcfe85166077916ddcaafa95acbe588992a18b8765973fc783fe129a7c22ec063f4db2eeb55bac007b768
+  languageName: node
+  linkType: hard
+
+"@types/leaflet@npm:*, @types/leaflet@npm:^1.9.3":
   version: 1.9.3
   resolution: "@types/leaflet@npm:1.9.3"
   dependencies:
@@ -14456,6 +14465,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"leaflet-draw@npm:^1.0.4":
+  version: 1.0.4
+  resolution: "leaflet-draw@npm:1.0.4"
+  checksum: 9e700b7e5e7d70c0f9d66efe2fec282f635eff63699e5f2f4eb733b140188058cc7cb2a5d3c6889c300958ec9e415fd5c0a02a08db0e1fc13a063d4710cff004
+  languageName: node
+  linkType: hard
+
+"leaflet-hash@npm:^0.2.1":
+  version: 0.2.1
+  resolution: "leaflet-hash@npm:0.2.1"
+  checksum: a763c494345da474e41b1effd59debd82e8fa94398f72a4ae4a37d25103906ec1cc6a5d24d6db2e211cf91465b55842cc389cd2c5906823dfe3b9bdc09288233
+  languageName: node
+  linkType: hard
+
 "leaflet@npm:^1.9.4":
   version: 1.9.4
   resolution: "leaflet@npm:1.9.4"
@@ -20754,8 +20777,11 @@ __metadata:
     "@redwoodjs/vite": 6.0.2
     "@redwoodjs/web": 6.0.2
     "@types/leaflet": ^1.9.3
+    "@types/leaflet-draw": ^1.0.7
     "@types/react-leaflet": ^3.0.0
     leaflet: ^1.9.4
+    leaflet-draw: ^1.0.4
+    leaflet-hash: ^0.2.1
     prop-types: 15.8.1
     react: ^18.2.0
     react-dom: ^18.2.0
