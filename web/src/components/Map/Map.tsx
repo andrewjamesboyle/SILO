@@ -4,13 +4,12 @@ import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 
 import 'leaflet/dist/leaflet.css'
 import 'leaflet-draw/dist/leaflet.draw.css'
-import Sidebar from '../Sidebar/Sidebar'
 
 const MapComponent: React.FC = () => {
   return (
     <>
       <MapContainer
-        style={{ height: '100vh', width: '100%' }}
+        style={{ height: '85vh', width: '100%' }}
         center={[47.1941, -122.7633]}
         zoom={13}
       >
@@ -23,7 +22,6 @@ const MapComponent: React.FC = () => {
             A pretty CSS3 popup. <br /> Easily customizable.
           </Popup>
         </Marker>
-        <Sidebar />
       </MapContainer>
     </>
   )
