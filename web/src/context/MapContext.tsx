@@ -1,15 +1,13 @@
 import React, { createContext, useReducer, useContext } from 'react'
 
 interface State {
-  searchQuery: string
-  aoi: string
   layers: string[]
+  mapCenter?: [number, number]
 }
 
 type Action =
-  | { type: 'SET_SEARCH_QUERY'; payload: string }
-  | { type: 'SET_AOI'; payload: string }
   | { type: 'TOGGLE_LAYER'; payload: string }
+  | { type: 'SET_MAP_CENTER'; payload: [number, number] }
 
 const MapStateContext = createContext<State | undefined>(undefined)
 const MapDispatchContext = createContext<React.Dispatch<Action> | undefined>(
@@ -18,10 +16,6 @@ const MapDispatchContext = createContext<React.Dispatch<Action> | undefined>(
 
 const mapReducer = (state: State, action: Action): State => {
   switch (action.type) {
-    case 'SET_SEARCH_QUERY':
-      return { ...state, searchQuery: action.payload }
-    case 'SET_AOI':
-      return { ...state, aoi: action.payload }
     case 'TOGGLE_LAYER':
       const layerIndex = state.layers.indexOf(action.payload)
       const newLayers = [...state.layers]
@@ -31,16 +25,21 @@ const mapReducer = (state: State, action: Action): State => {
         newLayers.push(action.payload)
       }
       return { ...state, layers: newLayers }
+    case 'SET_MAP_CENTER':
+      return { ...state, mapCenter: action.payload }
     default:
       throw new Error(`Unhandled action type`)
   }
 }
 
-export const MapProvider: React.FC = ({ children }) => {
+interface MapProviderProps {
+  children: React.ReactNode
+}
+
+export const MapProvider: React.FC<MapProviderProps> = ({ children }) => {
   const [state, dispatch] = useReducer(mapReducer, {
-    searchQuery: '',
-    aoi: '',
     layers: [],
+    mapCenter: [47.1941, -122.7633], // Set the initial state of the map to the center of Tacoma
   })
 
   return (

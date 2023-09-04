@@ -4,13 +4,15 @@ import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 
 import 'leaflet/dist/leaflet.css'
 import 'leaflet-draw/dist/leaflet.draw.css'
+import { useMap } from 'src/context/MapContext'
 
 const MapComponent: React.FC = () => {
+  const { state } = useMap()
   return (
     <>
       <MapContainer
         style={{ height: '85vh', width: '100%' }}
-        center={[47.1941, -122.7633]}
+        center={state.mapCenter}
         zoom={13}
       >
         <TileLayer
