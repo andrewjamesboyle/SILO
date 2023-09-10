@@ -14,6 +14,7 @@ import {
   XMarkIcon,
   MagnifyingGlassIcon,
 } from '@heroicons/react/24/outline'
+import LayerToggle from '../LayerToggle/LayerToggle'
 
 const navigation = [
   { name: 'Dashboard', href: '#', icon: HomeIcon, current: true },
@@ -29,10 +30,10 @@ const userNavigation = [
   { name: 'Sign out', href: '#' },
 ]
 
-const teams = [
-  { id: 1, name: 'Heroicons', href: '#', initial: 'H', current: false },
-  { id: 2, name: 'Tailwind Labs', href: '#', initial: 'T', current: false },
-  { id: 3, name: 'Workcation', href: '#', initial: 'W', current: false },
+const dataLayers = [
+  { id: 1, name: 'Google Hybrid', href: '#', initial: 'H', current: false },
+  { id: 2, name: 'Google Satellite', href: '#', initial: 'T', current: false },
+  { id: 3, name: 'Wetlands', href: '#', initial: 'W', current: false },
 ]
 
 function classNames(...classes) {
@@ -79,24 +80,25 @@ const Sidebar = () => {
               </li>
               <li>
                 <div className="text-xs font-semibold leading-6 text-gray-400">
-                  Your teams
+                  Data Layers
                 </div>
+                <LayerToggle />
                 <ul role="list" className="-mx-2 mt-2 space-y-1">
-                  {teams.map((team) => (
-                    <li key={team.name}>
+                  {dataLayers.map((dataLayer) => (
+                    <li key={dataLayer.name}>
                       <a
-                        href={team.href}
+                        href={dataLayer.href}
                         className={classNames(
-                          team.current
+                          dataLayer.current
                             ? 'bg-gray-800 text-white'
                             : 'text-gray-400 hover:text-white hover:bg-gray-800',
                           'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'
                         )}
                       >
                         <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border border-gray-700 bg-gray-800 text-[0.625rem] font-medium text-gray-400 group-hover:text-white">
-                          {team.initial}
+                          {dataLayer.initial}
                         </span>
-                        <span className="truncate">{team.name}</span>
+                        <span className="truncate">{dataLayer.name}</span>
                       </a>
                     </li>
                   ))}

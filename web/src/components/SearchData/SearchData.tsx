@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react'
+import React, { useState } from 'react'
 
 import axios from 'axios'
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline'
@@ -20,8 +20,8 @@ const SearchDataComponent: React.FC = () => {
       const response = await axios.get(baseUrl)
       console.log(response.data)
       // TO DO: additional logic here to display results
-      const coordinates = extractCoordinatesFromResponse(response) // TO DO: write a function to extract coordinates from the response
-      dispatch({ type: 'SET_MAP_CENTER', payload: coordinates })
+      // const coordinates = extractCoordinatesFromResponse(response) TO DO: write a function to extract coordinates from the response
+      // dispatch({ type: 'SET_MAP_CENTER', payload: coordinates })
     } catch (error) {
       console.error('Error:', error.message)
     }

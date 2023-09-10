@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 
@@ -9,23 +9,23 @@ import { useMap } from 'src/context/MapContext'
 const MapComponent: React.FC = () => {
   const { state } = useMap()
   return (
-    <>
-      <MapContainer
-        style={{ height: '85vh', width: '100%' }}
-        center={state.mapCenter}
-        zoom={13}
-      >
+    <MapContainer
+      style={{ height: '85vh', width: '100%' }}
+      center={state.mapCenter}
+      zoom={13}
+    >
+      {state.layers.includes('googleHybrid') && (
         <TileLayer
+          url="https://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}"
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        <Marker position={[51.505, -0.09]}>
-          <Popup>
-            A pretty CSS3 popup. <br /> Easily customizable.
-          </Popup>
-        </Marker>
-      </MapContainer>
-    </>
+      )}
+      <Marker position={[51.505, -0.09]}>
+        <Popup>
+          A pretty CSS3 popup. <br /> Easily customizable.
+        </Popup>
+      </Marker>
+    </MapContainer>
   )
 }
 
