@@ -5,6 +5,7 @@ import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
 import 'leaflet-draw/dist/leaflet.draw.css'
 import { useMap } from 'src/context/MapContext'
+import DrawFeature from '../DrawFeature/DrawFeature'
 
 const MapComponent: React.FC = () => {
   const { state } = useMap()
@@ -40,6 +41,7 @@ const MapComponent: React.FC = () => {
           A pretty CSS3 popup. <br /> Easily customizable.
         </Popup>
       </Marker>
+      <DrawFeature />
     </MapContainer>
   )
 }
