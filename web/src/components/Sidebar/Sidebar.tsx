@@ -15,14 +15,15 @@ import {
   MagnifyingGlassIcon,
 } from '@heroicons/react/24/outline'
 import LayerToggle from '../LayerToggle/LayerToggle'
+import ProcessDataComponent from '../ProcessData/ProcessData'
 
 const navigation = [
   { name: 'Dashboard', href: '#', icon: HomeIcon, current: true },
-  { name: 'Team', href: '#', icon: UsersIcon, current: false },
-  { name: 'Projects', href: '#', icon: FolderIcon, current: false },
-  { name: 'Calendar', href: '#', icon: CalendarIcon, current: false },
-  { name: 'Documents', href: '#', icon: DocumentDuplicateIcon, current: false },
-  { name: 'Reports', href: '#', icon: ChartPieIcon, current: false },
+  { name: 'Project', href: '#', icon: UsersIcon, current: false },
+  { name: 'Control', href: '#', icon: FolderIcon, current: false },
+  { name: 'Upload', href: '#', icon: CalendarIcon, current: false },
+  { name: 'Download', href: '#', icon: DocumentDuplicateIcon, current: false },
+  { name: 'Search', href: '#', icon: ChartPieIcon, current: false },
 ]
 
 const userNavigation = [
@@ -35,9 +36,29 @@ function classNames(...classes) {
 }
 
 const Sidebar = () => {
+  // State to manage visibility of sidebar
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false)
+
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen)
+  }
+
   return (
     <>
-      <div className="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-48 lg:flex-col">
+      {/* Toggle Button */}
+      <button
+        onClick={() => setIsSidebarOpen(true)}
+        className="p-4 text-gray-500 hover:text-gray-400 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+        aria-expanded="false"
+      >
+        <span className="sr-only">Open sidebar</span>
+        <Bars3Icon className="h-6 w-6" aria-hidden="true" />
+      </button>
+      <div
+        className={`${
+          isSidebarOpen ? '' : 'hidden'
+        } lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-48 lg:flex-col`}
+      >
         {/* Sidebar component, swap this element with another sidebar if you like */}
         <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-gray-900 px-6 pb-4">
           <div className="flex h-16 shrink-0 items-center">
@@ -72,11 +93,17 @@ const Sidebar = () => {
                   ))}
                 </ul>
               </li>
-              <li>
+              <li className="overflow-y-auto max-h-auto">
                 <div className="text-xs font-semibold leading-6 text-gray-400">
                   Data Layers
                 </div>
-                <LayerToggle />
+                <div>
+                  <LayerToggle />
+                </div>
+                {/* <div className="text-xs font-semibold leading-6 text-gray-400">
+                  Upload Data
+                  <ProcessDataComponent />
+                </div> */}
               </li>
               <li className="mt-auto">
                 <a

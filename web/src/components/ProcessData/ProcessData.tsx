@@ -2,6 +2,10 @@ import React, { useState } from 'react'
 
 import axios from 'axios'
 
+function classNames(...classes) {
+  return classes.filter(Boolean).join(' ')
+}
+
 type DataTable =
   | 'mons'
   | 'control'
@@ -56,28 +60,48 @@ const ProcessDataComponent: React.FC = () => {
 
   return (
     <div>
-      <div>
+      <ul role="list" className="-mx-2 mt-2 space-y-1">
         {dataTables.map((table) => (
-          <label key={table}>
-            <input
-              type="radio"
-              value={table}
-              checked={selectedTable === table}
-              onChange={() => setSelectedTable(table)}
-            />
-            {table.charAt(0).toUpperCase() + table.slice(1)}
-          </label>
+          <li key={table}>
+            <div
+              className={classNames(
+                selectedTable === table
+                  ? 'bg-gray-800 text-white'
+                  : 'text-gray-400 hover:text-white hover:bg-gray-800',
+                'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'
+              )}
+            >
+              <input
+                type="radio"
+                value={table}
+                checked={selectedTable === table}
+                onChange={() => setSelectedTable(table)}
+                className="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg"
+              />
+              <span className="truncate">
+                {table.charAt(0).toUpperCase() + table.slice(1)}
+              </span>
+            </div>
+          </li>
         ))}
-      </div>
-      <div>
+      </ul>
+      <div className="mt-4">
         <input
           type="file"
           onChange={(e) =>
             setUploadedFile(e.target.files ? e.target.files[0] : null)
           }
+          className="p-2 rounded-md text-sm leading-6 font-semibold"
         />
       </div>
-      <button onClick={handleProcessClick}>Process</button>
+      <div className="mt-4">
+        <button
+          onClick={handleProcessClick}
+          className="p-2 rounded-md bg-gray-800 text-white text-sm leading-6 font-semibold hover:bg-gray-700"
+        >
+          Upload
+        </button>
+      </div>
     </div>
   )
 }

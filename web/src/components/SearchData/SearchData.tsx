@@ -8,7 +8,6 @@ import { useMap } from 'src/context/MapContext'
 const SearchDataComponent: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('')
   const [aoi, setAoi] = useState('')
-  const { state, dispatch } = useMap()
 
   const handleSearchClick = async () => {
     const baseUrl =

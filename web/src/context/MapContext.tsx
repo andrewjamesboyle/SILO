@@ -38,7 +38,7 @@ interface MapProviderProps {
 
 export const MapProvider: React.FC<MapProviderProps> = ({ children }) => {
   const [state, dispatch] = useReducer(mapReducer, {
-    layers: [],
+    layers: ['Google Hybrid'],
     mapCenter: [47.1941, -122.7633], // Set the initial state of the map to the center of Tacoma
   })
 

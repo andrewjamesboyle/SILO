@@ -190,9 +190,9 @@ const MapPage = () => {
 
           <Sidebar />
           <div className="lg:pl-48">
-            <Topbar />
-            <main className="py-6">
-              <div className="px-4 sm:px-6 lg:px-8">
+            {/* <Topbar /> */}
+            <main className="py-0">
+              <div className="px-0 sm:px-0 lg:px-0">
                 <Map />
               </div>
             </main>

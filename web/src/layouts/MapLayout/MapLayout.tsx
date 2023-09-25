@@ -1,16 +1,13 @@
-import ProcessDataComponent from "src/components/ProcessData/ProcessData";
-import SearchDataComponent from "src/components/SearchData/SearchData";
-
 type MapLayoutProps = {
-  children?: React.ReactNode;
-};
+  children?: React.ReactNode
+}
 
 const MapLayout = ({ children }: MapLayoutProps) => {
   return (
-  <>
-    <main>{children}</main>
-  </>
+    <>
+      <main>{children}</main>
+    </>
   )
-};
+}
 
-export default MapLayout;
+export default MapLayout

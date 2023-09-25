@@ -12,7 +12,7 @@ const MapComponent: React.FC = () => {
   console.log('Layer state in Map', state.layers)
   return (
     <MapContainer
-      style={{ height: '85vh', width: '100%' }}
+      style={{ height: '100vh', width: '100%' }}
       center={state.mapCenter}
       zoom={13}
     >
