@@ -189,8 +189,7 @@ const MapPage = () => {
                           </Transition.Root> */}
 
           <Sidebar />
-          <div className="lg:pl-48">
-            {/* <Topbar /> */}
+          <div className="w-[100vw] pl-[5vw]">
             <main className="py-0">
               <div className="px-0 sm:px-0 lg:px-0">
                 <Map />

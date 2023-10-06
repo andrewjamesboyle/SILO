@@ -36,37 +36,18 @@ function classNames(...classes) {
 }
 
 const Sidebar = () => {
-  // State to manage visibility of sidebar
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false)
-
-  const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen)
-  }
-
   return (
     <>
-      {/* Toggle Button */}
-      <button
-        onClick={() => setIsSidebarOpen(true)}
-        className="p-4 text-gray-500 hover:text-gray-400 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
-        aria-expanded="false"
-      >
-        <span className="sr-only">Open sidebar</span>
-        <Bars3Icon className="h-6 w-6" aria-hidden="true" />
-      </button>
-      <div
-        className={`${
-          isSidebarOpen ? '' : 'hidden'
-        } lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-48 lg:flex-col`}
-      >
+      <div className="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-48 lg:flex-col">
         {/* Sidebar component, swap this element with another sidebar if you like */}
-        <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-gray-900 px-6 pb-4">
-          <div className="flex h-16 shrink-0 items-center">
-            <img
+        <div className="w-[5vw] flex grow flex-col gap-y-5 overflow-y-auto bg-gray-900 px-6 pb-4">
+          <div className="flex h-16 shrink-0 items-center text-white font-semibold">
+            SILO
+            {/* <img
               className="h-8 w-auto"
               src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
               alt="Your Company"
-            />
+            /> */}
           </div>
           <nav className="flex flex-1 flex-col">
             <ul role="list" className="flex flex-1 flex-col gap-y-7">
@@ -80,7 +61,7 @@ const Sidebar = () => {
                           item.current
                             ? 'bg-gray-800 text-white'
                             : 'text-gray-400 hover:text-white hover:bg-gray-800',
-                          'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'
+                          'group flex gap-x-3 rounded-md p-2 text-xs leading-6 font-semibold'
                         )}
                       >
                         <item.icon
@@ -94,12 +75,12 @@ const Sidebar = () => {
                 </ul>
               </li>
               <li className="overflow-y-auto max-h-auto">
-                <div className="text-xs font-semibold leading-6 text-gray-400">
+                {/* <div className="text-xs font-semibold leading-6 text-gray-400">
                   Data Layers
                 </div>
                 <div>
                   <LayerToggle />
-                </div>
+                </div> */}
                 {/* <div className="text-xs font-semibold leading-6 text-gray-400">
                   Upload Data
                   <ProcessDataComponent />
