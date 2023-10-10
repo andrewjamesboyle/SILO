@@ -12,7 +12,7 @@
 
 import type { Meta, StoryObj } from '@storybook/react'
 
-import Topbar from './Topbar'
+import Topbar from './Header'
 
 const meta: Meta<typeof Topbar> = {
   component: Topbar,
