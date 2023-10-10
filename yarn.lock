@@ -327,6 +327,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@auth0/auth0-spa-js@npm:^2":
+  version: 2.1.2
+  resolution: "@auth0/auth0-spa-js@npm:2.1.2"
+  checksum: fb3a6b2ca2782a2f4aa03afe539a042076d0683c3f08e87a3bf93c6db6ad89f79441cb525f768b8bd3bb0c6b240833390bb2e06055ae30e9edf02575233ed4c7
+  languageName: node
+  linkType: hard
+
 "@aw-web-design/x-default-browser@npm:1.4.126":
   version: 1.4.126
   resolution: "@aw-web-design/x-default-browser@npm:1.4.126"
@@ -5217,6 +5224,42 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@redwoodjs/auth-auth0-api@npm:6.1.0":
+  version: 6.1.0
+  resolution: "@redwoodjs/auth-auth0-api@npm:6.1.0"
+  dependencies:
+    "@babel/runtime-corejs3": 7.22.10
+    core-js: 3.32.0
+    jsonwebtoken: 9.0.0
+    jwks-rsa: 3.0.1
+  checksum: 2ba052928e7cd38a312ff3e140c2b7924a4223cd73cfddb04756975bb7e082c4acc403b558733daf35286ad65b2dd55236dccc793c5a08ebd78091947d483ba8
+  languageName: node
+  linkType: hard
+
+"@redwoodjs/auth-auth0-setup@npm:6.1.0":
+  version: 6.1.0
+  resolution: "@redwoodjs/auth-auth0-setup@npm:6.1.0"
+  dependencies:
+    "@babel/runtime-corejs3": 7.22.10
+    "@redwoodjs/cli-helpers": 6.1.0
+    core-js: 3.32.0
+  checksum: 88152ead69eda97b94a8ce100f2e07bf064685b54a6a1f987d36dc01e6fdeb3dc21545551e6f913afc3bfd6638ce2b498eaf185efc1b7a69eedb7ffaf69df006
+  languageName: node
+  linkType: hard
+
+"@redwoodjs/auth-auth0-web@npm:6.1.0":
+  version: 6.1.0
+  resolution: "@redwoodjs/auth-auth0-web@npm:6.1.0"
+  dependencies:
+    "@babel/runtime-corejs3": 7.22.10
+    "@redwoodjs/auth": 6.1.0
+    core-js: 3.32.0
+  peerDependencies:
+    "@auth0/auth0-spa-js": 2.1.1
+  checksum: 8f3c82aa2e7b2a11f8afece4b80895baa7b3c45a308b162180328224d015056eee48c98bc3fb4ac44b3e04077f68df8c9ed23a990aa9804c5e4d817003229a18
+  languageName: node
+  linkType: hard
+
 "@redwoodjs/auth@npm:6.1.0":
   version: 6.1.0
   resolution: "@redwoodjs/auth@npm:6.1.0"
@@ -7485,6 +7528,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/express@npm:^4.17.14":
+  version: 4.17.18
+  resolution: "@types/express@npm:4.17.18"
+  dependencies:
+    "@types/body-parser": "*"
+    "@types/express-serve-static-core": ^4.17.33
+    "@types/qs": "*"
+    "@types/serve-static": "*"
+  checksum: 6babf7bce6abdd45138f7eac058c8705dbd3a2857208c8c78d863fcd8b3b212c6569fba1f748137e5743287f82dfecf9bc4d78d31d290afff2d37700a0cdb6fe
+  languageName: node
+  linkType: hard
+
 "@types/find-cache-dir@npm:^3.2.1":
   version: 3.2.1
   resolution: "@types/find-cache-dir@npm:3.2.1"
@@ -7609,6 +7664,15 @@ __metadata:
   version: 0.0.29
   resolution: "@types/json5@npm:0.0.29"
   checksum: 6bf5337bc447b706bb5b4431d37686aa2ea6d07cfd6f79cc31de80170d6ff9b1c7384a9c0ccbc45b3f512bae9e9f75c2e12109806a15331dc94e8a8db6dbb4ac
+  languageName: node
+  linkType: hard
+
+"@types/jsonwebtoken@npm:^9.0.0":
+  version: 9.0.3
+  resolution: "@types/jsonwebtoken@npm:9.0.3"
+  dependencies:
+    "@types/node": "*"
+  checksum: b6f01b4c655a8d1563a1c05309fe195d2b625681bd096ebc1e609e1fd9a3973222981e4550660c7809e6e1166745357d812730a6620ad10e0b04fdc98edcf92f
   languageName: node
   linkType: hard
 
@@ -9050,6 +9114,7 @@ __metadata:
   resolution: "api@workspace:api"
   dependencies:
     "@redwoodjs/api": 6.1.0
+    "@redwoodjs/auth-auth0-api": 6.1.0
     "@redwoodjs/graphql-server": 6.1.0
   languageName: unknown
   linkType: soft
@@ -16819,6 +16884,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"jose@npm:^4.10.4":
+  version: 4.15.2
+  resolution: "jose@npm:4.15.2"
+  checksum: d5fbd7f07719b6098c071cd29889283a5813f6fd59c7134a5db22fae8ae2e447de38a4d5adb5ba84506b2be1ea66cf2b2a587f149a9a7acfc8b05e86873f1b59
+  languageName: node
+  linkType: hard
+
 "jose@npm:^4.11.4":
   version: 4.14.4
   resolution: "jose@npm:4.14.4"
@@ -17096,6 +17168,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"jwks-rsa@npm:3.0.1":
+  version: 3.0.1
+  resolution: "jwks-rsa@npm:3.0.1"
+  dependencies:
+    "@types/express": ^4.17.14
+    "@types/jsonwebtoken": ^9.0.0
+    debug: ^4.3.4
+    jose: ^4.10.4
+    limiter: ^1.1.5
+    lru-memoizer: ^2.1.4
+  checksum: 47a45492fa8278e2aec11e30b64c651ec1bf05636a2fb34f80478c12a75cfb1aa311f599aefb7fcd0df792c1560a2f91948eb1eab5d4db9a2866fa2f5570f913
+  languageName: node
+  linkType: hard
+
 "jws@npm:^3.2.2":
   version: 3.2.2
   resolution: "jws@npm:3.2.2"
@@ -17291,6 +17377,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"limiter@npm:^1.1.5":
+  version: 1.1.5
+  resolution: "limiter@npm:1.1.5"
+  checksum: ebe2b20a820d1f67b8e1724051246434c419b2da041a7e9cd943f6daf113b8d17a52a1bd88fb79be5b624c10283ecb737f50edb5c1c88c71f4cd367108c97300
+  languageName: node
+  linkType: hard
+
 "line-column@npm:1.0.2":
   version: 1.0.2
   resolution: "line-column@npm:1.0.2"
@@ -17436,6 +17529,13 @@ __metadata:
   version: 4.2.0
   resolution: "lodash.chunk@npm:4.2.0"
   checksum: f9f99969561ad2f62af1f9a96c5bd0af776f000292b0d8db3126c28eb3b32e210d7c31b49c18d0d7901869bd769057046dc134b60cfa0c2c4ce017823a26bb23
+  languageName: node
+  linkType: hard
+
+"lodash.clonedeep@npm:^4.5.0":
+  version: 4.5.0
+  resolution: "lodash.clonedeep@npm:4.5.0"
+  checksum: 2caf0e4808f319d761d2939ee0642fa6867a4bbf2cfce43276698828380756b99d4c4fa226d881655e6ac298dd453fe12a5ec8ba49861777759494c534936985
   languageName: node
   linkType: hard
 
@@ -17651,6 +17751,26 @@ __metadata:
   dependencies:
     yallist: ^4.0.0
   checksum: cb53e582785c48187d7a188d3379c181b5ca2a9c78d2bce3e7dee36f32761d1c42983da3fe12b55cb74e1779fa94cdc2e5367c028a9b35317184ede0c07a30a9
+  languageName: node
+  linkType: hard
+
+"lru-cache@npm:~4.0.0":
+  version: 4.0.2
+  resolution: "lru-cache@npm:4.0.2"
+  dependencies:
+    pseudomap: ^1.0.1
+    yallist: ^2.0.0
+  checksum: 92ff839ef07632d35f6bddd870909ae49edc1956b409b6a6db342e6d92bbea4aa4f7107dae35db7d5dd59cf27d5a43bbd335f26e2458d1b8860783f68fc1a0af
+  languageName: node
+  linkType: hard
+
+"lru-memoizer@npm:^2.1.4":
+  version: 2.2.0
+  resolution: "lru-memoizer@npm:2.2.0"
+  dependencies:
+    lodash.clonedeep: ^4.5.0
+    lru-cache: ~4.0.0
+  checksum: b2d38600f8f5b936c9e54fd3459aac8d2d3872920bce231a22cffb3b44521ccdfca9df11c8d5b091c8764e0cb2560fd5fc440acadddcec102e2ba03f6fa2c282
   languageName: node
   linkType: hard
 
@@ -20298,6 +20418,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"pseudomap@npm:^1.0.1":
+  version: 1.0.2
+  resolution: "pseudomap@npm:1.0.2"
+  checksum: 5a91ce114c64ed3a6a553aa7d2943868811377388bb31447f9d8028271bae9b05b340fe0b6961a64e45b9c72946aeb0a4ab635e8f7cb3715ffd0ff2beeb6a679
+  languageName: node
+  linkType: hard
+
 "psl@npm:^1.1.33":
   version: 1.9.0
   resolution: "psl@npm:1.9.0"
@@ -21460,6 +21587,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
+    "@redwoodjs/auth-auth0-setup": 6.1.0
     "@redwoodjs/cli-storybook": 6.1.0
     "@redwoodjs/core": 6.1.0
     "@storybook/react": ^7.3.2
@@ -24308,8 +24436,10 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "web@workspace:web"
   dependencies:
+    "@auth0/auth0-spa-js": ^2
     "@headlessui/react": ^1.7.17
     "@heroicons/react": ^2.0.18
+    "@redwoodjs/auth-auth0-web": 6.1.0
     "@redwoodjs/forms": 6.1.0
     "@redwoodjs/router": 6.1.0
     "@redwoodjs/vite": 6.1.0
@@ -24948,6 +25078,13 @@ __metadata:
   version: 5.0.8
   resolution: "y18n@npm:5.0.8"
   checksum: 4df2842c36e468590c3691c894bc9cdbac41f520566e76e24f59401ba7d8b4811eb1e34524d57e54bc6d864bcb66baab7ffd9ca42bf1eda596618f9162b91249
+  languageName: node
+  linkType: hard
+
+"yallist@npm:^2.0.0":
+  version: 2.1.2
+  resolution: "yallist@npm:2.1.2"
+  checksum: 0b9e25aa00adf19e01d2bcd4b208aee2b0db643d9927131797b7af5ff69480fc80f1c3db738cbf3946f0bddf39d8f2d0a5709c644fd42d4aa3a4e6e786c087b5
   languageName: node
   linkType: hard
 

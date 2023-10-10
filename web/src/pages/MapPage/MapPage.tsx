@@ -23,6 +23,7 @@ import {
 import Sidebar from 'src/components/Sidebar/Sidebar'
 import Topbar from 'src/components/Topbar/Topbar'
 import { MapProvider } from 'src/context/MapContext'
+import MapLayout from 'src/layouts/MapLayout/MapLayout'
 
 const navigation = [
   { name: 'Dashboard', href: '#', icon: HomeIcon, current: true },
@@ -54,9 +55,10 @@ const MapPage = () => {
   return (
     <>
       <MetaTags title="Map" description="Map page" />
-      <MapProvider>
-        <div>
-          {/* <Transition.Root show={sidebarOpen} as={Fragment}>
+      <MapLayout>
+        <MapProvider>
+          <div>
+            {/* <Transition.Root show={sidebarOpen} as={Fragment}>
           <Dialog
           as="div"
           className="relative z-50 lg:hidden"
@@ -109,7 +111,7 @@ const MapPage = () => {
           </div>
           </Transition.Child>
           {/* Sidebar component, swap this element with another sidebar if you like */}
-          {/* <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-gray-900 px-6 pb-4 ring-1 ring-white/10">
+            {/* <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-gray-900 px-6 pb-4 ring-1 ring-white/10">
                     <div className="flex h-16 shrink-0 items-center">
                     <img
                     className="h-8 w-auto"
@@ -188,16 +190,17 @@ const MapPage = () => {
                             </Dialog>
                           </Transition.Root> */}
 
-          <Sidebar />
-          <div className="w-[100vw] pl-[5vw]">
-            <main className="py-0">
-              <div className="px-0 sm:px-0 lg:px-0">
-                <Map />
-              </div>
-            </main>
+            {/* <Sidebar /> */}
+            <div className="w-[100vw] pl-[5vw]">
+              <main className="py-0">
+                <div className="px-0 sm:px-0 lg:px-0">
+                  <Map />
+                </div>
+              </main>
+            </div>
           </div>
-        </div>
-      </MapProvider>
+        </MapProvider>
+      </MapLayout>
     </>
   )
 }

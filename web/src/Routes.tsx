@@ -10,9 +10,11 @@
 import { Router, Route, Set } from '@redwoodjs/router'
 import MapLayout from './layouts/MapLayout/MapLayout'
 
+import { useAuth } from './auth'
+
 const Routes = () => {
   return (
-    <Router>
+    <Router useAuth={useAuth}>
       <Set wrap={MapLayout}>
         <Route path="/" page={MapPage} name="map" />
       </Set>
