@@ -10,7 +10,7 @@ const MapLayout = ({ children }: MapLayoutProps) => {
   return (
     <div>
       <Sidebar />
-      <main className="py-0 lg:pl-72">
+      <main className="py-0 lg:pl-48">
         <div className="px-0">{children}</div>
       </main>
     </div>
