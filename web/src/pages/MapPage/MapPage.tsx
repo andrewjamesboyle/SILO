@@ -24,6 +24,7 @@ import Sidebar from 'src/components/Sidebar/Sidebar'
 import Topbar from 'src/components/Header/Header'
 import { MapProvider } from 'src/context/MapContext'
 import MapLayout from 'src/layouts/MapLayout/MapLayout'
+import SearchDataComponent from 'src/components/SearchData/SearchData'
 
 const navigation = [
   { name: 'Dashboard', href: '#', icon: HomeIcon, current: true },

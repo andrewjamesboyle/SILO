@@ -1,11 +1,18 @@
 import React, { useEffect } from 'react'
 
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
+import {
+  MapContainer,
+  TileLayer,
+  Marker,
+  Popup,
+  ZoomControl,
+} from 'react-leaflet'
 
 import 'leaflet/dist/leaflet.css'
 import 'leaflet-draw/dist/leaflet.draw.css'
 import { useMap } from 'src/context/MapContext'
 import DrawFeature from '../DrawFeature/DrawFeature'
+import SearchDataComponent from '../SearchData/SearchData'
 
 const MapComponent: React.FC = () => {
   const { state } = useMap()
@@ -15,11 +22,13 @@ const MapComponent: React.FC = () => {
       style={{ height: '100vh', width: '100%' }}
       center={state.mapCenter}
       zoom={13}
+      zoomControl={false}
     >
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
       />
+      <ZoomControl position="bottomright" />
       {state.layers.includes('Google Hybrid') && (
         <TileLayer
           url="https://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}"
@@ -41,7 +50,8 @@ const MapComponent: React.FC = () => {
           A pretty CSS3 popup. <br /> Easily customizable.
         </Popup>
       </Marker>
-      <DrawFeature />
+      {/* <DrawFeature /> */}
+      {/* <SearchDataComponent /> */}
     </MapContainer>
   )
 }
