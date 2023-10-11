@@ -50,22 +50,13 @@ function classNames(...classes) {
 }
 
 const MapPage = () => {
-  const [sidebarOpen, setSidebarOpen] = useState(false)
-
   return (
     <>
       <MetaTags title="Map" description="Map page" />
 
       <MapProvider>
         <div>
-          {/* <Sidebar /> */}
-          <div className="w-[100vw] pl-[5vw]">
-            <main className="py-0">
-              <div className="px-0 sm:px-0 lg:px-0">
-                <Map />
-              </div>
-            </main>
-          </div>
+          <Map />
         </div>
       </MapProvider>
     </>

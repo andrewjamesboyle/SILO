@@ -1,5 +1,6 @@
 import { Toaster } from '@redwoodjs/web/toast'
 import Header from 'src/components/Header/Header'
+import Sidebar from 'src/components/Sidebar/Sidebar'
 
 type MapLayoutProps = {
   children?: React.ReactNode
@@ -7,10 +8,11 @@ type MapLayoutProps = {
 
 const MapLayout = ({ children }: MapLayoutProps) => {
   return (
-    <div className="flex flex-col h-screen bg-gray-100">
-      <Header />
-      <main className="flex-1 overflow-y-auto p-4">{children}</main>
-      <Toaster />
+    <div>
+      <Sidebar />
+      <main className="py-0 lg:pl-72">
+        <div className="px-0">{children}</div>
+      </main>
     </div>
   )
 }
