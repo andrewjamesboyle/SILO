@@ -24,6 +24,7 @@ const navigation = [
   { name: 'Upload', href: '#', icon: CalendarIcon, current: false },
   { name: 'Download', href: '#', icon: DocumentDuplicateIcon, current: false },
   { name: 'Search', href: '#', icon: ChartPieIcon, current: false },
+  { name: 'Simple', href: '#', icon: ChartPieIcon, current: false },
 ]
 
 const teams = [
@@ -41,7 +42,11 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-const Sidebar = () => {
+const Sidebar = ({ onItemSelect }) => {
+  const handleItemClick = (item) => {
+    console.log(item, 'was clicked')
+    onItemSelect(item)
+  }
   return (
     <>
       {/* Static sidebar for desktop */}
@@ -57,8 +62,8 @@ const Sidebar = () => {
                 <ul role="list" className="-mx-2 space-y-1">
                   {navigation.map((item) => (
                     <li key={item.name}>
-                      <a
-                        href={item.href}
+                      <button
+                        onClick={() => handleItemClick(item.name)}
                         className={classNames(
                           item.current
                             ? 'bg-gray-50 text-indigo-600'
@@ -76,7 +81,7 @@ const Sidebar = () => {
                           aria-hidden="true"
                         />
                         {item.name}
-                      </a>
+                      </button>
                     </li>
                   ))}
                 </ul>
