@@ -17,7 +17,7 @@ const flyoutComponents = {
   Search: SearchDataComponent,
   Project: ProcessDataComponent,
   Layers: LayerToggle,
-  // ... add other mappings here
+  // ... add other components here
 }
 
 const MapLayout = ({ children }: MapLayoutProps) => {

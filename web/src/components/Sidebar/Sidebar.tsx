@@ -24,6 +24,7 @@ const navigation = [
   { name: 'Upload', href: '#', icon: CalendarIcon, current: false },
   { name: 'Download', href: '#', icon: DocumentDuplicateIcon, current: false },
   { name: 'Search', href: '#', icon: ChartPieIcon, current: false },
+  { name: 'Layers', href: '#', icon: ChartPieIcon, current: false },
   { name: 'Simple', href: '#', icon: ChartPieIcon, current: false },
 ]
 
