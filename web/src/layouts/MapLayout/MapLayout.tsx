@@ -7,6 +7,7 @@ import ProcessDataComponent from 'src/components/ProcessData/ProcessData'
 import SearchDataComponent from 'src/components/SearchData/SearchData'
 import Sidebar from 'src/components/Sidebar/Sidebar'
 import SimpleComponent from 'src/components/SimpleComponent/SimpleComponent'
+import { MapProvider } from 'src/context/MapContext'
 
 type MapLayoutProps = {
   children?: React.ReactNode
@@ -30,21 +31,23 @@ const MapLayout = ({ children }: MapLayoutProps) => {
 
   return (
     <div>
-      <Sidebar onItemSelect={setActiveSidebarItem} />
+      <MapProvider>
+        <Sidebar onItemSelect={setActiveSidebarItem} />
 
-      <main className="lg:pl-48 relative">
-        <div>{children}</div>
-        {FlyoutComponent && (
-          <div className="absolute z-50 lg:pl-48 top-0 left-0 w-half h-half">
-            <Flyout
-              onClose={() => setActiveSidebarItem(null)}
-              title={activeSidebarItem}
-            >
-              <FlyoutComponent />
-            </Flyout>
-          </div>
-        )}
-      </main>
+        <main className="lg:pl-48 relative">
+          <div>{children}</div>
+          {FlyoutComponent && (
+            <div className="absolute z-50 lg:pl-48 top-0 left-0 w-half h-half">
+              <Flyout
+                onClose={() => setActiveSidebarItem(null)}
+                title={activeSidebarItem}
+              >
+                <FlyoutComponent />
+              </Flyout>
+            </div>
+          )}
+        </main>
+      </MapProvider>
     </div>
   )
 }

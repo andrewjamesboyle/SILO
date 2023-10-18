@@ -55,11 +55,9 @@ const MapPage = () => {
     <>
       <MetaTags title="Map" description="Map page" />
 
-      <MapProvider>
-        <div>
-          <Map />
-        </div>
-      </MapProvider>
+      <div>
+        <Map />
+      </div>
     </>
   )
 }
