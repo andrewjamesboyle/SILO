@@ -8,6 +8,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import 'maplibre-gl/dist/maplibre-gl.css';
+
 /**
  * END --- SETUP TAILWINDCSS EDIT
  */
