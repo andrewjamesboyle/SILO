@@ -38,12 +38,14 @@ const MapLayout = ({ children }: MapLayoutProps) => {
           <div>{children}</div>
           {FlyoutComponent && (
             <div className="absolute z-50 lg:pl-48 top-0 left-0 w-half h-half">
-              <Flyout
-                onClose={() => setActiveSidebarItem(null)}
-                title={activeSidebarItem}
-              >
-                <FlyoutComponent />
-              </Flyout>
+              <div className="bg-white p-4 rounded-r-2xl">
+                <Flyout
+                  onClose={() => setActiveSidebarItem(null)}
+                  title={activeSidebarItem}
+                >
+                  <FlyoutComponent />
+                </Flyout>
+              </div>
             </div>
           )}
         </main>
