@@ -6,7 +6,6 @@ import LayerToggle from 'src/components/LayerToggle/LayerToggle'
 import ProcessDataComponent from 'src/components/ProcessData/ProcessData'
 import SearchDataComponent from 'src/components/SearchData/SearchData'
 import Sidebar from 'src/components/Sidebar/Sidebar'
-import SimpleComponent from 'src/components/SimpleComponent/SimpleComponent'
 import { MapProvider } from 'src/context/MapContext'
 
 type MapLayoutProps = {
@@ -14,7 +13,6 @@ type MapLayoutProps = {
 }
 
 const flyoutComponents = {
-  Simple: SimpleComponent,
   Search: SearchDataComponent,
   Project: ProcessDataComponent,
   Layers: LayerToggle,

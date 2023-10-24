@@ -25,18 +25,6 @@ const navigation = [
   { name: 'Download', href: '#', icon: DocumentDuplicateIcon, current: false },
   { name: 'Search', href: '#', icon: ChartPieIcon, current: false },
   { name: 'Layers', href: '#', icon: ChartPieIcon, current: false },
-  { name: 'Simple', href: '#', icon: ChartPieIcon, current: false },
-]
-
-const teams = [
-  { id: 1, name: 'Heroicons', href: '#', initial: 'H', current: false },
-  { id: 2, name: 'Tailwind Labs', href: '#', initial: 'T', current: false },
-  { id: 3, name: 'Workcation', href: '#', initial: 'W', current: false },
-]
-
-const userNavigation = [
-  { name: 'Your profile', href: '#' },
-  { name: 'Sign out', href: '#' },
 ]
 
 function classNames(...classes) {
@@ -45,9 +33,9 @@ function classNames(...classes) {
 
 const Sidebar = ({ onItemSelect }) => {
   const handleItemClick = (item) => {
-    console.log(item, 'was clicked')
     onItemSelect(item)
   }
+
   return (
     <>
       {/* Static sidebar for desktop */}
@@ -87,7 +75,7 @@ const Sidebar = ({ onItemSelect }) => {
                   ))}
                 </ul>
               </li>
-              <li>
+              {/* <li>
                 <div className="text-xs font-semibold leading-6 text-gray-400">
                   Your teams
                 </div>
@@ -118,7 +106,7 @@ const Sidebar = ({ onItemSelect }) => {
                     </li>
                   ))}
                 </ul>
-              </li>
+              </li> */}
               <li className="mt-auto">
                 <a
                   href="#"
