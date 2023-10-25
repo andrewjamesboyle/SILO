@@ -1,32 +1,38 @@
 import React, { createContext, useReducer, useContext } from 'react'
+import { MapState, BaseLayer, OverlayLayer } from './mapTypes'
 
-interface State {
-  layers: string[]
-  mapCenter?: [number, number]
+const initialState: MapState = {
+  baseLayer: {
+    id: 'satellite',
+    name: 'Satellite',
+    url: 'https://api.maptiler.com/maps/satellite/style.json?key=Rjt57FTtlzmwKYcAVojy',
+  },
+  overlayLayers: [],
 }
 
 type Action =
-  | { type: 'TOGGLE_LAYER'; payload: string }
-  | { type: 'SET_MAP_CENTER'; payload: [number, number] }
+  | { type: 'SET_BASE_LAYER'; payload: BaseLayer } // use BaseLayer instead of object
+  | { type: 'TOGGLE_OVERLAY_LAYER'; payload: OverlayLayer }
 
-const MapStateContext = createContext<State | undefined>(undefined)
+const MapStateContext = createContext<MapState | undefined>(undefined)
 const MapDispatchContext = createContext<React.Dispatch<Action> | undefined>(
   undefined
 )
 
-const mapReducer = (state: State, action: Action): State => {
+const mapReducer = (state: MapState, action: Action): MapState => {
   switch (action.type) {
-    case 'TOGGLE_LAYER':
-      const layerIndex = state.layers.indexOf(action.payload)
-      const newLayers = [...state.layers]
+    case 'SET_BASE_LAYER':
+      return { ...state, baseLayer: action.payload }
+    case 'TOGGLE_OVERLAY_LAYER':
+      const layerIndex = state.overlayLayers.indexOf(action.payload)
+      const newLayers = [...state.overlayLayers]
       if (layerIndex >= 0) {
         newLayers.splice(layerIndex, 1)
       } else {
         newLayers.push(action.payload)
       }
-      return { ...state, layers: newLayers }
-    case 'SET_MAP_CENTER':
-      return { ...state, mapCenter: action.payload }
+      return { ...state, overlayLayers: newLayers }
+
     default:
       throw new Error(`Unhandled action type`)
   }
@@ -38,8 +44,12 @@ interface MapProviderProps {
 
 export const MapProvider: React.FC<MapProviderProps> = ({ children }) => {
   const [state, dispatch] = useReducer(mapReducer, {
-    layers: ['Google Hybrid'],
-    mapCenter: [47.1941, -122.7633], // Set the initial state of the map to the center of Tacoma
+    baseLayer: {
+      id: 'satellite',
+      name: 'Satellite',
+      url: 'https://api.maptiler.com/maps/satellite/style.json?key=Rjt57FTtlzmwKYcAVojy',
+    },
+    overlayLayers: [],
   })
 
   return (
@@ -51,7 +61,7 @@ export const MapProvider: React.FC<MapProviderProps> = ({ children }) => {
   )
 }
 
-export const useMapState = (): State => {
+export const useMapState = (): MapState => {
   const context = useContext(MapStateContext)
   if (context === undefined) {
     throw new Error('useMapState must be used within a MapProvider')
@@ -68,7 +78,7 @@ export const useMapDispatch = (): React.Dispatch<Action> => {
 }
 
 export const useMap = (): {
-  state: State
+  state: MapState
   dispatch: React.Dispatch<Action>
 } => {
   const state = useMapState()
