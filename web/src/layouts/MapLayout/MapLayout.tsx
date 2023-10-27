@@ -37,8 +37,8 @@ const MapLayout = ({ children }: MapLayoutProps) => {
         <main className="lg:pl-48 relative">
           <div>{children}</div>
           {FlyoutComponent && (
-            <div className="absolute z-50 lg:pl-48 top-0 left-0 w-half h-half">
-              <div className="bg-white p-4 rounded-r-2xl">
+            <div className="absolute z-50 lg:pl-48 top-0 left-0 w-half h-half m-4 bottom-0">
+              <div className="bg-white p-4 rounded-2xl">
                 <Flyout
                   onClose={() => setActiveSidebarItem(null)}
                   title={activeSidebarItem}

@@ -91,7 +91,7 @@ const ProcessDataComponent: React.FC = () => {
           onChange={(e) =>
             setUploadedFile(e.target.files ? e.target.files[0] : null)
           }
-          className="p-2 rounded-md text-sm leading-6 font-semibold"
+          className="p-2 pl-0 rounded-md text-sm leading-6 font-semibold"
         />
       </div>
       <div className="mt-4">
