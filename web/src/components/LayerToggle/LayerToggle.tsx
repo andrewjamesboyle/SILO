@@ -10,13 +10,26 @@ const LayerToggle = () => {
   const state = useMapState()
   const dispatch = useMapDispatch()
   console.log('baseLayers', baseLayers)
+  console.log('active overlay layers', state.overlayLayers)
 
   const handleToggleBaseLayer = (layer: BaseLayer) => {
     dispatch({ type: 'SET_BASE_LAYER', payload: layer })
   }
 
   const handleToggleOverlayLayer = (layer: OverlayLayer) => {
-    dispatch({ type: 'TOGGLE_OVERLAY_LAYER', payload: layer })
+    const isLayerActive = state.overlayLayers.some((l) => l.id === layer.id)
+
+    if (isLayerActive) {
+      dispatch({
+        type: 'REMOVE_OVERLAY_LAYER',
+        payload: layer,
+      })
+    } else {
+      dispatch({
+        type: 'ADD_OVERLAY_LAYER',
+        payload: layer,
+      })
+    }
   }
 
   return (
@@ -51,7 +64,9 @@ const LayerToggle = () => {
             <li key={dataLayer.id}>
               <div
                 className={classNames(
-                  state.overlayLayers.name === dataLayer.name
+                  state.overlayLayers.some(
+                    (layer) => layer.name === dataLayer.name
+                  )
                     ? 'bg-gray-800 text-white'
                     : 'text-gray-400 hover:text-white hover:bg-gray-800',
                   'group flex gap-x-3 rounded-md p-2 text-xs leading-6 font-semibold'
@@ -59,7 +74,9 @@ const LayerToggle = () => {
               >
                 <input
                   type="checkbox"
-                  checked={state.baseLayer.name === dataLayer.name}
+                  checked={state.overlayLayers.some(
+                    (layer) => layer.name === dataLayer.name
+                  )}
                   onChange={() => handleToggleOverlayLayer(dataLayer)}
                   className="flex h-6 w-6 shrink-0 items-center justify-center rounded-sm"
                 />

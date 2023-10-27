@@ -7,12 +7,13 @@ const initialState: MapState = {
     name: 'Satellite',
     url: 'https://api.maptiler.com/maps/satellite/style.json?key=Rjt57FTtlzmwKYcAVojy',
   },
-  overlayLayers: [],
+  overlayLayers: [] as OverlayLayer[],
 }
 
 type Action =
   | { type: 'SET_BASE_LAYER'; payload: BaseLayer }
-  | { type: 'TOGGLE_OVERLAY_LAYER'; payload: OverlayLayer }
+  | { type: 'ADD_OVERLAY_LAYER'; payload: OverlayLayer }
+  | { type: 'REMOVE_OVERLAY_LAYER'; payload: OverlayLayer }
 
 const MapStateContext = createContext<MapState | undefined>(undefined)
 const MapDispatchContext = createContext<React.Dispatch<Action> | undefined>(
@@ -23,16 +24,18 @@ const mapReducer = (state: MapState, action: Action): MapState => {
   switch (action.type) {
     case 'SET_BASE_LAYER':
       return { ...state, baseLayer: action.payload }
-    case 'TOGGLE_OVERLAY_LAYER':
-      const layerIndex = state.overlayLayers.indexOf(action.payload)
-      const newLayers = [...state.overlayLayers]
-      if (layerIndex >= 0) {
-        newLayers.splice(layerIndex, 1)
-      } else {
-        newLayers.push(action.payload)
+    case 'ADD_OVERLAY_LAYER':
+      return {
+        ...state,
+        overlayLayers: [...state.overlayLayers, action.payload],
       }
-      return { ...state, overlayLayers: newLayers }
-
+    case 'REMOVE_OVERLAY_LAYER':
+      return {
+        ...state,
+        overlayLayers: state.overlayLayers.filter(
+          (layer) => layer.id !== action.payload.id
+        ),
+      }
     default:
       throw new Error(`Unhandled action type`)
   }

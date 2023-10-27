@@ -23,5 +23,20 @@ export const overlayLayers = [
     name: 'Wetlands',
     url: 'VECTOR_TILE_ENDPOINT_FOR_WETLANDS',
   },
+  {
+    id: 'monuments',
+    name: 'Monuments',
+    url: 'VECTOR_TILE_ENDPOINT_FOR_WETLANDS',
+  },
+  {
+    id: 'test pit',
+    name: 'Test Pit',
+    url: 'VECTOR_TILE_ENDPOINT_FOR_WETLANDS',
+  },
+  {
+    id: 'control points',
+    name: 'Control Points',
+    url: 'VECTOR_TILE_ENDPOINT_FOR_WETLANDS',
+  },
   // ... other overlay layers
 ]
