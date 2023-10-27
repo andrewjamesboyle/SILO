@@ -5,10 +5,10 @@
  * to inject Tailwind's styles into your CSS.
  * For more information, see: https://tailwindcss.com/docs/installation
  */
+@import 'maplibre-gl/dist/maplibre-gl.css';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import 'maplibre-gl/dist/maplibre-gl.css';
 
 /**
  * END --- SETUP TAILWINDCSS EDIT
