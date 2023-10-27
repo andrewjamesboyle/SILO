@@ -36,7 +36,7 @@ export const overlayLayers = [
   {
     id: 'control points',
     name: 'Control Points',
-    url: 'VECTOR_TILE_ENDPOINT_FOR_WETLANDS',
+    url: 'http://146.190.37.102:7800/public.controlpt/{z}/{x}/{y}.pbf',
   },
   // ... other overlay layers
 ]

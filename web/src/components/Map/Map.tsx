@@ -28,6 +28,11 @@ const MapComponent: React.FC = () => {
     }
   }, [state.baseLayer])
 
+  // useEffect(() => {
+  // listen for changes in overlay layer state
+  //call the map.addLayer method to add that layer to the UI
+  //}, [state.overlayLayer])
+
   return (
     <div ref={mapContainerRef} style={{ width: '100%', height: '100vh' }} />
   )
