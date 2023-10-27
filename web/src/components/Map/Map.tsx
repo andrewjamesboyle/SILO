@@ -7,7 +7,7 @@ const MapComponent: React.FC = () => {
   const { state } = useMap()
   console.log('Layer state in Map', state.baseLayer)
   const mapContainerRef = useRef(null)
-  const mapRef = useRef<InstanceType<(typeof maplibre)['Map']> | null>(null)
+  const mapRef = useRef<any>(null)
 
   useEffect(() => {
     const map = new maplibre.Map({

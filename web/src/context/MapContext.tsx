@@ -11,7 +11,7 @@ const initialState: MapState = {
 }
 
 type Action =
-  | { type: 'SET_BASE_LAYER'; payload: BaseLayer } // use BaseLayer instead of object
+  | { type: 'SET_BASE_LAYER'; payload: BaseLayer }
   | { type: 'TOGGLE_OVERLAY_LAYER'; payload: OverlayLayer }
 
 const MapStateContext = createContext<MapState | undefined>(undefined)
