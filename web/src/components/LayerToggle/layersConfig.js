@@ -14,29 +14,78 @@ export const baseLayers = [
     name: 'Ocean',
     url: 'https://api.maptiler.com/maps/ocean/style.json?key=Rjt57FTtlzmwKYcAVojy',
   },
-  // ... other base layers
 ]
 
 export const overlayLayers = [
   {
     id: 'wetlands',
     name: 'Wetlands',
-    url: 'VECTOR_TILE_ENDPOINT_FOR_WETLANDS',
+    url: 'http://146.190.37.102:7800/public.wetlands',
+    sourceLayer: 'wetlands',
+    type: 'fill',
+    paint: {
+      'fill-color': 'green',
+      'fill-opacity': 0.7,
+      'fill-outline-color': 'rgba(0, 128, 0, 0.7)',
+    },
+    layout: {
+      visibility: 'visible',
+    },
   },
   {
     id: 'monuments',
     name: 'Monuments',
-    url: 'VECTOR_TILE_ENDPOINT_FOR_WETLANDS',
+    url: 'http://146.190.37.102:7800/public/monuments',
+    sourceLayer: 'monuments',
+    type: 'fill',
+    paint: {
+      /* ... */
+    },
+    layout: {
+      visibility: 'visible',
+    },
   },
   {
     id: 'test pit',
     name: 'Test Pit',
-    url: 'VECTOR_TILE_ENDPOINT_FOR_WETLANDS',
+    url: 'http://146.190.37.102:7800/public/test pit',
+    sourceLayer: 'test pit',
+    type: 'fill',
+    paint: {
+      /* ... */
+    },
+    layout: {
+      visibility: 'visible',
+    },
   },
   {
     id: 'control points',
     name: 'Control Points',
-    url: 'http://146.190.37.102:7800/public.controlpt/{z}/{x}/{y}.pbf',
+    url: 'http://146.190.37.102:7800/public/control points',
+    sourceLayer: 'control points',
+    type: 'fill',
+    paint: {
+      /* ... */
+    },
+    layout: {
+      visibility: 'visible',
+    },
   },
-  // ... other overlay layers
+  {
+    id: 'parcels',
+    name: 'Parcels',
+    url: 'http://146.190.37.102:7800/public.parcels',
+    sourceLayer: 'parcels',
+    type: 'fill',
+    maxzoom: 22,
+    minzoom: 13,
+    paint: {
+      'fill-color': 'lightblue',
+      'fill-opacity': 0.1,
+      'fill-outline-color': 'rgba(173, 216, 230, 0.7)',
+    },
+    layout: {
+      visibility: 'visible',
+    },
+  },
 ]
