@@ -21,7 +21,7 @@ export const overlayLayers = [
     id: 'wetlands',
     name: 'Wetlands',
     url: 'http://146.190.37.102:7800/public.wetlands',
-    sourceLayer: 'wetlands',
+    sourceLayer: 'public.wetlands',
     type: 'fill',
     paint: {
       'fill-color': 'green',
@@ -35,8 +35,8 @@ export const overlayLayers = [
   {
     id: 'monuments',
     name: 'Monuments',
-    url: 'http://146.190.37.102:7800/public/monuments',
-    sourceLayer: 'monuments',
+    url: 'http://146.190.37.102:7800/public.monuments',
+    sourceLayer: 'public.monuments',
     type: 'fill',
     paint: {
       /* ... */
