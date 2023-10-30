@@ -39,7 +39,9 @@ export const overlayLayers = [
     sourceLayer: 'public.mons',
     type: 'fill',
     paint: {
-      /* ... */
+      'fill-color': 'red',
+      'fill-opacity': 0.7,
+      'fill-outline-color': 'rgba(128, 0, 0, 0.7)',
     },
     layout: {
       visibility: 'visible',
@@ -48,11 +50,13 @@ export const overlayLayers = [
   {
     id: 'test pit',
     name: 'Test Pit',
-    url: 'http://146.190.37.102:7800/public.test_pit',
-    sourceLayer: 'public.test_pit',
+    url: 'http://146.190.37.102:7800/public.testpit',
+    sourceLayer: 'public.testpit',
     type: 'fill',
     paint: {
-      /* ... */
+      'fill-color': 'blue',
+      'fill-opacity': 0.7,
+      'fill-outline-color': 'rgba(128, 0, 128, 0.7)',
     },
     layout: {
       visibility: 'visible',
@@ -61,11 +65,13 @@ export const overlayLayers = [
   {
     id: 'control points',
     name: 'Control Points',
-    url: 'http://146.190.37.102:7800/public/control points',
-    sourceLayer: 'control points',
+    url: 'http://146.190.37.102:7800/public.controlpt',
+    sourceLayer: 'public.controlpt',
     type: 'fill',
     paint: {
-      /* ... */
+      'fill-color': 'pink',
+      'fill-opacity': 0.7,
+      'fill-outline-color': 'rgba(255, 192, 203, 0.7)',
     },
     layout: {
       visibility: 'visible',
@@ -76,6 +82,23 @@ export const overlayLayers = [
     name: 'Parcels',
     url: 'http://146.190.37.102:7800/public.parcels',
     sourceLayer: 'parcels',
+    type: 'fill',
+    maxzoom: 22,
+    minzoom: 13,
+    paint: {
+      'fill-color': 'lightblue',
+      'fill-opacity': 0.1,
+      'fill-outline-color': 'rgba(173, 216, 230, 0.7)',
+    },
+    layout: {
+      visibility: 'visible',
+    },
+  },
+  {
+    id: 'soil bore',
+    name: 'Soil Bore',
+    url: 'http://146.190.37.102:7800/public.soilbore',
+    sourceLayer: 'public.soilbore',
     type: 'fill',
     maxzoom: 22,
     minzoom: 13,
