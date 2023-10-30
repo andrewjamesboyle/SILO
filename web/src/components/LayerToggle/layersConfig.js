@@ -35,8 +35,8 @@ export const overlayLayers = [
   {
     id: 'monuments',
     name: 'Monuments',
-    url: 'http://146.190.37.102:7800/public.monuments',
-    sourceLayer: 'public.monuments',
+    url: 'http://146.190.37.102:7800/public.mons',
+    sourceLayer: 'public.mons',
     type: 'fill',
     paint: {
       /* ... */
@@ -48,8 +48,8 @@ export const overlayLayers = [
   {
     id: 'test pit',
     name: 'Test Pit',
-    url: 'http://146.190.37.102:7800/public/test pit',
-    sourceLayer: 'test pit',
+    url: 'http://146.190.37.102:7800/public.test_pit',
+    sourceLayer: 'public.test_pit',
     type: 'fill',
     paint: {
       /* ... */

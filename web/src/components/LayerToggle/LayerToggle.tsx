@@ -9,8 +9,6 @@ function classNames(...classes) {
 const LayerToggle = () => {
   const state = useMapState()
   const dispatch = useMapDispatch()
-  console.log('baseLayers', baseLayers)
-  console.log('active overlay layers', state.overlayLayers)
 
   const handleToggleBaseLayer = (layer: BaseLayer) => {
     dispatch({ type: 'SET_BASE_LAYER', payload: layer })
