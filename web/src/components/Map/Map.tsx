@@ -8,9 +8,10 @@ const MapComponent: React.FC = () => {
   const { state } = useMap()
   const mapContainerRef = useRef(null)
   const mapRef = useRef<any>(null)
+  const overlayLayersRef = useRef([])
 
   const addLayerToMap = (map, layerConfig) => {
-    console.log('adding layer to map', layerConfig.id)
+    // Add over lay layer to map
     if (!map.getLayer(layerConfig.id)) {
       map.addLayer({
         id: layerConfig.id,
@@ -34,6 +35,7 @@ const MapComponent: React.FC = () => {
   }
 
   useEffect(() => {
+    // Initialize map when component mounts
     const map = new maplibre.Map({
       container: mapContainerRef.current,
       style: state.baseLayer.url,
@@ -48,12 +50,19 @@ const MapComponent: React.FC = () => {
 
   useEffect(() => {
     if (mapRef.current) {
+      // Change base layer
       ;(mapRef.current as any).setStyle(state.baseLayer.url)
+
+      // Re-Add all overlay layers to map
+      overlayLayersRef.current.forEach((layerConfig) => {
+        addLayerToMap(mapRef.current, layerConfig)
+      })
     }
   }, [state.baseLayer])
 
   useEffect(() => {
     if (mapRef.current) {
+      overlayLayersRef.current = state.overlayLayers // store a copy of the overlay layers in a ref
       const activeLayerIds = state.overlayLayers.map((layer) => layer.id)
 
       overlayLayers.forEach((layerConfig) => {
