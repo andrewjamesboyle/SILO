@@ -39,8 +39,8 @@ const MapComponent: React.FC = () => {
     const map = new maplibre.Map({
       container: mapContainerRef.current,
       style: state.baseLayer.url,
-      center: [0, 0],
-      zoom: 2,
+      center: [-122.4443, 47.2529], // Tacoma, WA
+      zoom: 10,
     })
 
     mapRef.current = map
