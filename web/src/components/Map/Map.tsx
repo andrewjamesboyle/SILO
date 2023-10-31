@@ -50,13 +50,22 @@ const MapComponent: React.FC = () => {
 
   useEffect(() => {
     if (mapRef.current) {
-      // Change base layer
-      ;(mapRef.current as any).setStyle(state.baseLayer.url)
+      const map = mapRef.current
 
-      // Re-Add all overlay layers to map
-      overlayLayersRef.current.forEach((layerConfig) => {
-        addLayerToMap(mapRef.current, layerConfig)
-      })
+      const handleStyleData = () => {
+        // Add overlay layers to map once base layer has loaded
+        overlayLayersRef.current.forEach((layerConfig) => {
+          addLayerToMap(map, layerConfig)
+        })
+      }
+
+      map.on('styledata', handleStyleData)
+      map.setStyle(state.baseLayer.url)
+
+      return () => {
+        // Clean up the event listener when the effect is re-run or the component is unmounted.
+        map.off('styledata', handleStyleData)
+      }
     }
   }, [state.baseLayer])
 
