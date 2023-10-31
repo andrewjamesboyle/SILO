@@ -88,4 +88,19 @@ export const overlayLayers = [
       visibility: 'visible',
     },
   },
+  {
+    id: 'soil bore',
+    name: 'Soil Bore',
+    url: 'http://146.190.37.102:7800/public.soilbore',
+    sourceLayer: 'public.soilbore',
+    type: 'fill',
+    paint: {
+      'fill-color': 'brown',
+      'fill-opacity': 0.3,
+      'fill-outline-color': 'brown',
+    },
+    layout: {
+      visibility: 'visible',
+    },
+  },
 ]
