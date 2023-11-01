@@ -33,6 +33,7 @@ const LayerToggle = () => {
   return (
     <>
       <div>
+        <h2>Base Layers</h2>
         <ul role="list" className="-mx-2 mt-2 space-y-1">
           {baseLayers.map((dataLayer) => (
             <li key={dataLayer.id}>
@@ -46,6 +47,7 @@ const LayerToggle = () => {
               >
                 <input
                   type="checkbox"
+                  placeholder="{dataLayer.name}"
                   checked={state.baseLayer.name === dataLayer.name}
                   onChange={() => handleToggleBaseLayer(dataLayer)}
                   className="flex h-6 w-6 shrink-0 items-center justify-center rounded-sm"
@@ -57,6 +59,7 @@ const LayerToggle = () => {
         </ul>
       </div>
       <div>
+        <h2>Overlay layers</h2>
         <ul role="list" className="-mx-2 mt-2 space-y-1">
           {overlayLayers.map((dataLayer) => (
             <li key={dataLayer.id}>
