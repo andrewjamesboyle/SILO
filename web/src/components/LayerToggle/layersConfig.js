@@ -39,9 +39,10 @@ export const overlayLayers = [
     sourceLayer: 'public.mons',
     type: 'circle',
     paint: {
-      'fill-color': 'red',
-      'fill-opacity': 0.7,
-      'fill-outline-color': 'rgb(128, 0, 0)',
+      'circle-color': 'red',
+      'circle-radius': 5,
+      // 'fill-opacity': 0.7,
+      // 'fill-outline-color': 'rgb(128, 0, 0)',
     },
     layout: {
       visibility: 'visible',
