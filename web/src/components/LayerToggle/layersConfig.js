@@ -40,9 +40,7 @@ export const overlayLayers = [
     type: 'circle',
     paint: {
       'circle-color': 'red',
-      'circle-radius': 5,
-      // 'fill-opacity': 0.7,
-      // 'fill-outline-color': 'rgb(128, 0, 0)',
+      'circle-radius': 10,
     },
     layout: {
       visibility: 'visible',
@@ -53,11 +51,10 @@ export const overlayLayers = [
     name: 'Test Pit',
     url: 'http://146.190.37.102:7800/public.testpit',
     sourceLayer: 'public.testpit',
-    type: 'fill',
+    type: 'circle',
     paint: {
-      'fill-color': 'green',
-      'fill-opacity': 0.7,
-      'fill-outline-color': 'rgba(0, 128, 0, 0.7)',
+      'circle-color': 'green',
+      'circle-radius': 10,
     },
     layout: {
       visibility: 'visible',
@@ -68,48 +65,33 @@ export const overlayLayers = [
     name: 'Control Points',
     url: 'http://146.190.37.102:7800/public.controlpt',
     sourceLayer: 'public.controlpt',
-    type: 'fill',
+    type: 'circle',
     paint: {
-      'fill-color': 'pink',
-      'fill-opacity': 0.7,
-      'fill-outline-color': 'rgba(255, 192, 203, 0.7)',
+      'circle-color': 'pink',
+      'circle-radius': 10,
     },
     layout: {
       visibility: 'visible',
     },
   },
-  // {
-  //   id: 'parcels',
-  //   name: 'Parcels',
-  //   url: 'http://146.190.37.102:7800/public.parcels',
-  //   sourceLayer: 'parcels',
-  //   type: 'fill',
-  //   maxzoom: 22,
-  //   minzoom: 13,
-  //   paint: {
-  //     'fill-color': 'lightblue',
-  //     'fill-opacity': 0.1,
-  //     'fill-outline-color': 'rgba(173, 216, 230, 0.7)',
-  //   },
-  //   layout: {
-  //     visibility: 'visible',
-  //   },
-  // },
-  // {
-  //   id: 'soil bore',
-  //   name: 'Soil Bore',
-  //   url: 'http://146.190.37.102:7800/public.soilbore',
-  //   sourceLayer: 'public.soilbore',
-  //   type: 'fill',
-  //   paint: {
-  //     'fill-color': 'lightblue',
-  //     'fill-opacity': 0.1,
-  //     'fill-outline-color': 'rgba(173, 216, 230, 0.7)',
-  //   },
-  //   layout: {
-  //     visibility: 'visible',
-  //   },
-  // },
+  {
+    id: 'parcels',
+    name: 'Parcels',
+    url: 'http://146.190.37.102:7800/public.parcels',
+    sourceLayer: 'public.parcels',
+    type: 'fill',
+    maxzoom: 22,
+    minzoom: 13,
+    paint: {
+      'fill-color': 'lightblue',
+      'fill-opacity': 0.1,
+      'fill-outline-color': 'rgba(173, 216, 230, 0.7)',
+    },
+    layout: {
+      visibility: 'visible',
+    },
+  },
+
   {
     id: 'soil bore',
     name: 'Soil Bore',
@@ -117,9 +99,8 @@ export const overlayLayers = [
     sourceLayer: 'public.soilbore',
     type: 'circle',
     paint: {
-      'fill-color': 'white',
-      'fill-opacity': 0.8,
-      'fill-outline-color': 'rgb(255, 192, 203)',
+      'circle-color': 'white',
+      'circle-radius': 10,
     },
     layout: {
       visibility: 'visible',
@@ -132,9 +113,7 @@ export const overlayLayers = [
     sourceLayer: 'public.ord_high_wtr',
     type: 'line',
     paint: {
-      'fill-color': 'brown',
-      'fill-opacity': 0.9,
-      'fill-outline-color': 'rgb(255, 192, 20)',
+      'line-color': '#198EC8',
     },
     layout: {
       visibility: 'visible',
@@ -147,27 +126,10 @@ export const overlayLayers = [
     sourceLayer: 'public.boundary',
     type: 'line',
     paint: {
-      'fill-color': 'brown',
-      'fill-opacity': 0.9,
-      'fill-outline-color': 'rgb(255, 192, 20)',
+      'line-color': 'red',
     },
     layout: {
       visibility: 'visible',
     },
   },
-  // {
-  //   id: 'soil bore',
-  //   name: 'Soil Bore',
-  //   url: 'http://146.190.37.102:7800/public.soilbore',
-  //   sourceLayer: 'public.soilbore',
-  //   type: 'fill',
-  //   paint: {
-  //     'fill-color': 'brown',
-  //     'fill-opacity': 0.3,
-  //     'fill-outline-color': 'brown',
-  //   },
-  //   layout: {
-  //     visibility: 'visible',
-  //   },
-  // },
 ]
