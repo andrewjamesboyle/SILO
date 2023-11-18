@@ -116,7 +116,7 @@ const SignInPage = () => {
           <img
             className="absolute inset-0 h-full w-full object-cover"
             src="/taco_map.png"
-            alt=""
+            alt="satellite view of Tacoma, Washington"
           />
         </div>
       </div>
