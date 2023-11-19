@@ -1,6 +1,7 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Dialog } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
+import About from './About'
 
 const navigation = [
   { name: 'About', href: '#about' },
@@ -10,9 +11,33 @@ const navigation = [
 
 export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [aboutVisible, setAboutVisible] = useState(false)
+  const aboutRef = useRef(null)
+
+  const handleScroll = () => {
+    if (aboutRef.current) {
+      const aboutPosition = aboutRef.current.offsetTop
+      const scrollPosition = window.scrollY
+
+      setAboutVisible(scrollPosition >= aboutPosition)
+    }
+  }
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll)
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [])
+
+  const scrollToAbout = () => {
+    if (aboutRef.current) {
+      aboutRef.current.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
 
   return (
-    <div className="bg-white">
+    <div className="bg-gray-900">
       <header className="absolute inset-x-0 top-0 z-50 justify-between">
         <nav
           className="flex items-center justify-end p-6 lg:px-8"
@@ -42,7 +67,7 @@ export default function Home() {
               </a>
             ))}
           </div>
-          <p className="border-t-4 border-gray-900 py-3" />
+          <div className="border-t-4 border-gray-900 py-3" />
           <div className="hidden lg:flex lg:flex-1 lg:justify-end">
             <a
               href="/sign-in"
@@ -71,7 +96,10 @@ export default function Home() {
               <button
                 type="button"
                 className="-m-2.5 rounded-md p-2.5 text-gray-200"
-                onClick={() => setMobileMenuOpen(false)}
+                onClick={() => {
+                  setMobileMenuOpen(false)
+                  scrollToAbout()
+                }}
               >
                 <span className="sr-only">Close menu</span>
                 <XMarkIcon className="h-6 w-6" aria-hidden="true" />
@@ -138,6 +166,9 @@ export default function Home() {
               </a>
             </div>
           </div>
+        </div>
+        <div className="relative isolate px-6 pt-14 lg:px-8" ref={aboutRef}>
+          <About />
         </div>
       </div>
     </div>
