@@ -8,36 +8,52 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
-model addresses {
-  fid               Int                      @id @default(autoincrement())
-  objectid          BigInt?
-  address           String?                  @db.VarChar(50)
-  mail_stop         String?                  @db.VarChar(30)
-  city              String?                  @db.VarChar(30)
-  state             String?                  @db.VarChar(2)
-  zipcode           String?                  @db.VarChar(10)
-  last_edited       DateTime?                @db.Timestamptz(6)
-  status            String?                  @db.VarChar(10)
-  taxparcelnumber   String?                  @db.VarChar(15)
-  housenumber       String?                  @db.VarChar(15)
-  prefixdirectional String?                  @db.VarChar(4)
-  streetname        String?                  @db.VarChar(50)
-  streettype        String?                  @db.VarChar(10)
-  postdirectional   String?                  @db.VarChar(4)
-  jurisdiction      String?                  @db.VarChar(30)
-  addressid         String?                  @db.VarChar(15)
-  geom              Unsupported("geometry")?
-
-  @@index([geom], map: "addresses_geom_geom_idx", type: Gist)
+model User {
+  id            Int            @id @default(autoincrement())
+  auth0Id       String         @unique
+  email         String         @unique
+  roleId        Int
+  role          Role           @relation(fields: [roleId], references: [id])
+  organizations Organization[]
+  projects      Project[]      @relation("createdProjects")
+  layers        Layer[]        @relation("createdLayers")
 }
 
-model boundary {
-  ogc_fid Int                      @id @default(autoincrement())
-  dwgname String?                  @db.VarChar
-  layer   String?                  @db.VarChar
-  geom    Unsupported("geometry")?
-  fdesc   String?
+model Role {
+  id    Int    @id @default(autoincrement())
+  name  String
+  users User[]
+}
+
+model Organization {
+  id       Int       @id @default(autoincrement())
+  name     String
+  users    User[]
+  projects Project[]
+}
+
+model Project {
+  id             Int          @id @default(autoincrement())
+  name           String
+  description    String?
+  createdById    Int
+  createdBy      User         @relation(fields: [createdById], references: [id], name: "createdProjects")
+  organizationId Int
+  organization   Organization @relation(fields: [organizationId], references: [id])
+  layers         Layer[]
+}
+
+model Layer {
+  id          Int       @id @default(autoincrement())
+  name        String
+  projectId   Int
+  project     Project   @relation(fields: [projectId], references: [id])
+  type        String
+  createdById Int
+  createdBy   User      @relation(fields: [createdById], references: [id], name: "createdLayers")
+  line        line[]
+  point       point[]
+  polygon     polygon[]
 }
 
 model contours {
@@ -46,160 +62,15 @@ model contours {
   type       Decimal?                 @db.Decimal(5, 0)
   update_sta Decimal?                 @db.Decimal(19, 11)
   shape_leng Decimal?                 @db.Decimal(19, 11)
-  geom       Unsupported("geometry")?
 
-  @@index([geom], map: "contours_geom_geom_idx", type: Gist)
-}
-
-model contours_us {
-  ogc_fid    Int                      @id @default(autoincrement())
-  objectid   Decimal?                 @db.Decimal(10, 0)
-  permanent_ String?                  @db.VarChar(40)
-  source_fea String?                  @db.VarChar(40)
-  source_dat String?                  @db.VarChar(40)
-  source_d_1 String?                  @db.VarChar(100)
-  source_ori String?                  @db.VarChar(130)
-  data_secur Decimal?                 @db.Decimal(5, 0)
-  distributi String?                  @db.VarChar(4)
-  loaddate   DateTime?                @db.Date
-  fcode      Decimal?                 @db.Decimal(10, 0)
-  contourele Decimal?                 @db.Decimal(19, 11)
-  contouruni Decimal?                 @db.Decimal(10, 0)
-  contourint Decimal?                 @db.Decimal(19, 11)
-  nedresolut Decimal?                 @db.Decimal(19, 11)
-  cell_id    Decimal?                 @db.Decimal(10, 0)
-  shape_leng Decimal?                 @db.Decimal(19, 11)
-  geom       Unsupported("geometry")?
-
-  @@index([geom], map: "contours_us_geom_geom_idx", type: Gist)
-}
-
-/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
-model controlpt {
-  ogc_fid Int?
-  dwgname String?                  @db.VarChar
-  layer   String?                  @db.VarChar
-  geom    Unsupported("geometry")?
-  fdesc   String?                  @db.VarChar
-
-  @@index([geom], type: Gist)
-  @@ignore
-}
-
-model hydro {
-  ogc_fid    Int                      @id @default(autoincrement())
-  objectid   Int?
-  featurenam String?                  @db.VarChar
-  featuretyp String?                  @db.VarChar
-  spatialsou String?                  @db.VarChar
-  label      String?                  @db.VarChar
-  created_us String?                  @db.VarChar
-  created_da DateTime?                @db.Date
-  last_edite String?                  @db.VarChar
-  last_edi_1 DateTime?                @db.Date
-  permitid   String?                  @db.VarChar
-  confidence String?                  @db.VarChar
-  comments   String?                  @db.VarChar
-  streamtype String?                  @db.VarChar
-  shape_leng Float?
-  geom       Unsupported("geometry")?
-
-  @@index([geom], map: "hydro_geom_geom_idx", type: Gist)
-}
-
-/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
-model misc {
-  ogc_fid Int?
-  dwgname String?                  @db.VarChar
-  layer   String?                  @db.VarChar
-  geom    Unsupported("geometry")?
-  fdesc   String?                  @db.VarChar
-
-  @@index([geom], type: Gist)
-  @@ignore
-}
-
-model mons {
-  fid        BigInt                   @id
-  id         Int?
-  angle      Float?
-  area       Float?
-  blockname  String?                  @db.VarChar(254)
-  bulge      Float?
-  center     String?                  @db.VarChar(60)
-  centroid   String?                  @db.VarChar(60)
-  classname  String?                  @db.VarChar(254)
-  color      BigInt?
-  dwgname    String?                  @db.VarChar(254)
-  eangle     Float?
-  ehandle    String?                  @db.VarChar(10)
-  elevation  Float?
-  ewidth     Float?
-  height     Float?
-  imagename  String?                  @db.VarChar(254)
-  labelpt    String?                  @db.VarChar(254)
-  layer      String?                  @db.VarChar(254)
-  length     Float?
-  linetype   String?                  @db.VarChar(254)
-  lineweight BigInt?
-  lockstat   BigInt?
-  plotstyle  String?                  @db.VarChar(254)
-  radius     Float?
-  rotation   Float?
-  sangle     Float?
-  shapename  String?                  @db.VarChar(254)
-  size       Float?
-  string     String?                  @db.VarChar(254)
-  style      String?                  @db.VarChar(254)
-  swidth     Float?
-  tag        String?                  @db.VarChar(254)
-  thickness  Float?
-  truecolor  String?                  @db.VarChar(254)
-  type       String?                  @db.VarChar(254)
-  url        String?                  @db.VarChar(254)
-  x1_y1_z1   String?                  @db.VarChar(60)
-  x1         Float?
-  y1         Float?
-  z1         Float?
-  x2_y2_z2   String?                  @db.VarChar(60)
-  x2         Float?
-  y2         Float?
-  z2         Float?
-  x3_y3_z3   String?                  @db.VarChar(254)
-  x3         Float?
-  y3         Float?
-  z3         Float?
-  x4_y4_z4   String?                  @db.VarChar(60)
-  x4         Float?
-  y4         Float?
-  z4         Float?
-  xscale     Float?
-  yscale     Float?
-  zscale     Float?
-  geom       Unsupported("geometry")?
-}
-
-/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
-model soilbore {
-  ogc_fid Int?
-  dwgname String?                  @db.VarChar
-  layer   String?                  @db.VarChar
-  geom    Unsupported("geometry")?
-  fdesc   String?                  @db.VarChar
-
-  @@index([geom], type: Gist)
-  @@ignore
 }
 
 model soils {
-  ogc_fid    Int                      @id @default(autoincrement())
-  areasymbol String?                  @db.VarChar(20)
-  spatialver Decimal?                 @db.Decimal(10, 0)
-  musym      String?                  @db.VarChar(6)
-  mukey      String?                  @db.VarChar(30)
-  geom       Unsupported("geometry")?
-
-  @@index([geom], map: "soils_geom_geom_idx", type: Gist)
+  ogc_fid    Int      @id @default(autoincrement())
+  areasymbol String?  @db.VarChar(20)
+  spatialver Decimal? @db.Decimal(10, 0)
+  musym      String?  @db.VarChar(6)
+  mukey      String?  @db.VarChar(30)
 }
 
 /// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
@@ -211,37 +82,32 @@ model spatial_ref_sys {
   proj4text String? @db.VarChar(2048)
 }
 
-/// We could not retrieve columns for the underlying table. Either it has none or you are missing rights to see them. Please check your privileges.
-// model testpit {
-// }
+model line {
+  id     Int     @id @default(autoincrement())
+  type   String? @db.VarChar
+  in_prj String? @db.VarChar
+  notes  String?
 
-model wetlands {
-  ogc_fid    Int                      @id @default(autoincrement())
-  objectid   Int?
-  wlcat_cd   String?                  @db.VarChar
-  editor     String?                  @db.VarChar
-  edit_date  DateTime?                @db.Date
-  spatial_so String?                  @db.VarChar
-  attribute_ String?                  @db.VarChar
-  wetland_fo String?                  @db.VarChar
-  wetland_ap String?                  @db.VarChar
-  bio_notes  String?                  @db.VarChar
-  acres      Float?
-  shape_leng Float?
-  shape_area Float?
-  geom       Unsupported("geometry")?
-
-  @@index([geom], map: "wetlands_geom_geom_idx", type: Gist)
+  layerId Int
+  layer   Layer @relation(fields: [layerId], references: [id])
 }
 
-/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
-model wetlandspt {
-  ogc_fid Int?
-  dwgname String?                  @db.VarChar
-  layer   String?                  @db.VarChar
-  geom    Unsupported("geometry")?
-  fdesc   String?                  @db.VarChar
+model point {
+  id     Int     @id @default(autoincrement())
+  type   String? @db.VarChar
+  in_prj String? @db.VarChar
+  notes  String?
 
-  @@index([geom], type: Gist)
-  @@ignore
+  layerId Int
+  layer   Layer @relation(fields: [layerId], references: [id])
+}
+
+model polygon {
+  id     Int     @id @default(autoincrement())
+  type   String? @db.VarChar
+  in_prj String? @db.VarChar
+  notes  String?
+
+  layerId Int
+  layer   Layer @relation(fields: [layerId], references: [id])
 }
