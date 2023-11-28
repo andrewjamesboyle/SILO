@@ -4131,6 +4131,55 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@mapbox/extent@npm:0.4.0":
+  version: 0.4.0
+  resolution: "@mapbox/extent@npm:0.4.0"
+  checksum: 2c287dcd5e3d2654727f81bb375034cf9c88c828524ff881d72fe20cfd561072d80c652fa58691785211c63f231e9e6dd2c0567a626c2f74198e835d6bfcf669
+  languageName: node
+  linkType: hard
+
+"@mapbox/geojson-area@npm:^0.2.2":
+  version: 0.2.2
+  resolution: "@mapbox/geojson-area@npm:0.2.2"
+  dependencies:
+    wgs84: 0.0.0
+  checksum: 46a85e14877bbd24486f4352810b2d078ce072f4a81120b9481eb967334e5cc9d2c5ae8b2ddab2dfbe1c0822b18758b39f078339b43a18754ef514a32e95fb1c
+  languageName: node
+  linkType: hard
+
+"@mapbox/geojson-coords@npm:0.0.2":
+  version: 0.0.2
+  resolution: "@mapbox/geojson-coords@npm:0.0.2"
+  dependencies:
+    "@mapbox/geojson-normalize": 0.0.1
+    geojson-flatten: ^1.0.4
+  checksum: 490709b75cb2cd348a2300ff847e28e5f1f7cf4fdb652ba170ddd3b1c2ad7f9c3261bd8128b82273ef8c85aac6dba171bdf24428aec1b8b993cd3ec7635bc446
+  languageName: node
+  linkType: hard
+
+"@mapbox/geojson-extent@npm:^1.0.1":
+  version: 1.0.1
+  resolution: "@mapbox/geojson-extent@npm:1.0.1"
+  dependencies:
+    "@mapbox/extent": 0.4.0
+    "@mapbox/geojson-coords": 0.0.2
+    rw: ~0.1.4
+    traverse: ~0.6.6
+  bin:
+    geojson-extent: bin/geojson-extent
+  checksum: d02666aac92d3107b1d32471d9b8cd44ced9c93748f92858f347e9d19044dbeaa3b675c16d154547e52ea35ceaa475ef66abdb29691dd6202beb07c7ccc92c0b
+  languageName: node
+  linkType: hard
+
+"@mapbox/geojson-normalize@npm:0.0.1, @mapbox/geojson-normalize@npm:^0.0.1":
+  version: 0.0.1
+  resolution: "@mapbox/geojson-normalize@npm:0.0.1"
+  bin:
+    geojson-normalize: geojson-normalize
+  checksum: c51e7fa1462a9152493e2b639ce0b50d4c59ed8615f79c6be509312e4db2f29741cae50ecba1b8e290ce50c50f00c892039df3a5306d15712e51a6a28fcd4ecf
+  languageName: node
+  linkType: hard
+
 "@mapbox/geojson-rewind@npm:^0.5.2":
   version: 0.5.2
   resolution: "@mapbox/geojson-rewind@npm:0.5.2"
@@ -4147,6 +4196,21 @@ __metadata:
   version: 2.0.2
   resolution: "@mapbox/jsonlint-lines-primitives@npm:2.0.2"
   checksum: 5814e42fc453700132f93ea742aabcef9a3c98d9bf17d4c1106f82d1dcd91bbc93052e66e29014323b9b2a41b020c743d897e4a96cc4ed2f734482d587d8c2b2
+  languageName: node
+  linkType: hard
+
+"@mapbox/mapbox-gl-draw@npm:^1.4.3":
+  version: 1.4.3
+  resolution: "@mapbox/mapbox-gl-draw@npm:1.4.3"
+  dependencies:
+    "@mapbox/geojson-area": ^0.2.2
+    "@mapbox/geojson-extent": ^1.0.1
+    "@mapbox/geojson-normalize": ^0.0.1
+    "@mapbox/point-geometry": ^0.1.0
+    hat: 0.0.3
+    lodash.isequal: ^4.5.0
+    xtend: ^4.0.2
+  checksum: 16dfd8119498fedc60f3fb9ffc1fe19052dea23aad4e68eba28cf8c15363610f92d3b4ee8cfb902052e7f5dde28bc49ed57ed93ebea3847ddcd75a9633b64236
   languageName: node
   linkType: hard
 
@@ -15042,6 +15106,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"geojson-flatten@npm:^1.0.4":
+  version: 1.1.1
+  resolution: "geojson-flatten@npm:1.1.1"
+  checksum: 7d8eb78f34fad41894c140cb13e32941c56923a07812805e7d12c8dd56f58d64c5689fbf9646bbaa828b461cc1c0718b15816248066902ce7d49d501a5305edd
+  languageName: node
+  linkType: hard
+
 "geojson-vt@npm:^3.2.1":
   version: 3.2.1
   resolution: "geojson-vt@npm:3.2.1"
@@ -15705,6 +15776,13 @@ __metadata:
     is-stream: ^2.0.0
     type-fest: ^0.8.0
   checksum: 9d10d4e665a37beea6e18ba3a0c0399a05b26e505c5ff2fe9115b64fedb3ca95f68c89cf15b08ee4d09fd3064b5e1bfc8e8247353c7aa6b7388471d0f86dca74
+  languageName: node
+  linkType: hard
+
+"hat@npm:0.0.3":
+  version: 0.0.3
+  resolution: "hat@npm:0.0.3"
+  checksum: 9d502b26b612ed3e66491296873119574e61a4ef99dfc5501f7bf86115fde35d0f76b1167257c8224c88092eda04e40feda805ad5b86c3b90203f4e15fd99f53
   languageName: node
   linkType: hard
 
@@ -18179,6 +18257,13 @@ __metadata:
   version: 4.4.0
   resolution: "lodash.flatten@npm:4.4.0"
   checksum: 97e8f0d6b61fe4723c02ad0c6e67e51784c4a2c48f56ef283483e556ad01594cf9cec9c773e177bbbdbdb5d19e99b09d2487cb6b6e5dc405c2693e93b125bd3a
+  languageName: node
+  linkType: hard
+
+"lodash.isequal@npm:^4.5.0":
+  version: 4.5.0
+  resolution: "lodash.isequal@npm:4.5.0"
+  checksum: dfdb2356db19631a4b445d5f37868a095e2402292d59539a987f134a8778c62a2810c2452d11ae9e6dcac71fc9de40a6fedcb20e2952a15b431ad8b29e50e28f
   languageName: node
   linkType: hard
 
@@ -22376,6 +22461,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
+    "@mapbox/mapbox-gl-draw": ^1.4.3
     "@redwoodjs/auth-auth0-setup": 6.1.0
     "@redwoodjs/cli-storybook": 6.1.0
     "@redwoodjs/core": 6.1.0
@@ -22414,6 +22500,13 @@ __metadata:
   version: 1.3.3
   resolution: "rw@npm:1.3.3"
   checksum: b1e1ef37d1e79d9dc7050787866e30b6ddcb2625149276045c262c6b4d53075ddc35f387a856a8e76f0d0df59f4cd58fe24707e40797ebee66e542b840ed6a53
+  languageName: node
+  linkType: hard
+
+"rw@npm:~0.1.4":
+  version: 0.1.4
+  resolution: "rw@npm:0.1.4"
+  checksum: 2defba766085374cf49adc725a0b811ee2b9a0d344d323b51ca96a2222ffc8c72faaa2806df60bed396e206d0ee47319632b1ed9049db71de963135f5f3981de
   languageName: node
   linkType: hard
 
@@ -24259,6 +24352,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"traverse@npm:~0.6.6":
+  version: 0.6.7
+  resolution: "traverse@npm:0.6.7"
+  checksum: 97312cbcce0fdc640cf871a33c3f8efa85fbc2e21020bcbbf48b50883db4c41cfef580f3deaab67217291b761be4558fff34aab1baff7eb2b65323412458a489
+  languageName: node
+  linkType: hard
+
 "tree-kill@npm:^1.2.2":
   version: 1.2.2
   resolution: "tree-kill@npm:1.2.2"
@@ -25745,6 +25845,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"wgs84@npm:0.0.0":
+  version: 0.0.0
+  resolution: "wgs84@npm:0.0.0"
+  checksum: 4f4094c7149fbb50e89ab415aeb2db565c66746be18702ea82ab75c6e6e2a58b552d0898f4b8d6a16bf5824a14917577e46e04a8b20fbf9f09f06d755d381c0b
+  languageName: node
+  linkType: hard
+
 "whatwg-encoding@npm:^2.0.0":
   version: 2.0.0
   resolution: "whatwg-encoding@npm:2.0.0"
@@ -26039,7 +26146,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"xtend@npm:^4.0.0, xtend@npm:~4.0.1":
+"xtend@npm:^4.0.0, xtend@npm:^4.0.2, xtend@npm:~4.0.1":
   version: 4.0.2
   resolution: "xtend@npm:4.0.2"
   checksum: 366ae4783eec6100f8a02dff02ac907bf29f9a00b82ac0264b4d8b832ead18306797e283cf19de776538babfdcb2101375ec5646b59f08c52128ac4ab812ed0e

@@ -26,6 +26,7 @@
   },
   "packageManager": "yarn@3.6.1",
   "dependencies": {
+    "@mapbox/mapbox-gl-draw": "^1.4.3",
     "axios": "^1.4.0"
   }
 }
