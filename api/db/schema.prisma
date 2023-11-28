@@ -57,12 +57,12 @@ model Layer {
 }
 
 model contours {
-  gid        Int                      @id @default(autoincrement())
-  elevation  Decimal?                 @db.Decimal(10, 0)
-  type       Decimal?                 @db.Decimal(5, 0)
-  update_sta Decimal?                 @db.Decimal(19, 11)
-  shape_leng Decimal?                 @db.Decimal(19, 11)
-
+  gid        Int      @id @default(autoincrement())
+  elevation  Decimal? @db.Decimal(10, 0)
+  type       Decimal? @db.Decimal(5, 0)
+  update_sta Decimal? @db.Decimal(19, 11)
+  shape_leng Decimal? @db.Decimal(19, 11)
+  geometry   String // This will store the WKT representation of the geometry
 }
 
 model soils {
@@ -71,6 +71,7 @@ model soils {
   spatialver Decimal? @db.Decimal(10, 0)
   musym      String?  @db.VarChar(6)
   mukey      String?  @db.VarChar(30)
+  geometry   String // This will store the WKT representation of the geometry
 }
 
 /// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
@@ -80,34 +81,35 @@ model spatial_ref_sys {
   auth_srid Int?
   srtext    String? @db.VarChar(2048)
   proj4text String? @db.VarChar(2048)
+  geometry  String // This will store the WKT representation of the geometry
 }
 
 model line {
-  id     Int     @id @default(autoincrement())
-  type   String? @db.VarChar
-  in_prj String? @db.VarChar
-  notes  String?
-
-  layerId Int
-  layer   Layer @relation(fields: [layerId], references: [id])
+  id       Int     @id @default(autoincrement())
+  type     String? @db.VarChar
+  in_prj   String? @db.VarChar
+  notes    String?
+  geometry String // This will store the WKT representation of the geometry
+  layerId  Int
+  layer    Layer   @relation(fields: [layerId], references: [id])
 }
 
 model point {
-  id     Int     @id @default(autoincrement())
-  type   String? @db.VarChar
-  in_prj String? @db.VarChar
-  notes  String?
-
-  layerId Int
-  layer   Layer @relation(fields: [layerId], references: [id])
+  id       Int     @id @default(autoincrement())
+  type     String? @db.VarChar
+  in_prj   String? @db.VarChar
+  notes    String?
+  geometry String // This will store the WKT representation of the geometry
+  layerId  Int
+  layer    Layer   @relation(fields: [layerId], references: [id])
 }
 
 model polygon {
-  id     Int     @id @default(autoincrement())
-  type   String? @db.VarChar
-  in_prj String? @db.VarChar
-  notes  String?
-
-  layerId Int
-  layer   Layer @relation(fields: [layerId], references: [id])
+  id       Int     @id @default(autoincrement())
+  type     String? @db.VarChar
+  in_prj   String? @db.VarChar
+  notes    String?
+  geometry String // This will store the WKT representation of the geometry
+  layerId  Int
+  layer    Layer   @relation(fields: [layerId], references: [id])
 }
