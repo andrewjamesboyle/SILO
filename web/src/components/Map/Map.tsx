@@ -46,6 +46,7 @@ const MapComponent: React.FC = () => {
     })
 
     mapRef.current = map
+
     // Cleanup on component unmount
     return () => map.remove()
   }, [])
