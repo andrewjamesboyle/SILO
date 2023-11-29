@@ -1,43 +1,31 @@
-import React, { useEffect } from 'react'
+import React, { RefObject, useEffect } from 'react'
+import MapBoxDraw from '@mapbox/mapbox-gl-draw'
+import '@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw.css'
 
-import L from 'leaflet'
-import 'leaflet-draw'
-import { useMap } from 'react-leaflet'
+// Needed to do some weird stuff to get this to work
+MapBoxDraw.constants.classes.CONTROL_BASE = 'maplibregl-ctrl'
+MapBoxDraw.constants.classes.CONTROL_PREFIX = 'maplibregl-ctrl-'
+MapBoxDraw.constants.classes.CONTROL_GROUP = 'maplibregl-ctrl-group'
 
-const DrawFeature: React.FC = () => {
-  const map = useMap()
-
+interface DrawFeatureProps {
+  mapRef: RefObject<maplibregl.Map>
+}
+const DrawFeature: React.FC<DrawFeatureProps> = ({ mapRef }) => {
   useEffect(() => {
-    if (!map) return
-
-    const drawControl = new L.Control.Draw({
-      draw: {
-        polyline: {
-          shapeOptions: {
-            color: '#f357a1',
-            weight: 10,
-          },
+    if (mapRef.current) {
+      const map = mapRef.current
+      const draw = new MapBoxDraw({
+        displayControlsDefault: false,
+        controls: {
+          polygon: true,
+          line: true,
+          point: true,
+          trash: true,
         },
-        polygon: {
-          allowIntersection: false, // Restricts shapes to simple polygons
-          drawError: {
-            color: '#e1e100', // Color the shape will turn when intersects
-            message: "<strong>Oh snap!<strong> you can't draw that!", // Message that will show when intersect
-          },
-          shapeOptions: {
-            color: '#bada55',
-          },
-        },
-        circle: false,
-        marker: false,
-      },
-    })
-    map.addControl(drawControl)
-
-    return () => {
-      map.removeControl(drawControl)
+      })
+      map.addControl(draw, 'top-right')
     }
-  }, [map])
+  }, [mapRef])
 
   return null
 }

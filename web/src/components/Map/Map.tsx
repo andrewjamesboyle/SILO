@@ -3,6 +3,7 @@ import maplibre from 'maplibre-gl'
 
 import { useMap } from 'src/context/MapContext'
 import { overlayLayers } from '../LayerToggle/layersConfig'
+import DrawFeature from '../DrawFeature/DrawFeature'
 
 const MapComponent: React.FC = () => {
   const { state } = useMap()
@@ -36,6 +37,7 @@ const MapComponent: React.FC = () => {
 
   useEffect(() => {
     // Initialize map when component mounts
+
     const map = new maplibre.Map({
       container: mapContainerRef.current,
       style: state.baseLayer.url,
@@ -44,6 +46,7 @@ const MapComponent: React.FC = () => {
     })
 
     mapRef.current = map
+
     // Cleanup on component unmount
     return () => map.remove()
   }, [])
@@ -85,7 +88,9 @@ const MapComponent: React.FC = () => {
   }, [state.overlayLayers])
 
   return (
-    <div ref={mapContainerRef} style={{ width: '100%', height: '100vh' }} />
+    <div ref={mapContainerRef} style={{ width: '100%', height: '100vh' }}>
+      {mapRef.current && <DrawFeature mapRef={mapRef} />}
+    </div>
   )
 }
 
