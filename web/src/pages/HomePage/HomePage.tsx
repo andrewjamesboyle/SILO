@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import { Dialog } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import About from './About'
+import Data from './Data'
 
 const navigation = [
   { name: 'About', href: '#about' },
@@ -13,6 +14,8 @@ export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [aboutVisible, setAboutVisible] = useState(false)
   const aboutRef = useRef(null)
+  const dataRef = useRef(null)
+  const featuresRef = useRef(null)
 
   const handleScroll = () => {
     if (aboutRef.current) {
@@ -30,14 +33,20 @@ export default function Home() {
     }
   }, [])
 
-  const scrollToAbout = () => {
+  const scrollToSection = () => {
     if (aboutRef.current) {
       aboutRef.current.scrollIntoView({ behavior: 'smooth' })
+    } else if (dataRef.current) {
+      dataRef.current.scrollIntoView({ behavior: 'smooth' })
+    } else if (featuresRef.current) {
+      featuresRef.current.scrollIntoView({ behavior: 'smooth' })
+    } else {
+      console.error('No ref found')
     }
   }
 
   return (
-    <div className="bg-gray-900">
+    <div className="bg-gray-900 scroll-smooth">
       <header className="absolute inset-x-0 top-0 z-50 justify-between">
         <nav
           className="flex items-center justify-end p-6 lg:px-8"
@@ -98,7 +107,7 @@ export default function Home() {
                 className="-m-2.5 rounded-md p-2.5 text-gray-200"
                 onClick={() => {
                   setMobileMenuOpen(false)
-                  scrollToAbout()
+                  scrollToSection()
                 }}
               >
                 <span className="sr-only">Close menu</span>
@@ -148,13 +157,13 @@ export default function Home() {
         ></div>
         <div className="mx-auto max-w-2xl py-40 sm:py-56 lg:py-64">
           <div className="text-center">
-            <h1 className="text-5xl font-bold tracking-tight text-gray-100 sm:text-7xl">
+            <h1 className="text-5xl font-bold tracking-tight text-gray-100 sm:text-7xl backdrop-blur">
               SILO OR VECTOR{' '}
             </h1>
-            <h2 className="mt-6 text-xl sm:text-3xl leading-8 text-gray-200">
+            <h2 className="mt-6 text-xl sm:text-3xl leading-8 text-gray-200 backdrop-blur">
               GEOGRAPHIC INFORMATION SYSTEMS
             </h2>
-            <h2 className="mt-0 text-l sm:text-2xl leading-8 text-gray-200">
+            <h2 className="mt-0 text-l sm:text-2xl leading-8 text-gray-200 backdrop-blur">
               THE GIS SOLUTION FOR THE AEC INDUSTRY
             </h2>
             <div className="mt-10 flex items-center justify-center gap-x-6">
@@ -167,8 +176,14 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className="relative isolate px-6 pt-14 lg:px-8" ref={aboutRef}>
+        <div
+          // className="relative isolate px-6 pt-14 lg:px-8 md:px-8"
+          ref={aboutRef}
+        >
           <About />
+        </div>
+        <div ref={dataRef}>
+          <Data />
         </div>
       </div>
     </div>
