@@ -13,6 +13,8 @@ export interface OverlayLayer {
 export interface MapState {
   baseLayer: BaseLayer
   overlayLayers: OverlayLayer[]
+  drawingData: any
+  flyoutContent: string | null
 }
 
 export interface AnyAction {

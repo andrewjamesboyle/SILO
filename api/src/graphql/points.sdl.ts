@@ -4,9 +4,9 @@ export const schema = gql`
     type: String
     in_prj: String
     notes: String
-    geometry: String!
-    layerId: Int!
-    layer: Layer!
+    geometry: String
+    layerId: Int
+    layer: Layer
   }
 
   type Query {
@@ -18,8 +18,8 @@ export const schema = gql`
     type: String
     in_prj: String
     notes: String
-    geometry: String!
-    layerId: Int!
+    geometry: String
+    layerId: Int
   }
 
   input UpdatePointInput {

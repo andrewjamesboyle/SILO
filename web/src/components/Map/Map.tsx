@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react'
+import React, { useRef, useEffect, useState } from 'react'
 import maplibre from 'maplibre-gl'
 
 import { useMap } from 'src/context/MapContext'
@@ -34,6 +34,14 @@ const MapComponent: React.FC = () => {
       map.removeSource(layerId)
     }
   }
+
+  // const [drawingData, setDrawingData] = useState(null)
+
+  // const handleDrawCreate = (data) => {
+  //   setDrawingData(data)
+  //   // To Do: pass this state into the PointForm
+  //   // To Do: refactor how the drawFeature gets rendered
+  // }
 
   useEffect(() => {
     // Initialize map when component mounts

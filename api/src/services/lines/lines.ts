@@ -19,6 +19,8 @@ export const line: QueryResolvers['line'] = ({ id }) => {
 export const createLine: MutationResolvers['createLine'] = ({ input }) => {
   return db.line.create({
     data: input,
+    // Return the row ID
+    // Send the row ID and the Geometry data to Kent's API
   })
 }
 

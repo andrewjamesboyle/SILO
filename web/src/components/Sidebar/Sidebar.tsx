@@ -16,6 +16,7 @@ import {
 } from '@heroicons/react/24/outline'
 import LayerToggle from '../LayerToggle/LayerToggle'
 import ProcessDataComponent from '../ProcessData/ProcessData'
+import { useMapDispatch } from 'src/context/MapContext'
 
 const navigation = [
   { name: 'Dashboard', href: '#', icon: HomeIcon, current: true },
@@ -25,6 +26,7 @@ const navigation = [
   { name: 'Download', href: '#', icon: DocumentDuplicateIcon, current: false },
   { name: 'Search', href: '#', icon: ChartPieIcon, current: false },
   { name: 'Layers', href: '#', icon: ChartPieIcon, current: false },
+  { name: 'Point', href: '#', icon: ChartPieIcon, current: false },
 ]
 
 function classNames(...classes) {
@@ -32,8 +34,10 @@ function classNames(...classes) {
 }
 
 const Sidebar = ({ onItemSelect }) => {
-  const handleItemClick = (item) => {
-    onItemSelect(item)
+  const dispatch = useMapDispatch()
+
+  const handleItemClick = (itemName: string) => {
+    onItemSelect(itemName)
   }
 
   return (

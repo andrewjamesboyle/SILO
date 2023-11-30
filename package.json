@@ -17,6 +17,14 @@
     "extends": "@redwoodjs/eslint-config",
     "root": true
   },
+  "overrides": {
+    "files": [
+      "api/src/services/**/*.ts"
+    ],
+    "rules": {
+      "@redwoodjs/service-type-annotations": "error"
+    }
+  },
   "engines": {
     "node": "=18.x",
     "yarn": ">=1.15"

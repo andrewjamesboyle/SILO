@@ -1,10 +1,12 @@
 import { navigate, routes } from '@redwoodjs/router'
+import DrawFeature from 'src/components/DrawFeature/DrawFeature'
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 
 import PointForm from 'src/components/Point/PointForm'
 
 import type { CreatePointInput } from 'types/graphql'
+import { useMap } from 'src/context/MapContext'
 
 const CREATE_POINT_MUTATION = gql`
   mutation CreatePointMutation($input: CreatePointInput!) {
@@ -25,6 +27,9 @@ const NewPoint = () => {
     },
   })
 
+  const { state } = useMap()
+  const drawingData = state.drawingData
+
   const onSave = (input: CreatePointInput) => {
     createPoint({ variables: { input } })
   }
@@ -35,7 +40,13 @@ const NewPoint = () => {
         <h2 className="rw-heading rw-heading-secondary">New Point</h2>
       </header>
       <div className="rw-segment-main">
-        <PointForm onSave={onSave} loading={loading} error={error} />
+        {/* <DrawFeature mapRef={mapRef} onDrawCreate={handleDrawCreate} /> */}
+        <PointForm
+          onSave={onSave}
+          loading={loading}
+          error={error}
+          drawingData={drawingData}
+        />
       </div>
     </div>
   )

@@ -18,6 +18,7 @@ interface PointFormProps {
   onSave: (data: UpdatePointInput, id?: FormPoint['id']) => void
   error: RWGqlError
   loading: boolean
+  drawingData: any
 }
 
 const PointForm = (props: PointFormProps) => {
@@ -94,12 +95,22 @@ const PointForm = (props: PointFormProps) => {
           Geometry
         </Label>
 
-        <TextField
+        {/* <TextField
           name="geometry"
           defaultValue={props.point?.geometry}
           className="rw-input"
           errorClassName="rw-input rw-input-error"
-          validation={{ required: true }}
+          // validation={{ required: true }}
+        /> */}
+
+        {/* Pre-fill the geometry field with drawing data */}
+        <TextField
+          name="geometry"
+          defaultValue={
+            props.drawingData?.geometry?.coordinates || props.point?.geometry
+          }
+          className="rw-input"
+          errorClassName="rw-input rw-input-error"
         />
 
         <FieldError name="geometry" className="rw-field-error" />
@@ -117,7 +128,7 @@ const PointForm = (props: PointFormProps) => {
           defaultValue={props.point?.layerId}
           className="rw-input"
           errorClassName="rw-input rw-input-error"
-          validation={{ required: true }}
+          // validation={{ required: true }}
         />
 
         <FieldError name="layerId" className="rw-field-error" />

@@ -13,6 +13,7 @@ import ScaffoldLayout from 'src/layouts/ScaffoldLayout'
 import MapLayout from './layouts/MapLayout/MapLayout'
 
 import { useAuth } from './auth'
+import MapLayoutProvider from './layouts/MapLayout/MapLayoutProvider'
 
 const Routes = () => {
   return (
@@ -48,7 +49,7 @@ const Routes = () => {
         <Route path="/lines" page={LineLinesPage} name="lines" />
       </Set>
       <Route path="/home" page={HomePage} name="home" />
-      <Set wrap={MapLayout}>
+      <Set wrap={MapLayoutProvider}>
         <Route path="/" page={MapPage} name="map" />
       </Set>
 

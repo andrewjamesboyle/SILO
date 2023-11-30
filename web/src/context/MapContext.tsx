@@ -8,12 +8,16 @@ const initialState: MapState = {
     url: 'https://api.maptiler.com/maps/satellite/style.json?key=Rjt57FTtlzmwKYcAVojy',
   },
   overlayLayers: [] as OverlayLayer[],
+  drawingData: null,
+  flyoutContent: null,
 }
 
 type Action =
   | { type: 'SET_BASE_LAYER'; payload: BaseLayer }
   | { type: 'ADD_OVERLAY_LAYER'; payload: OverlayLayer }
   | { type: 'REMOVE_OVERLAY_LAYER'; payload: OverlayLayer }
+  | { type: 'SET_DRAWING_DATA'; payload: any }
+  | { type: 'SET_FLYOUT_CONTENT'; payload: string | null }
 
 const MapStateContext = createContext<MapState | undefined>(undefined)
 const MapDispatchContext = createContext<React.Dispatch<Action> | undefined>(
@@ -36,6 +40,16 @@ const mapReducer = (state: MapState, action: Action): MapState => {
           (layer) => layer.id !== action.payload.id
         ),
       }
+    case 'SET_DRAWING_DATA':
+      return {
+        ...state,
+        drawingData: action.payload,
+      }
+    case 'SET_FLYOUT_CONTENT':
+      return {
+        ...state,
+        flyoutContent: action.payload,
+      }
     default:
       throw new Error(`Unhandled action type`)
   }
@@ -53,6 +67,8 @@ export const MapProvider: React.FC<MapProviderProps> = ({ children }) => {
       url: 'https://api.maptiler.com/maps/satellite/style.json?key=Rjt57FTtlzmwKYcAVojy',
     },
     overlayLayers: [],
+    drawingData: null,
+    flyoutContent: null,
   })
 
   return (
