@@ -7,9 +7,9 @@ export const schema = gql`
     type: String!
     createdById: Int!
     createdBy: User!
-    line: [line]!
-    point: [point]!
-    polygon: [polygon]!
+    line: [Line]!
+    point: [Point]!
+    polygon: [Polygon]!
   }
 
   type Query {
