@@ -56,7 +56,7 @@ model Layer {
   polygon     polygon[]
 }
 
-model contours {
+model Contours {
   gid        Int      @id @default(autoincrement())
   elevation  Decimal? @db.Decimal(10, 0)
   type       Decimal? @db.Decimal(5, 0)
@@ -65,7 +65,7 @@ model contours {
   geometry   String // This will store the WKT representation of the geometry
 }
 
-model soils {
+model Soils {
   ogc_fid    Int      @id @default(autoincrement())
   areasymbol String?  @db.VarChar(20)
   spatialver Decimal? @db.Decimal(10, 0)
@@ -75,7 +75,7 @@ model soils {
 }
 
 /// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
-model spatial_ref_sys {
+model Spatial_ref_sys {
   srid      Int     @id
   auth_name String? @db.VarChar(256)
   auth_srid Int?
@@ -84,7 +84,7 @@ model spatial_ref_sys {
   geometry  String // This will store the WKT representation of the geometry
 }
 
-model line {
+model Line {
   id       Int     @id @default(autoincrement())
   type     String? @db.VarChar
   in_prj   String? @db.VarChar
@@ -94,7 +94,7 @@ model line {
   layer    Layer   @relation(fields: [layerId], references: [id])
 }
 
-model point {
+model Point {
   id       Int     @id @default(autoincrement())
   type     String? @db.VarChar
   in_prj   String? @db.VarChar
@@ -104,7 +104,7 @@ model point {
   layer    Layer   @relation(fields: [layerId], references: [id])
 }
 
-model polygon {
+model Polygon {
   id       Int     @id @default(autoincrement())
   type     String? @db.VarChar
   in_prj   String? @db.VarChar
