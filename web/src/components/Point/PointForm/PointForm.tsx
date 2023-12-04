@@ -8,14 +8,14 @@ import {
   Submit,
 } from '@redwoodjs/forms'
 
-import type { EditPointById, UpdatePointInput } from 'types/graphql'
+import type { EditPointById, CreatePointInput } from 'types/graphql'
 import type { RWGqlError } from '@redwoodjs/forms'
 
 type FormPoint = NonNullable<EditPointById['point']>
 
 interface PointFormProps {
   point?: EditPointById['point']
-  onSave: (data: UpdatePointInput, id?: FormPoint['id']) => void
+  onSave: (data: CreatePointInput, id?: FormPoint['id']) => void
   error: RWGqlError
   loading: boolean
   drawingData: any
@@ -53,7 +53,7 @@ const PointForm = (props: PointFormProps) => {
 
         <FieldError name="type" className="rw-field-error" />
 
-        <Label
+        {/* <Label
           name="in_prj"
           className="rw-label"
           errorClassName="rw-label rw-label-error"
@@ -66,9 +66,9 @@ const PointForm = (props: PointFormProps) => {
           defaultValue={props.point?.in_prj}
           className="rw-input"
           errorClassName="rw-input rw-input-error"
-        />
+        /> */}
 
-        <FieldError name="in_prj" className="rw-field-error" />
+        {/* <FieldError name="inPrj" className="rw-field-error" /> */}
 
         <Label
           name="notes"
@@ -96,8 +96,8 @@ const PointForm = (props: PointFormProps) => {
         </Label>
 
         {/* <TextField
-          name="geometry"
-          defaultValue={props.point?.geometry}
+          name="geom"
+          defaultValue={props.point?.geom}
           className="rw-input"
           errorClassName="rw-input rw-input-error"
           // validation={{ required: true }}
@@ -105,9 +105,9 @@ const PointForm = (props: PointFormProps) => {
 
         {/* Pre-fill the geometry field with drawing data */}
         <TextField
-          name="geometry"
+          name="geom"
           defaultValue={
-            props.drawingData?.geometry?.coordinates || props.point?.geometry
+            props.drawingData?.geometry?.coordinates || props.point?.geom
           }
           className="rw-input"
           errorClassName="rw-input rw-input-error"
@@ -115,21 +115,21 @@ const PointForm = (props: PointFormProps) => {
 
         <FieldError name="geometry" className="rw-field-error" />
 
-        <Label
+        {/* <Label
           name="layerId"
           className="rw-label"
           errorClassName="rw-label rw-label-error"
         >
           Layer id
-        </Label>
+        </Label> */}
 
-        <NumberField
+        {/* <NumberField
           name="layerId"
           defaultValue={props.point?.layerId}
           className="rw-input"
           errorClassName="rw-input rw-input-error"
           // validation={{ required: true }}
-        />
+        /> */}
 
         <FieldError name="layerId" className="rw-field-error" />
 

@@ -16,7 +16,6 @@ model User {
   role          Role           @relation(fields: [roleId], references: [id])
   organizations Organization[]
   projects      Project[]      @relation("createdProjects")
-  layers        Layer[]        @relation("createdLayers")
 }
 
 model Role {
@@ -40,21 +39,10 @@ model Project {
   createdBy      User         @relation(fields: [createdById], references: [id], name: "createdProjects")
   organizationId Int
   organization   Organization @relation(fields: [organizationId], references: [id])
-  layers         Layer[]
+  layers         String[]
 }
 
-model Layer {
-  id          Int       @id @default(autoincrement())
-  name        String
-  projectId   Int
-  project     Project   @relation(fields: [projectId], references: [id])
-  type        String
-  createdById Int
-  createdBy   User      @relation(fields: [createdById], references: [id], name: "createdLayers")
-  line        line[]
-  point       point[]
-  polygon     polygon[]
-}
+
 
 model Contours {
   gid        Int      @id @default(autoincrement())
@@ -87,29 +75,29 @@ model Spatial_ref_sys {
 model Line {
   id       Int     @id @default(autoincrement())
   type     String? @db.VarChar
-  in_prj   String? @db.VarChar
+  inpPrj   String? @db.VarChar
   notes    String?
-  geometry String // This will store the WKT representation of the geometry
-  layerId  Int
-  layer    Layer   @relation(fields: [layerId], references: [id])
+  geom String // This will store the WKT representation of the geometry
+  layerId  Int?
+  layer    String? @db.VarChar
 }
 
 model Point {
   id       Int     @id @default(autoincrement())
   type     String? @db.VarChar
-  in_prj   String? @db.VarChar
+  inPrj   String? @db.VarChar
   notes    String?
-  geometry String // This will store the WKT representation of the geometry
-  layerId  Int
-  layer    Layer   @relation(fields: [layerId], references: [id])
+  geom String // This will store the WKT representation of the geometry
+  layerId  Int?
+  layer    String? @db.VarChar
 }
 
 model Polygon {
   id       Int     @id @default(autoincrement())
   type     String? @db.VarChar
-  in_prj   String? @db.VarChar
+  inPrj   String? @db.VarChar
   notes    String?
-  geometry String // This will store the WKT representation of the geometry
-  layerId  Int
-  layer    Layer   @relation(fields: [layerId], references: [id])
+  geom String // This will store the WKT representation of the geometry
+  layerId  Int?
+  layer    String? @db.VarChar
 }
