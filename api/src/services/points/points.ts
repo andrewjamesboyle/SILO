@@ -5,6 +5,7 @@ import type {
 } from 'types/graphql'
 
 import { db } from 'src/lib/db'
+import { sendGeoData } from '../geoApi/sendGeoData'
 
 export const points: QueryResolvers['points'] = () => {
   return db.point.findMany()
@@ -16,10 +17,16 @@ export const point: QueryResolvers['point'] = ({ id }) => {
   })
 }
 
-export const createPoint: MutationResolvers['createPoint'] = ({ input }) => {
-  return db.point.create({
+export const createPoint: MutationResolvers['createPoint'] = async ({
+  input,
+}) => {
+  const newPoint = await db.point.create({
     data: input,
   })
+
+  await sendGeoData(newPoint.id, input.geom)
+
+  return newPoint
 }
 
 export const updatePoint: MutationResolvers['updatePoint'] = ({
