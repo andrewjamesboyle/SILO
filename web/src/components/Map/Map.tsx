@@ -35,14 +35,6 @@ const MapComponent: React.FC = () => {
     }
   }
 
-  // const [drawingData, setDrawingData] = useState(null)
-
-  // const handleDrawCreate = (data) => {
-  //   setDrawingData(data)
-  //   // To Do: pass this state into the PointForm
-  //   // To Do: refactor how the drawFeature gets rendered
-  // }
-
   useEffect(() => {
     // Initialize map when component mounts
 

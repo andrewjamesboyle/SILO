@@ -24,8 +24,13 @@ export const createPoint: MutationResolvers['createPoint'] = async ({
   const newPoint = await db.point.create({
     data: { ...dbInput, geom: 'placeholder' }, // TODO: remove this placeholder geom
   })
-  await sendGeoData(newPoint.id, geom) // Send Geo data to Flask API
-  return newPoint // Return a point type
+  try {
+    const data = await sendGeoData(newPoint.id, geom) // Send Geo data to Flask API
+    console.log('sendGeoData response: ', data)
+  } catch (error) {
+    console.error('Error sending geo data to Flask API: ', error)
+  }
+  return newPoint // Return a point to keep the types happy
 }
 
 export const updatePoint: MutationResolvers['updatePoint'] = ({
