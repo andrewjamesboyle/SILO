@@ -16,34 +16,32 @@ const DrawFeature: React.FC<DrawFeatureProps> = ({ mapRef }) => {
   const dispatch = useMapDispatch()
 
   useEffect(() => {
-    if (mapRef.current) {
-      const map = mapRef.current
-      const draw = new MapBoxDraw({
-        displayControlsDefault: false,
-        controls: {
-          polygon: true,
-          line: true,
-          point: true,
-          trash: true,
-        },
-      })
-      map.addControl(draw, 'top-right')
+    const map = mapRef.current
+    const draw = new MapBoxDraw({
+      displayControlsDefault: false,
+      controls: {
+        polygon: true,
+        line: true,
+        point: true,
+        trash: true,
+      },
+    })
+    map.addControl(draw, 'top-right')
 
-      // Event listener for drawing creation
-      map.on('draw.create', (e) => {
-        const data = draw.getAll()
-        if (data.features.length > 0) {
-          dispatch({
-            type: 'SET_DRAWING_DATA',
-            payload: data.features[0].geometry.coordinates,
-          })
-          dispatch({ type: 'SET_FLYOUT_CONTENT', payload: 'Point' })
-        }
-      })
-      // Cleanup
-      return () => {
-        map.removeControl(draw)
+    // Event listener for drawing creation
+    map.on('draw.create', (e) => {
+      const data = draw.getAll()
+      if (data.features.length > 0) {
+        dispatch({
+          type: 'SET_DRAWING_DATA',
+          payload: data.features[0].geometry.coordinates,
+        })
+        dispatch({ type: 'SET_FLYOUT_CONTENT', payload: 'Point' })
       }
+    })
+    // Cleanup
+    return () => {
+      map.removeControl(draw)
     }
   }, [mapRef, dispatch])
 
