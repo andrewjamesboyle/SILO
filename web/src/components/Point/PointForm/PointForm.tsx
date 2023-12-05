@@ -106,9 +106,7 @@ const PointForm = (props: PointFormProps) => {
         {/* Pre-fill the geometry field with drawing data */}
         <TextField
           name="geom"
-          defaultValue={
-            props.drawingData?.geometry?.coordinates || props.point?.geom
-          }
+          defaultValue={props.drawingData || props.point?.geom}
           className="rw-input"
           errorClassName="rw-input rw-input-error"
         />

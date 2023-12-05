@@ -30,6 +30,7 @@ const NewPoint = () => {
 
   const { state } = useMap()
   const drawingData = state.drawingData
+  console.log('drawingData', drawingData)
 
   const onSave = (input: CreatePointInput) => {
     console.log('onSave called')

@@ -20,13 +20,12 @@ export const point: QueryResolvers['point'] = ({ id }) => {
 export const createPoint: MutationResolvers['createPoint'] = async ({
   input,
 }) => {
+  const { geom, ...dbInput } = input // Separate geospatial data from metadata
   const newPoint = await db.point.create({
-    data: input,
+    data: { ...dbInput, geom: 'placeholder' }, // TODO: remove this placeholder geom
   })
-
-  await sendGeoData(newPoint.id, input.geom)
-
-  return newPoint
+  await sendGeoData(newPoint.id, geom) // Send Geo data to Flask API
+  return newPoint // Return a point type
 }
 
 export const updatePoint: MutationResolvers['updatePoint'] = ({
@@ -45,8 +44,8 @@ export const deletePoint: MutationResolvers['deletePoint'] = ({ id }) => {
   })
 }
 
-export const Point: PointRelationResolvers = {
-  layer: (_obj, { root }) => {
-    return db.point.findUnique({ where: { id: root?.id } }).layer()
-  },
-}
+// export const Point: PointRelationResolvers = {
+//   layer: (_obj, { root }) => {
+//     return db.point.findUnique({ where: { id: root?.id } }).layer()
+//   },
+// }

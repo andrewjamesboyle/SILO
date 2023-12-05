@@ -77,7 +77,7 @@ model Line {
   type     String? @db.VarChar
   inpPrj   String? @db.VarChar
   notes    String?
-  geom String // This will store the WKT representation of the geometry
+  geom String?
   layerId  Int?
   layer    String? @db.VarChar
 }
@@ -87,7 +87,7 @@ model Point {
   type     String? @db.VarChar
   inPrj   String? @db.VarChar
   notes    String?
-  geom String // This will store the WKT representation of the geometry
+  geom String?
   layerId  Int?
   layer    String? @db.VarChar
 }
@@ -97,7 +97,7 @@ model Polygon {
   type     String? @db.VarChar
   inPrj   String? @db.VarChar
   notes    String?
-  geom String // This will store the WKT representation of the geometry
+  geom String?
   layerId  Int?
   layer    String? @db.VarChar
 }

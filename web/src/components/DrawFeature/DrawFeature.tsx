@@ -33,7 +33,10 @@ const DrawFeature: React.FC<DrawFeatureProps> = ({ mapRef }) => {
       map.on('draw.create', (e) => {
         const data = draw.getAll()
         if (data.features.length > 0) {
-          dispatch({ type: 'SET_DRAWING_DATA', payload: data.features[0] })
+          dispatch({
+            type: 'SET_DRAWING_DATA',
+            payload: data.features[0].geometry.coordinates,
+          })
           dispatch({ type: 'SET_FLYOUT_CONTENT', payload: 'Point' })
         }
       })
