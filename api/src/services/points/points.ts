@@ -22,7 +22,7 @@ export const createPoint: MutationResolvers['createPoint'] = async ({
 }) => {
   const { geom, ...dbInput } = input // Separate geospatial data from metadata
   const newPoint = await db.point.create({
-    data: { ...dbInput, geom: 'placeholder' }, // TODO: remove this placeholder geom
+    data: { ...dbInput, geom }, // TODO: remove this placeholder geom
   })
   try {
     const data = await sendGeoData(newPoint.id, geom) // Send Geo data to Flask API
