@@ -43,21 +43,27 @@ const MapComponent: React.FC = () => {
       const data = draw.getAll()
       if (data.features.length > 0) {
         const featureType = data.features[0].geometry.type
-        const featureData = data.features[0].geometry
-        let payload, flyoutContent
+        const featureData = data.features[0].geometry.coordinates
+        let coordinates, flyoutContent
         console.log('featureType: ', featureType)
         console.log('featureData: ', featureData)
 
         switch (featureType) {
           case 'Point':
-            payload = featureData.coordinates
+            coordinates = featureData
             flyoutContent = 'Point'
-            console.log('payload: ', payload)
+            console.log('coordinates: ', coordinates)
             break
+          case 'LineString':
+            coordinates = featureData
+            flyoutContent = 'LineString'
+            break
+          case 'Polygon':
+            coordinates = featureData
         }
         dispatch({
           type: 'SET_DRAWING_DATA',
-          payload: payload,
+          payload: coordinates,
         })
         dispatch({ type: 'SET_FLYOUT_CONTENT', payload: flyoutContent })
       }
