@@ -1,6 +1,7 @@
 import React, { RefObject, useEffect } from 'react'
 import MapBoxDraw from '@mapbox/mapbox-gl-draw'
 import '@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw.css'
+
 import { useMapDispatch } from 'src/context/MapContext'
 
 // Needed to do some weird stuff to get this to work

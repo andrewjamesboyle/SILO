@@ -1,42 +1,24 @@
 import React, { useRef, useEffect, useState } from 'react'
 import maplibre from 'maplibre-gl'
+import MapBoxDraw from '@mapbox/mapbox-gl-draw'
+import '@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw.css'
 
-import { useMap } from 'src/context/MapContext'
-import { overlayLayers } from '../LayerToggle/layersConfig'
-import DrawFeature from '../DrawFeature/DrawFeature'
+import { useMap, useMapDispatch } from 'src/context/MapContext'
+
+// Needed to do some weird stuff to get this to work
+MapBoxDraw.constants.classes.CONTROL_BASE = 'maplibregl-ctrl'
+MapBoxDraw.constants.classes.CONTROL_PREFIX = 'maplibregl-ctrl-'
+MapBoxDraw.constants.classes.CONTROL_GROUP = 'maplibregl-ctrl-group'
 
 const MapComponent: React.FC = () => {
   const { state } = useMap()
+  const dispatch = useMapDispatch()
   const mapContainerRef = useRef(null)
   const mapRef = useRef<any>(null)
-  const overlayLayersRef = useRef([])
-
-  const addLayerToMap = (map, layerConfig) => {
-    // Add over lay layer to map
-    if (!map.getLayer(layerConfig.id)) {
-      map.addLayer({
-        id: layerConfig.id,
-        type: layerConfig.type,
-        source: {
-          type: 'vector',
-          tiles: [`${layerConfig.url}/{z}/{x}/{y}.pbf`],
-        },
-        'source-layer': layerConfig.sourceLayer,
-        layout: layerConfig.layout || {},
-        paint: layerConfig.paint || {},
-      })
-    }
-  }
-
-  const removeLayerFromMap = (map, layerId) => {
-    if (map.getLayer(layerId)) {
-      map.removeLayer(layerId)
-      map.removeSource(layerId)
-    }
-  }
 
   useEffect(() => {
     // Initialize map when component mounts
+    console.log('map component useEffect begin')
 
     const map = new maplibre.Map({
       container: mapContainerRef.current,
@@ -47,50 +29,33 @@ const MapComponent: React.FC = () => {
 
     mapRef.current = map
 
+    const draw = new MapBoxDraw({
+      displayControlsDefault: true,
+    })
+
+    // Add drawing controls after map loads
+    map.on('load', () => {
+      map.addControl(draw, 'top-right')
+    })
+
+    // Event listener for drawing creation
+    map.on('draw.create', (e) => {
+      const data = draw.getAll()
+      if (data.features.length > 0) {
+        dispatch({
+          type: 'SET_DRAWING_DATA',
+          payload: data.features[0].geometry.coordinates,
+        })
+        dispatch({ type: 'SET_FLYOUT_CONTENT', payload: 'Point' })
+      }
+    })
+
     // Cleanup on component unmount
     return () => map.remove()
   }, [])
 
-  useEffect(() => {
-    if (mapRef.current) {
-      const map = mapRef.current
-
-      const handleStyleData = () => {
-        // Add overlay layers to map once base layer has loaded
-        overlayLayersRef.current.forEach((layerConfig) => {
-          addLayerToMap(map, layerConfig)
-        })
-      }
-
-      map.on('styledata', handleStyleData)
-      map.setStyle(state.baseLayer.url)
-
-      return () => {
-        // Clean up the event listener when the effect is re-run or the component is unmounted.
-        map.off('styledata', handleStyleData)
-      }
-    }
-  }, [state.baseLayer])
-
-  useEffect(() => {
-    if (mapRef.current) {
-      overlayLayersRef.current = state.overlayLayers // store a copy of the overlay layers in a ref
-      const activeLayerIds = state.overlayLayers.map((layer) => layer.id)
-
-      overlayLayers.forEach((layerConfig) => {
-        if (activeLayerIds.includes(layerConfig.id)) {
-          addLayerToMap(mapRef.current, layerConfig)
-        } else {
-          removeLayerFromMap(mapRef.current, layerConfig.id)
-        }
-      })
-    }
-  }, [state.overlayLayers])
-
   return (
-    <div ref={mapContainerRef} style={{ width: '100%', height: '100vh' }}>
-      {mapRef.current && <DrawFeature mapRef={mapRef} />}
-    </div>
+    <div ref={mapContainerRef} style={{ width: '100%', height: '100vh' }}></div>
   )
 }
 
