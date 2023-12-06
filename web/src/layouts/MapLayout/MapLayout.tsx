@@ -3,7 +3,7 @@ import { useState } from 'react'
 import Flyout from 'src/components/Flyout/Flyout'
 import Header from 'src/components/Header/Header'
 import LayerToggle from 'src/components/LayerToggle/LayerToggle'
-import Line from 'src/components/Line/Line/Line'
+
 import NewPoint from 'src/components/Point/NewPoint/NewPoint'
 import ProcessDataComponent from 'src/components/ProcessData/ProcessData'
 import SearchDataComponent from 'src/components/SearchData/SearchData'

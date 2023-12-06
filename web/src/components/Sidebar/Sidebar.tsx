@@ -19,14 +19,11 @@ import ProcessDataComponent from '../ProcessData/ProcessData'
 import { useMapDispatch } from 'src/context/MapContext'
 
 const navigation = [
-  { name: 'Dashboard', href: '#', icon: HomeIcon, current: true },
-  { name: 'Project', href: '#', icon: UsersIcon, current: false },
-  { name: 'Control', href: '#', icon: FolderIcon, current: false },
-  { name: 'Upload', href: '#', icon: CalendarIcon, current: false },
-  { name: 'Download', href: '#', icon: DocumentDuplicateIcon, current: false },
-  { name: 'Search', href: '#', icon: ChartPieIcon, current: false },
-  { name: 'Layers', href: '#', icon: ChartPieIcon, current: false },
-  { name: 'Point', href: '#', icon: ChartPieIcon, current: false },
+  { name: 'Dashboard', icon: HomeIcon, current: true },
+  { name: 'Upload', icon: CalendarIcon, current: false },
+  { name: 'Download', icon: DocumentDuplicateIcon, current: false },
+  { name: 'Search', icon: ChartPieIcon, current: false },
+  { name: 'Layers', icon: ChartPieIcon, current: false },
 ]
 
 function classNames(...classes) {
