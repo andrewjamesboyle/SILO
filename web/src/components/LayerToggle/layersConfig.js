@@ -23,6 +23,7 @@ export const baseLayers = [
 
 export const esriLayers = [
   {
+    // This load a bunch of trailhead icons near Los Angeles
     id: 'trailheads-circle',
     name: 'Trailheads',
     url: 'https://services3.arcgis.com/GVgbJbqm8hXASVYi/arcgis/rest/services/Trailheads/FeatureServer/0/query?f=pgeojson&where=1=1',
