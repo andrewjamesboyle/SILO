@@ -1,3 +1,5 @@
+// This file contains unused code from the original implementation of layer toggling feature
+
 const overlayLayersRef = useRef([])
 
 const addLayerToMap = (map, layerConfig) => {

@@ -4,6 +4,8 @@ import MapBoxDraw from '@mapbox/mapbox-gl-draw'
 import '@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw.css'
 
 import { useMap, useMapDispatch } from 'src/context/MapContext'
+import useMapDrawManager from 'src/hooks/useMapDrawManager'
+import useMapLayerManager from 'src/hooks/useMapLayerManager'
 
 // Needed to do some weird stuff to get this to work
 MapBoxDraw.constants.classes.CONTROL_BASE = 'maplibregl-ctrl'
@@ -18,7 +20,6 @@ const MapComponent: React.FC = () => {
 
   useEffect(() => {
     // Initialize map when component mounts
-    console.log('map component useEffect begin')
 
     const map = new maplibre.Map({
       container: mapContainerRef.current,
@@ -27,51 +28,16 @@ const MapComponent: React.FC = () => {
       zoom: 10,
     })
 
+    // Assign map to ref.current to persist the map object through component re-renders
     mapRef.current = map
-
-    const draw = new MapBoxDraw({
-      displayControlsDefault: true,
-    })
-
-    // Add drawing controls after map loads
-    map.on('load', () => {
-      map.addControl(draw, 'top-right')
-    })
-
-    // Event listener for drawing creation
-    map.on('draw.create', (e) => {
-      const data = draw.getAll()
-      if (data.features.length > 0) {
-        const featureType = data.features[0].geometry.type
-        const featureData = data.features[0].geometry.coordinates
-        let coordinates, flyoutContent
-        console.log('featureType: ', featureType)
-        console.log('featureData: ', featureData)
-
-        switch (featureType) {
-          case 'Point':
-            coordinates = featureData
-            flyoutContent = 'Point'
-            console.log('coordinates: ', coordinates)
-            break
-          case 'LineString':
-            coordinates = featureData
-            flyoutContent = 'LineString'
-            break
-          case 'Polygon':
-            coordinates = featureData
-        }
-        dispatch({
-          type: 'SET_DRAWING_DATA',
-          payload: coordinates,
-        })
-        dispatch({ type: 'SET_FLYOUT_CONTENT', payload: flyoutContent })
-      }
-    })
 
     // Cleanup on component unmount
     return () => map.remove()
-  }, [dispatch])
+  }, [state.baseLayer.url])
+
+  // Custom Hooks for managing user interaction with the map
+  useMapDrawManager(mapRef, dispatch)
+  useMapLayerManager(mapRef, state.esriLayers)
 
   return (
     <div ref={mapContainerRef} style={{ width: '100%', height: '100vh' }}></div>

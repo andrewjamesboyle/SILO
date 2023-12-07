@@ -1,3 +1,8 @@
+// This is a config file for different types of data layers
+// Base Layers come from MapTiler
+// ESRI Layers come from ESRI
+// Overlay Layers came from Kent's API, but are no longer functional
+
 export const baseLayers = [
   {
     id: 'street',
@@ -13,6 +18,25 @@ export const baseLayers = [
     id: 'ocean',
     name: 'Ocean',
     url: 'https://api.maptiler.com/maps/ocean/style.json?key=Rjt57FTtlzmwKYcAVojy',
+  },
+]
+
+export const esriLayers = [
+  {
+    // This load a bunch of trailhead icons near Los Angeles
+    id: 'trailheads-circle',
+    name: 'Trailheads',
+    url: 'https://services3.arcgis.com/GVgbJbqm8hXASVYi/arcgis/rest/services/Trailheads/FeatureServer/0/query?f=pgeojson&where=1=1',
+    source: 'trailheads',
+    type: 'circle',
+    paint: {
+      'circle-color': 'hsla(0,0%,0%,0.75)',
+      'circle-stroke-width': 1.5,
+      'circle-stroke-color': 'white',
+    },
+    layout: {
+      visibility: 'visible',
+    },
   },
 ]
 
