@@ -14,6 +14,7 @@ export interface EsriLayer {
   id: string
   name: string
   url: string
+  source: string
 }
 
 export interface MapState {
