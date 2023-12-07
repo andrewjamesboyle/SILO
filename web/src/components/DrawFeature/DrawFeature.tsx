@@ -1,44 +1,52 @@
-import React, { useEffect } from 'react'
+import React, { RefObject, useEffect } from 'react'
+import MapBoxDraw from '@mapbox/mapbox-gl-draw'
+import '@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw.css'
 
-import L from 'leaflet'
-import 'leaflet-draw'
-import { useMap } from 'react-leaflet'
+import { useMapDispatch } from 'src/context/MapContext'
 
-const DrawFeature: React.FC = () => {
-  const map = useMap()
+// Needed to do some weird stuff to get this to work
+MapBoxDraw.constants.classes.CONTROL_BASE = 'maplibregl-ctrl'
+MapBoxDraw.constants.classes.CONTROL_PREFIX = 'maplibregl-ctrl-'
+MapBoxDraw.constants.classes.CONTROL_GROUP = 'maplibregl-ctrl-group'
+
+interface DrawFeatureProps {
+  mapRef: RefObject<maplibregl.Map>
+}
+
+const DrawFeature: React.FC<DrawFeatureProps> = ({ mapRef }) => {
+  const dispatch = useMapDispatch()
 
   useEffect(() => {
-    if (!map) return
-
-    const drawControl = new L.Control.Draw({
-      draw: {
-        polyline: {
-          shapeOptions: {
-            color: '#f357a1',
-            weight: 10,
-          },
-        },
-        polygon: {
-          allowIntersection: false, // Restricts shapes to simple polygons
-          drawError: {
-            color: '#e1e100', // Color the shape will turn when intersects
-            message: "<strong>Oh snap!<strong> you can't draw that!", // Message that will show when intersect
-          },
-          shapeOptions: {
-            color: '#bada55',
-          },
-        },
-        circle: false,
-        marker: false,
+    const map = mapRef.current
+    const draw = new MapBoxDraw({
+      displayControlsDefault: false,
+      controls: {
+        polygon: true,
+        line: true,
+        point: true,
+        trash: true,
       },
     })
-    map.addControl(drawControl)
+    map.addControl(draw, 'top-right')
 
+    // Event listener for drawing creation
+    map.on('draw.create', (e) => {
+      const data = draw.getAll()
+      if (data.features.length > 0) {
+        dispatch({
+          type: 'SET_DRAWING_DATA',
+          payload: data.features[0].geometry.coordinates,
+        })
+        dispatch({ type: 'SET_FLYOUT_CONTENT', payload: 'Point' })
+      }
+    })
+    // Cleanup
     return () => {
-      map.removeControl(drawControl)
+      map.removeControl(draw)
     }
-  }, [map])
+  }, [mapRef, dispatch])
 
+  // when a user clicks a draw tool, conditionally render the appropriate flyout component
   return null
 }
 

@@ -17,6 +17,14 @@
     "extends": "@redwoodjs/eslint-config",
     "root": true
   },
+  "overrides": {
+    "files": [
+      "api/src/services/**/*.ts"
+    ],
+    "rules": {
+      "@redwoodjs/service-type-annotations": "error"
+    }
+  },
   "engines": {
     "node": "=18.x",
     "yarn": ">=1.15"
@@ -26,6 +34,7 @@
   },
   "packageManager": "yarn@3.6.1",
   "dependencies": {
+    "@mapbox/mapbox-gl-draw": "^1.4.3",
     "axios": "^1.4.0"
   }
 }

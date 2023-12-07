@@ -8,14 +8,22 @@
 // 'src/pages/Admin/BooksPage/BooksPage.js' -> AdminBooksPage
 
 import { Router, Route, Set } from '@redwoodjs/router'
-import MapLayout from './layouts/MapLayout/MapLayout'
 
 import { useAuth } from './auth'
+import MapLayoutProvider from './layouts/MapLayout/MapLayoutProvider'
 
 const Routes = () => {
   return (
-    <Router useAuth={useAuth}>
-      <Set wrap={MapLayout}>
+    <Router>
+      {/* <Set wrap={ScaffoldLayout} title="Points" titleTo="points" buttonLabel="New Point" buttonTo="newPoint">
+        <Route path="/points/new" page={PointNewPointPage} name="newPoint" />
+        <Route path="/points/{id:Int}/edit" page={PointEditPointPage} name="editPoint" />
+        <Route path="/points/{id:Int}" page={PointPointPage} name="point" />
+        <Route path="/points" page={PointPointsPage} name="points" />
+      </Set> */}
+
+      <Route path="/home" page={HomePage} name="home" />
+      <Set wrap={MapLayoutProvider}>
         <Route path="/" page={MapPage} name="map" />
       </Set>
 
