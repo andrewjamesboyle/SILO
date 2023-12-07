@@ -16,9 +16,10 @@ const useMapLayerManager = (mapRef, esriLayers) => {
         map.addSource(layer.id, {
           type: 'geojson',
           data: layer.url,
-          cluster: true,
-          clusterRadius: 20, // cluster two trailheads if less than 20 pixels apart
-          clusterMaxZoom: 14, // display all trailheads individually from zoom 14 up
+          // Clustering logic only applies to 'circles'
+          // cluster: true,
+          // clusterRadius: 20, // cluster two trailheads if less than 20 pixels apart
+          // clusterMaxZoom: 14, // display all trailheads individually from zoom 14 up
         })
         map.addLayer({
           id: layer.id,
