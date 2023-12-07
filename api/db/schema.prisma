@@ -59,7 +59,7 @@ model Soils {
   spatialver Decimal? @db.Decimal(10, 0)
   musym      String?  @db.VarChar(6)
   mukey      String?  @db.VarChar(30)
-  geometry   String // This will store the WKT representation of the geometry
+  geometry   String?
 }
 
 /// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.

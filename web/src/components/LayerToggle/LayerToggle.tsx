@@ -7,6 +7,9 @@ function classNames(...classes) {
 }
 
 const LayerToggle = () => {
+  // This component renders checkboxes and handles user toggle inputs
+  // for setting base and overlay layer state
+
   const state = useMapState()
   const dispatch = useMapDispatch()
 

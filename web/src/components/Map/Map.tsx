@@ -60,6 +60,11 @@ const MapComponent: React.FC = () => {
             break
           case 'Polygon':
             coordinates = featureData
+            flyoutContent = 'Polygon'
+            break
+          default:
+            console.log('Unsupported feature type:', featureType)
+            return // Exit if the feature type is not supported
         }
         dispatch({
           type: 'SET_DRAWING_DATA',
