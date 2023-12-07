@@ -53,10 +53,14 @@ const useMapDrawManager = (mapRef, dispatch) => {
 
     // Cleanup
     return () => {
-      if (map.getControl(draw)) {
+      // Check if the map instance is still valid
+      if (map && map.getStyle()) {
+        // First remove the event listener
+        map.off('draw.create', handleDrawCreate)
+
+        // Then remove the control
         map.removeControl(draw)
       }
-      map.off('draw.create', handleDrawCreate)
     }
   }, [mapRef, dispatch])
 }

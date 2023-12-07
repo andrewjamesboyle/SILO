@@ -21,7 +21,23 @@ export const baseLayers = [
   },
 ]
 
-export const esriLayers = [{}]
+export const esriLayers = [
+  {
+    id: 'trailheads-circle',
+    name: 'Trailheads',
+    url: 'https://services3.arcgis.com/GVgbJbqm8hXASVYi/arcgis/rest/services/Trailheads/FeatureServer/0/query?f=pgeojson&where=1=1',
+    source: 'trailheads',
+    type: 'circle',
+    paint: {
+      'circle-color': 'hsla(0,0%,0%,0.75)',
+      'circle-stroke-width': 1.5,
+      'circle-stroke-color': 'white',
+    },
+    layout: {
+      visibility: 'visible',
+    },
+  },
+]
 
 export const overlayLayers = [
   {

@@ -10,9 +10,16 @@ export interface OverlayLayer {
   url: string
 }
 
+export interface EsriLayer {
+  id: string
+  name: string
+  url: string
+}
+
 export interface MapState {
   baseLayer: BaseLayer
   overlayLayers: OverlayLayer[]
+  esriLayers: EsriLayer[]
   drawingData: any
   flyoutContent: string | null
 }

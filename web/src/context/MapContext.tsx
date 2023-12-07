@@ -1,5 +1,5 @@
 import React, { createContext, useReducer, useContext } from 'react'
-import { MapState, BaseLayer, OverlayLayer } from './mapTypes'
+import { MapState, BaseLayer, OverlayLayer, EsriLayer } from './mapTypes'
 
 const initialState: MapState = {
   baseLayer: {
@@ -8,6 +8,7 @@ const initialState: MapState = {
     url: 'https://api.maptiler.com/maps/satellite/style.json?key=Rjt57FTtlzmwKYcAVojy',
   },
   overlayLayers: [] as OverlayLayer[],
+  esriLayers: [] as EsriLayer[],
   drawingData: null,
   flyoutContent: null,
 }
@@ -16,6 +17,8 @@ type Action =
   | { type: 'SET_BASE_LAYER'; payload: BaseLayer }
   | { type: 'ADD_OVERLAY_LAYER'; payload: OverlayLayer }
   | { type: 'REMOVE_OVERLAY_LAYER'; payload: OverlayLayer }
+  | { type: 'ADD_ESRI_LAYER'; payload: EsriLayer }
+  | { type: 'REMOVE_ESRI_LAYER'; payload: EsriLayer }
   | { type: 'SET_DRAWING_DATA'; payload: any }
   | { type: 'SET_FLYOUT_CONTENT'; payload: string | null }
 
@@ -40,6 +43,19 @@ const mapReducer = (state: MapState, action: Action): MapState => {
           (layer) => layer.id !== action.payload.id
         ),
       }
+    case 'ADD_ESRI_LAYER':
+      return {
+        ...state,
+        esriLayers: [...state.esriLayers, action.payload],
+      }
+    case 'REMOVE_ESRI_LAYER':
+      return {
+        ...state,
+        esriLayers: state.esriLayers.filter(
+          (layer) => layer.id !== action.payload.id
+        ),
+      }
+
     case 'SET_DRAWING_DATA':
       return {
         ...state,
@@ -67,6 +83,7 @@ export const MapProvider: React.FC<MapProviderProps> = ({ children }) => {
       url: 'https://api.maptiler.com/maps/satellite/style.json?key=Rjt57FTtlzmwKYcAVojy',
     },
     overlayLayers: [],
+    esriLayers: [],
     drawingData: null,
     flyoutContent: null,
   })
