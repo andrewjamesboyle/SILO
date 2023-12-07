@@ -53,14 +53,18 @@ const useMapLayerManager = (mapRef, esriLayers) => {
     } else {
       map.once('load', updateLayers)
     }
+
     // Cleanup function
     return () => {
-      // Remove all layers and sources added by this hook.
-      esriLayers.forEach((layer) => {
-        if (layer) {
-          removeLayerFromMap(layer.id)
-        }
-      })
+      // Check if the map is still valid
+      if (mapRef.current && mapRef.current.getStyle()) {
+        // Remove all layers and sources added by this hook
+        esriLayers.forEach((layer) => {
+          if (layer) {
+            removeLayerFromMap(layer.id)
+          }
+        })
+      }
     }
   }, [mapRef, esriLayers])
 }
