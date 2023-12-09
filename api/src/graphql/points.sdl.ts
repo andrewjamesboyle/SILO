@@ -2,10 +2,8 @@ export const schema = gql`
   type Point {
     id: Int!
     type: String
-    inPrj: String
     notes: String
-    geom: String
-    layer: String
+    department: String
   }
 
   type Query {
@@ -16,14 +14,13 @@ export const schema = gql`
   input CreatePointInput {
     type: String
     notes: String
-    geom: String
+    department: String
   }
 
   input UpdatePointInput {
     type: String
-    inPrj: String
     notes: String
-    geom: String
+    department: String
   }
 
   type Mutation {

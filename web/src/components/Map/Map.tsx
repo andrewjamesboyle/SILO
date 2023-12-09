@@ -33,6 +33,10 @@ const MapComponent: React.FC = () => {
 
     // Cleanup on component unmount
     return () => map.remove()
+  }, [])
+
+  useEffect(() => {
+    mapRef.current.setStyle(state.baseLayer.url)
   }, [state.baseLayer.url])
 
   // Custom Hooks for managing user interaction with the map
