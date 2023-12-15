@@ -2,8 +2,7 @@ export const schema = gql`
   type Point {
     id: Int!
     type: String
-    notes: String
-    department: String
+    description: String
   }
 
   type Query {
@@ -14,7 +13,8 @@ export const schema = gql`
   input CreatePointInput {
     type: String
     notes: String
-    department: String
+    description: String
+    geom: String
   }
 
   input UpdatePointInput {

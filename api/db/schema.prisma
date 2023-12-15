@@ -15,7 +15,8 @@ model User {
   roleId        Int
   role          Role           @relation(fields: [roleId], references: [id])
   organizations Organization[]
-  projects      Project[]      @relation("createdProjects")
+  layers      Layer[]
+  points       Point[]
 }
 
 model Role {
@@ -28,50 +29,47 @@ model Organization {
   id       Int       @id @default(autoincrement())
   name     String
   users    User[]
-  projects Project[]
+  layers Layer[]
 }
 
-model Project {
+model Layer {
   id             Int          @id @default(autoincrement())
   name           String
   description    String?
   createdById    Int
-  createdBy      User         @relation(fields: [createdById], references: [id], name: "createdProjects")
+  createdBy      User         @relation(fields: [createdById], references: [id])
   organizationId Int
   organization   Organization @relation(fields: [organizationId], references: [id])
-  departments    Department[]
-}
-
-model Department {
-  id Int @id @default(autoincrement())
-  name String
-  points Point[]
-  lines Line[]
-  polygons Polygon[]
-  projectId Int?
-  project Project? @relation(fields: [projectId], references: [id])
+  lines          Line[]
+  points         Point[]
+  polygons       Polygon[]
 }
 
 model Line {
   id       Int     @id @default(autoincrement())
   type     String? @db.VarChar
-  notes    String? @db.VarChar
-  departmentId Int?
-  department Department? @relation(fields: [departmentId], references: [id])
+  description    String? @db.VarChar
+  project  String? @db.VarChar
+  layerId Int?
+  layer Layer? @relation(fields: [layerId], references: [id])
 }
 
 model Point {
   id       Int     @id @default(autoincrement())
   type     String? @db.VarChar
-  notes    String? @db.VarChar
-  departmentId Int?
-  department Department? @relation(fields: [departmentId], references: [id])
+  description    String? @db.VarChar
+  project  String? @db.VarChar
+  layerId Int?
+  layer Layer? @relation(fields: [layerId], references: [id])
+  createdById    Int?
+  createdBy      User? @relation(fields: [createdById], references: [id])
 }
 
 model Polygon {
   id       Int     @id @default(autoincrement())
   type     String? @db.VarChar
-  notes    String? @db.VarChar
-  departmentId Int?
-  department Department? @relation(fields: [departmentId], references: [id])
+  description    String? @db.VarChar
+  project  String? @db.VarChar
+  layerId Int?
+  layer Layer? @relation(fields: [layerId], references: [id])
 }

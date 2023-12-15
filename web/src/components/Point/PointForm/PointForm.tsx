@@ -71,21 +71,21 @@ const PointForm = (props: PointFormProps) => {
         {/* <FieldError name="inPrj" className="rw-field-error" /> */}
 
         <Label
-          name="notes"
+          name="description"
           className="rw-label"
           errorClassName="rw-label rw-label-error"
         >
-          Notes
+          Description
         </Label>
 
         <TextField
-          name="notes"
-          defaultValue={props.point?.notes}
+          name="description"
+          defaultValue={props.point?.description}
           className="rw-input"
           errorClassName="rw-input rw-input-error"
         />
 
-        <FieldError name="notes" className="rw-field-error" />
+        <FieldError name="description" className="rw-field-error" />
 
         <Label
           name="geometry"
@@ -129,7 +129,7 @@ const PointForm = (props: PointFormProps) => {
           // validation={{ required: true }}
         /> */}
 
-        <FieldError name="layerId" className="rw-field-error" />
+        {/* <FieldError name="layerId" className="rw-field-error" /> */}
 
         <div className="rw-button-group">
           <Submit disabled={props.loading} className="rw-button rw-button-blue">

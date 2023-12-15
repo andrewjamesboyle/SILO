@@ -27,7 +27,7 @@ export const createPoint: MutationResolvers['createPoint'] = async ({
 
   // Send Geometry data to Flask API
   try {
-    const responseData = await sendGeoData(newPoint.id, geom)
+    const responseData = await sendGeoData(newPoint, geom)
     console.log('sendGeoData response: ', responseData)
   } catch (error) {
     console.error('Error sending geo data to Flask API: ', error)
