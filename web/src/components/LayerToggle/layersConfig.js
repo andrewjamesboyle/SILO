@@ -14,11 +14,11 @@ export const baseLayers = [
     name: 'Satellite',
     url: 'https://api.maptiler.com/maps/satellite/style.json?key=Rjt57FTtlzmwKYcAVojy',
   },
-  {
-    id: 'ocean',
-    name: 'Ocean',
-    url: 'https://api.maptiler.com/maps/ocean/style.json?key=Rjt57FTtlzmwKYcAVojy',
-  },
+  // {
+  //   id: 'ocean',
+  //   name: 'Ocean',
+  //   url: 'https://api.maptiler.com/maps/ocean/style.json?key=Rjt57FTtlzmwKYcAVojy',
+  // },
 ]
 
 export const esriLayers = [
@@ -61,6 +61,50 @@ export const esriLayers = [
     paint: {
       'line-color': 'hsla(0,50%,50%,0.75)',
       'line-width': 2,
+    },
+    layout: {
+      visibility: 'visible',
+    },
+  },
+  {
+    id: 'waterbodies',
+    name: 'Water Bodies',
+    url: 'https://services2.arcgis.com/1UvBaQ5y1ubjUPmd/ArcGIS/rest/services/Hydro_Waterbodies/FeatureServer/0/query?f=geojson&where=1=1',
+    source: 'waterbodies',
+    type: 'fill',
+    paint: {
+      'fill-color': 'hsla(190,50%,50%,0.75)',
+      'fill-opacity': 0.7,
+      'fill-outline-color': 'rgba(50, 50, 50, 0.7)',
+    },
+    layout: {
+      visibility: 'visible',
+    },
+  },
+  {
+    id: 'rivers',
+    name: 'Rivers',
+    url: 'https://services2.arcgis.com/1UvBaQ5y1ubjUPmd/ArcGIS/rest/services/Hydro_Riverbanks/FeatureServer/0/query?f=geojson&where=1=1',
+    source: 'rivers',
+    type: 'line',
+    paint: {
+      'line-color': 'hsla(200,50%,50%,0.75)',
+      'line-width': 2,
+    },
+    layout: {
+      visibility: 'visible',
+    },
+  },
+  {
+    id: 'landslide_hazards',
+    name: 'Landslide Hazards',
+    url: 'https://services2.arcgis.com/1UvBaQ5y1ubjUPmd/ArcGIS/rest/services/Landslide_Hazard_Areas/FeatureServer/1/query?f=geojson&where=1=1',
+    source: 'landslide_hazards',
+    type: 'fill',
+    paint: {
+      'fill-color': 'hsla(30,50%,50%,0.75)',
+      'fill-opacity': 0.7,
+      'fill-outline-color': 'rgba(50, 50, 50, 0.7)',
     },
     layout: {
       visibility: 'visible',
