@@ -12,6 +12,11 @@ export const baseLayers = [
   {
     id: 'satellite',
     name: 'Satellite',
+    url: 'https://api.maptiler.com/maps/satellite/style.json?key=Rjt57FTtlzmwKYcAVojy',
+  },
+  {
+    id: 'hybrid',
+    name: 'Hybrid',
     url: 'https://api.maptiler.com/maps/hybrid/style.json?key=Rjt57FTtlzmwKYcAVojy',
   },
   // {

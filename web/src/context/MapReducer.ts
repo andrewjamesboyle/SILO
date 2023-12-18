@@ -2,8 +2,8 @@ import { MapState, BaseLayer, OverlayLayer, EsriLayer } from './mapTypes'
 
 export const initialState: MapState = {
   baseLayer: {
-    id: 'satellite',
-    name: 'Satellite',
+    id: 'hybrid',
+    name: 'Hybrid',
     url: 'https://api.maptiler.com/maps/hybrid/style.json?key=Rjt57FTtlzmwKYcAVojy',
   },
   overlayLayers: [] as OverlayLayer[],
