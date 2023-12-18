@@ -53,6 +53,21 @@ export const esriLayers = [
       visibility: 'visible',
     },
   },
+  {
+    id: 'county_flood',
+    name: 'County Flood',
+    url: 'https://services2.arcgis.com/1UvBaQ5y1ubjUPmd/ArcGIS/rest/services/Potential_Flood_Hazard_Review/FeatureServer/0/query?f=geojson&where=1=1',
+    source: 'county_flood',
+    type: 'fill',
+    paint: {
+      'fill-color': 'hsla(210,50%,50%,0.75)',
+      'fill-opacity': 0.7,
+      'fill-outline-color': 'rgba(50, 50, 50, 0.7)',
+    },
+    layout: {
+      visibility: 'visible',
+    },
+  },
 ]
 
 export const overlayLayers = [
