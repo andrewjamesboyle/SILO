@@ -22,22 +22,6 @@ export const baseLayers = [
 ]
 
 export const esriLayers = [
-  // {
-  //   // This load a bunch of trailhead icons near Los Angeles
-  //   id: 'trailheads-circle',
-  //   name: 'Trailheads',
-  //   url: 'https://services3.arcgis.com/GVgbJbqm8hXASVYi/arcgis/rest/services/Trailheads/FeatureServer/0/query?f=pgeojson&where=1=1',
-  //   source: 'trailheads',
-  //   type: 'circle',
-  //   paint: {
-  //     'circle-color': 'hsla(0,0%,0%,0.75)',
-  //     'circle-stroke-width': 1.5,
-  //     'circle-stroke-color': 'white',
-  //   },
-  //   layout: {
-  //     visibility: 'visible',
-  //   },
-  // },
   {
     id: 'erosion_hazard',
     name: 'Erosion Hazard',
@@ -63,6 +47,20 @@ export const esriLayers = [
       'fill-color': 'hsla(210,50%,50%,0.75)',
       'fill-opacity': 0.7,
       'fill-outline-color': 'rgba(50, 50, 50, 0.7)',
+    },
+    layout: {
+      visibility: 'visible',
+    },
+  },
+  {
+    id: 'centerlines',
+    name: 'Center Lines',
+    url: 'https://services2.arcgis.com/1UvBaQ5y1ubjUPmd/ArcGIS/rest/services/Hydro_Centerlines/FeatureServer/0/query?f=geojson&where=1=1',
+    source: 'centerlines',
+    type: 'line',
+    paint: {
+      'line-color': 'hsla(0,50%,50%,0.75)',
+      'line-width': 2,
     },
     layout: {
       visibility: 'visible',
