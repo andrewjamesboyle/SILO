@@ -22,17 +22,32 @@ export const baseLayers = [
 ]
 
 export const esriLayers = [
+  // {
+  //   // This load a bunch of trailhead icons near Los Angeles
+  //   id: 'trailheads-circle',
+  //   name: 'Trailheads',
+  //   url: 'https://services3.arcgis.com/GVgbJbqm8hXASVYi/arcgis/rest/services/Trailheads/FeatureServer/0/query?f=pgeojson&where=1=1',
+  //   source: 'trailheads',
+  //   type: 'circle',
+  //   paint: {
+  //     'circle-color': 'hsla(0,0%,0%,0.75)',
+  //     'circle-stroke-width': 1.5,
+  //     'circle-stroke-color': 'white',
+  //   },
+  //   layout: {
+  //     visibility: 'visible',
+  //   },
+  // },
   {
-    // This load a bunch of trailhead icons near Los Angeles
-    id: 'trailheads-circle',
-    name: 'Trailheads',
-    url: 'https://services3.arcgis.com/GVgbJbqm8hXASVYi/arcgis/rest/services/Trailheads/FeatureServer/0/query?f=pgeojson&where=1=1',
-    source: 'trailheads',
-    type: 'circle',
+    id: 'erosion_hazard',
+    name: 'Erosion Hazard',
+    url: 'https://services2.arcgis.com/1UvBaQ5y1ubjUPmd/ArcGIS/rest/services/Erosion_Hazard_Areas/FeatureServer/0/query?f=geojson&where=1=1',
+    source: 'erosion_hazard',
+    type: 'fill',
     paint: {
-      'circle-color': 'hsla(0,0%,0%,0.75)',
-      'circle-stroke-width': 1.5,
-      'circle-stroke-color': 'white',
+      'fill-color': 'hsla(50,50%,50%,0.75)',
+      'fill-opacity': 0.7,
+      'fill-outline-color': 'rgba(128, 128, 128, 0.7)',
     },
     layout: {
       visibility: 'visible',
