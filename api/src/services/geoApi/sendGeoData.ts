@@ -5,8 +5,12 @@ export async function sendGeoData(data, geom: string) {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      data,
-      geom,
+      metaId: data.id,
+      type: data.type,
+      notes: data.description,
+      geom: geom,
+      layerId: data.layerId,
+      layer: data.layer,
     }),
   })
 }
