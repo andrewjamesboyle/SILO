@@ -15,7 +15,8 @@ model User {
   roleId        Int
   role          Role           @relation(fields: [roleId], references: [id])
   organizations Organization[]
-  projects      Project[]      @relation("createdProjects")
+  layers      Layer[]
+  points       Point[]
 }
 
 model Role {
@@ -28,76 +29,47 @@ model Organization {
   id       Int       @id @default(autoincrement())
   name     String
   users    User[]
-  projects Project[]
+  layers Layer[]
 }
 
-model Project {
+model Layer {
   id             Int          @id @default(autoincrement())
   name           String
   description    String?
   createdById    Int
-  createdBy      User         @relation(fields: [createdById], references: [id], name: "createdProjects")
+  createdBy      User         @relation(fields: [createdById], references: [id])
   organizationId Int
   organization   Organization @relation(fields: [organizationId], references: [id])
-  layers         String[]
-}
-
-
-
-model Contours {
-  gid        Int      @id @default(autoincrement())
-  elevation  Decimal? @db.Decimal(10, 0)
-  type       Decimal? @db.Decimal(5, 0)
-  update_sta Decimal? @db.Decimal(19, 11)
-  shape_leng Decimal? @db.Decimal(19, 11)
-  geometry   String // This will store the WKT representation of the geometry
-}
-
-model Soils {
-  ogc_fid    Int      @id @default(autoincrement())
-  areasymbol String?  @db.VarChar(20)
-  spatialver Decimal? @db.Decimal(10, 0)
-  musym      String?  @db.VarChar(6)
-  mukey      String?  @db.VarChar(30)
-  geometry   String?
-}
-
-/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
-model Spatial_ref_sys {
-  srid      Int     @id
-  auth_name String? @db.VarChar(256)
-  auth_srid Int?
-  srtext    String? @db.VarChar(2048)
-  proj4text String? @db.VarChar(2048)
-  geometry  String // This will store the WKT representation of the geometry
+  lines          Line[]
+  points         Point[]
+  polygons       Polygon[]
 }
 
 model Line {
   id       Int     @id @default(autoincrement())
   type     String? @db.VarChar
-  inpPrj   String? @db.VarChar
-  notes    String?
-  geom String?
-  layerId  Int?
-  layer    String? @db.VarChar
+  description    String? @db.VarChar
+  project  String? @db.VarChar
+  layerId Int?
+  layer Layer? @relation(fields: [layerId], references: [id])
 }
 
 model Point {
   id       Int     @id @default(autoincrement())
   type     String? @db.VarChar
-  inPrj   String? @db.VarChar
-  notes    String?
-  geom String?
-  layerId  Int?
-  layer    String? @db.VarChar
+  description    String? @db.VarChar
+  project  String? @db.VarChar
+  layerId Int?
+  layer Layer? @relation(fields: [layerId], references: [id])
+  createdById    Int?
+  createdBy      User? @relation(fields: [createdById], references: [id])
 }
 
 model Polygon {
   id       Int     @id @default(autoincrement())
   type     String? @db.VarChar
-  inPrj   String? @db.VarChar
-  notes    String?
-  geom String?
-  layerId  Int?
-  layer    String? @db.VarChar
+  description    String? @db.VarChar
+  project  String? @db.VarChar
+  layerId Int?
+  layer Layer? @relation(fields: [layerId], references: [id])
 }

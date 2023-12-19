@@ -21,16 +21,19 @@ export const createPoint: MutationResolvers['createPoint'] = async ({
   input,
 }) => {
   const { geom, ...dbInput } = input // Separate geospatial data from metadata
-  const newPoint = await db.point.create({
-    data: { ...dbInput, geom }, // TODO: remove this placeholder geom
-  })
+
+  // Create a new point in the database using Prisma
+  const newPoint = await db.point.create({ data: dbInput })
+
+  // Send Geometry data to Flask API
   try {
-    const data = await sendGeoData(newPoint.id, geom) // Send Geo data to Flask API
-    console.log('sendGeoData response: ', data)
+    const responseData = await sendGeoData(newPoint, geom)
+    console.log('sendGeoData response: ', responseData)
   } catch (error) {
     console.error('Error sending geo data to Flask API: ', error)
   }
-  return newPoint // Return a point to keep the types happy
+
+  return newPoint
 }
 
 export const updatePoint: MutationResolvers['updatePoint'] = ({
