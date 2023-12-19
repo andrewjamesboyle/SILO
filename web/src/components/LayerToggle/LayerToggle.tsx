@@ -1,6 +1,6 @@
 import { useMap, useMapDispatch, useMapState } from 'src/context/MapContext'
-import { baseLayers, esriLayers, overlayLayers } from './layersConfig'
-import { BaseLayer, EsriLayer, OverlayLayer } from '../../context/mapTypes'
+import { baseLayers, esriLayers } from './layersConfig'
+import { BaseLayer, EsriLayer } from '../../context/mapTypes'
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
