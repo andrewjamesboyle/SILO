@@ -1,9 +1,10 @@
 const UploadData = () => {
   return (
-    <div>
-      <h2>{'UploadData'}</h2>
-      <p>{'Find me in ./web/src/components/UploadData/UploadData.tsx'}</p>
-    </div>
+    <>
+      <div>
+        <h2>Upload Shape File</h2>
+      </div>
+    </>
   )
 }
 

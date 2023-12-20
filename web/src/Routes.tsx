@@ -12,10 +12,7 @@ import { Router, Route, Set } from '@redwoodjs/router'
 import { useAuth } from './auth'
 
 import MapLayoutProvider from './layouts/MapLayout/MapLayoutProvider'
-import SignInPage from './pages/SignInPage/SignInPage'
-import ForgotPasswordPage from './pages/ForgotPasswordPage/ForgotPasswordPage'
 import MapLayout from './layouts/MapLayout/MapLayout'
-import SettingsPage from './pages/SettingsPage/SettingsPage'
 
 const Routes = () => {
   return (

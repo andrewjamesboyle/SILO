@@ -9,6 +9,7 @@ import ProcessDataComponent from 'src/components/ProcessData/ProcessData'
 import SearchDataComponent from 'src/components/SearchData/SearchData'
 import Sidebar from 'src/components/Sidebar/Sidebar'
 import { MapProvider, useMap } from 'src/context/MapContext'
+import UploadData from 'src/components/UploadData/UploadData'
 
 type MapLayoutProps = {
   children?: React.ReactNode
@@ -19,6 +20,7 @@ const flyoutComponents = {
   Project: ProcessDataComponent,
   Layers: LayerToggle,
   Point: NewPoint,
+  Upload: UploadData,
 }
 
 const MapLayout = ({ children }: MapLayoutProps) => {
