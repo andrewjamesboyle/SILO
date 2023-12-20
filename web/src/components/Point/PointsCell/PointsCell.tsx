@@ -10,10 +10,10 @@ export const QUERY = gql`
     points {
       id
       type
-      in_prj
+      inPrj
       notes
-      geometry
-      layerId
+      geom
+      layer
     }
   }
 `
@@ -24,9 +24,9 @@ export const Empty = () => {
   return (
     <div className="rw-text-center">
       {'No points yet. '}
-      <Link to={routes.newPoint()} className="rw-link">
+      {/* <Link to={routes.newPoint()} className="rw-link">
         {'Create one?'}
-      </Link>
+      </Link> */}
     </div>
   )
 }

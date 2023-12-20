@@ -5,6 +5,7 @@ import type {
 } from 'types/graphql'
 
 import { db } from 'src/lib/db'
+import { sendGeoData } from '../geoApi/sendGeoData'
 
 export const points: QueryResolvers['points'] = () => {
   return db.point.findMany()
@@ -16,10 +17,23 @@ export const point: QueryResolvers['point'] = ({ id }) => {
   })
 }
 
-export const createPoint: MutationResolvers['createPoint'] = ({ input }) => {
-  return db.point.create({
-    data: input,
-  })
+export const createPoint: MutationResolvers['createPoint'] = async ({
+  input,
+}) => {
+  const { geom, ...dbInput } = input // Separate geospatial data from metadata
+
+  // Create a new point in the database using Prisma
+  const newPoint = await db.point.create({ data: dbInput })
+  console.log('newPoint: ', newPoint)
+  // Send Geometry data to Flask API
+  try {
+    const responseData = await sendGeoData(newPoint, geom)
+    console.log('sendGeoData response: ', responseData)
+  } catch (error) {
+    console.error('Error sending geo data to Flask API: ', error)
+  }
+
+  return newPoint
 }
 
 export const updatePoint: MutationResolvers['updatePoint'] = ({
@@ -38,8 +52,8 @@ export const deletePoint: MutationResolvers['deletePoint'] = ({ id }) => {
   })
 }
 
-export const Point: PointRelationResolvers = {
-  layer: (_obj, { root }) => {
-    return db.point.findUnique({ where: { id: root?.id } }).layer()
-  },
-}
+// export const Point: PointRelationResolvers = {
+//   layer: (_obj, { root }) => {
+//     return db.point.findUnique({ where: { id: root?.id } }).layer()
+//   },
+// }

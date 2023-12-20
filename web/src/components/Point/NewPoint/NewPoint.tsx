@@ -1,10 +1,14 @@
 import { navigate, routes } from '@redwoodjs/router'
+
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 
 import PointForm from 'src/components/Point/PointForm'
 
-import type { CreatePointInput } from 'types/graphql'
+import { gql } from '@apollo/client'
+import { useMap } from 'src/context/MapContext'
+import { CreatePointInput } from 'types/graphql'
+import { useAuth } from 'src/auth'
 
 const CREATE_POINT_MUTATION = gql`
   mutation CreatePointMutation($input: CreatePointInput!) {
@@ -15,18 +19,30 @@ const CREATE_POINT_MUTATION = gql`
 `
 
 const NewPoint = () => {
+  const { currentUser } = useAuth()
   const [createPoint, { loading, error }] = useMutation(CREATE_POINT_MUTATION, {
     onCompleted: () => {
       toast.success('Point created')
-      navigate(routes.points())
+      // navigate(routes.points())
     },
     onError: (error) => {
       toast.error(error.message)
     },
   })
 
+  const { state } = useMap()
+  const drawingData = state.drawingData
+  console.log('drawingData', drawingData)
+
   const onSave = (input: CreatePointInput) => {
-    createPoint({ variables: { input } })
+    console.log('input', input)
+
+    const authorizedInput = {
+      ...input,
+      createdById: currentUser?.sub,
+    }
+    console.log('authorizedInput', authorizedInput)
+    createPoint({ variables: { input: authorizedInput } })
   }
 
   return (
@@ -35,7 +51,12 @@ const NewPoint = () => {
         <h2 className="rw-heading rw-heading-secondary">New Point</h2>
       </header>
       <div className="rw-segment-main">
-        <PointForm onSave={onSave} loading={loading} error={error} />
+        <PointForm
+          onSave={onSave}
+          loading={loading}
+          error={error}
+          drawingData={drawingData}
+        />
       </div>
     </div>
   )
