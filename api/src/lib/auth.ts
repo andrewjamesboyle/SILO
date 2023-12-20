@@ -1,5 +1,7 @@
 import type { Decoded } from '@redwoodjs/api'
 import { AuthenticationError, ForbiddenError } from '@redwoodjs/graphql-server'
+import { db } from 'src/lib/db'
+import { findOrCreateUser } from 'src/services/users/users'
 
 /**
  * Represents the user attributes returned by the decoding the
@@ -35,6 +37,10 @@ export const getCurrentUser = async (
   if (!decoded) {
     return null
   }
+
+  const auth0Id = decoded.sub
+
+  await findOrCreateUser({ auth0Id })
 
   const roles = decoded[process.env.AUTH0_AUDIENCE + '/roles']
 

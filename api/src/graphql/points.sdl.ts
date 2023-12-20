@@ -15,6 +15,7 @@ export const schema = gql`
     notes: String
     description: String
     geom: String
+    createdById: String
   }
 
   input UpdatePointInput {
@@ -24,7 +25,7 @@ export const schema = gql`
   }
 
   type Mutation {
-    createPoint(input: CreatePointInput!): Point! @skipAuth
+    createPoint(input: CreatePointInput!): Point! @requireAuth
     updatePoint(id: Int!, input: UpdatePointInput!): Point! @skipAuth
     deletePoint(id: Int!): Point! @skipAuth
   }

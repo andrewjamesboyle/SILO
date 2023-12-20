@@ -8,6 +8,7 @@ import PointForm from 'src/components/Point/PointForm'
 import { gql } from '@apollo/client'
 import { useMap } from 'src/context/MapContext'
 import { CreatePointInput } from 'types/graphql'
+import { useAuth } from 'src/auth'
 
 const CREATE_POINT_MUTATION = gql`
   mutation CreatePointMutation($input: CreatePointInput!) {
@@ -18,6 +19,7 @@ const CREATE_POINT_MUTATION = gql`
 `
 
 const NewPoint = () => {
+  const { currentUser } = useAuth()
   const [createPoint, { loading, error }] = useMutation(CREATE_POINT_MUTATION, {
     onCompleted: () => {
       toast.success('Point created')
@@ -33,9 +35,14 @@ const NewPoint = () => {
   console.log('drawingData', drawingData)
 
   const onSave = (input: CreatePointInput) => {
-    console.log('onSave called')
     console.log('input', input)
-    createPoint({ variables: { input } })
+
+    const authorizedInput = {
+      ...input,
+      createdById: currentUser?.sub,
+    }
+    console.log('authorizedInput', authorizedInput)
+    createPoint({ variables: { input: authorizedInput } })
   }
 
   return (

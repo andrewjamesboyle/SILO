@@ -24,7 +24,7 @@ export const createPoint: MutationResolvers['createPoint'] = async ({
 
   // Create a new point in the database using Prisma
   const newPoint = await db.point.create({ data: dbInput })
-
+  console.log('newPoint: ', newPoint)
   // Send Geometry data to Flask API
   try {
     const responseData = await sendGeoData(newPoint, geom)
