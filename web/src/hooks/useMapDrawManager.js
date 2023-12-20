@@ -50,6 +50,7 @@ const useMapDrawManager = (mapRef, dispatch) => {
     }
 
     map.on('draw.create', handleDrawCreate)
+    map.on('draw.update', handleDrawCreate)
 
     // Cleanup
     return () => {
