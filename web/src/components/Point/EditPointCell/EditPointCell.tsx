@@ -12,10 +12,9 @@ export const QUERY = gql`
     point: point(id: $id) {
       id
       type
-      in_prj
+      inPrj
       notes
-      geometry
-      layerId
+      geom
     }
   }
 `
@@ -24,10 +23,9 @@ const UPDATE_POINT_MUTATION = gql`
     updatePoint(id: $id, input: $input) {
       id
       type
-      in_prj
+      inPrj
       notes
-      geometry
-      layerId
+      geom
     }
   }
 `
@@ -42,7 +40,7 @@ export const Success = ({ point }: CellSuccessProps<EditPointById>) => {
   const [updatePoint, { loading, error }] = useMutation(UPDATE_POINT_MUTATION, {
     onCompleted: () => {
       toast.success('Point updated')
-      navigate(routes.points())
+      // navigate(routes.points())
     },
     onError: (error) => {
       toast.error(error.message)
@@ -64,12 +62,13 @@ export const Success = ({ point }: CellSuccessProps<EditPointById>) => {
         </h2>
       </header>
       <div className="rw-segment-main">
-        <PointForm
+        {/* <PointForm
           point={point}
           onSave={onSave}
           error={error}
           loading={loading}
-        />
+          drawingData={point?.geom}
+        /> */}
       </div>
     </div>
   )
