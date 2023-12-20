@@ -12,6 +12,8 @@ MapBoxDraw.constants.classes.CONTROL_BASE = 'maplibregl-ctrl'
 MapBoxDraw.constants.classes.CONTROL_PREFIX = 'maplibregl-ctrl-'
 MapBoxDraw.constants.classes.CONTROL_GROUP = 'maplibregl-ctrl-group'
 
+// a comment
+
 const MapComponent: React.FC = () => {
   const { state } = useMap()
   const dispatch = useMapDispatch()
