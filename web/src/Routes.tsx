@@ -9,13 +9,25 @@
 
 import { Router, Route, Set } from '@redwoodjs/router'
 
+
+import { useAuth } from './auth'
+
+
 import MapLayoutProvider from './layouts/MapLayout/MapLayoutProvider'
+
 
 const Routes = () => {
   return (
     <Router>
       <Route path="/home" page={HomePage} name="home" />
+
+      <Route path="/sign-in" page={SignInPage} name="sign-in" />
+      <Route path="/forgot-password" page={ForgotPasswordPage} name="forgot-password" />
+      <Route path="/settings" page={SettingsPage} name="settings" />
+      <Set wrap={MapLayout}>
+
       <Set wrap={MapLayoutProvider}>
+
         <Route path="/" page={MapPage} name="map" />
       </Set>
 

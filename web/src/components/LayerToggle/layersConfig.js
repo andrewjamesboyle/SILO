@@ -233,4 +233,119 @@ export const overlayLayers = [
       visibility: 'visible',
     },
   },
+  // {
+  //   id: 'erosion_hazard',
+  //   name: 'Erosion Hazard',
+  //   url: 'https://services2.arcgis.com/1UvBaQ5y1ubjUPmd/ArcGIS/rest/services/Erosion_Hazard_Areas/FeatureServer/0/',
+  //   sourceLayer: '0',
+  //   type: 'fill',
+  //   paint: {
+  //     'fill-color': 'red',
+  //     'fill-opacity': 0.7,
+  //     'fill-outline-color': 'rgba(255, 0, 0, 0.7)',
+  //   },
+  //   layout: {
+  //     visibility: 'visible',
+  //   },
+  // },
+  {
+    id: 'erosion_hazard',
+    name: 'Erosion Hazard',
+    url: 'https://services2.arcgis.com/1UvBaQ5y1ubjUPmd/ArcGIS/rest/services/Erosion_Hazard_Areas/FeatureServer/0/',
+    // sourceLayer: 'Erosion_Hazard_Areas', // Update this to the correct source layer name
+    sourceLayer: 'Potential_Flood_Hazard_Review', // Update this to the correct source layer name
+    type: 'fill',
+    paint: {
+      'fill-color': 'red',
+      'fill-opacity': 0.7,
+      'fill-outline-color': 'rgba(255, 0, 0, 0.7)',
+    },
+    layout: {
+      visibility: 'visible',
+    },
+  },
+
+  {
+    id: 'county_flood',
+    name: 'County Flood',
+    url: 'https://services2.arcgis.com/1UvBaQ5y1ubjUPmd/ArcGIS/rest/services/Potential_Flood_Hazard_Review/FeatureServer/0/',
+    sourceLayer: '0',
+    type: 'fill',
+    paint: {
+      'fill-color': 'blue',
+      'fill-opacity': 0.7,
+    },
+    layout: {
+      visibility: 'visible',
+    },
+  },
+  {
+    id: 'centrelines',
+    name: 'Centrelines',
+    url: 'https://services2.arcgis.com/1UvBaQ5y1ubjUPmd/ArcGIS/rest/services/Hydro_Centerlines/FeatureServer/0/',
+    sourceLayer: '0',
+  },
+  // erosion_hazard
+  // county_flood
+  // centrelines
+  // waterbodies
+  // riverbanks
+  // landslide_hazard
+  // county_soil
+  // county_wetlands
+  // county_plss
+  // property_address
+  // property_tax_parcels
+  // sewer_lift_stations
+  // sewer_manholes
+  // sewer_mainlines
+  // sewer_nodes
+  // sewer_misc
+  // storm_drainage_endpoints
+  // storm_drainage_access_lids
+  // storm_drainage_mainlines
+  // storm_drainage_network_structures
+  // storm_drainage_open_channels
+  // storm_drainage_outlet_components
+  // storm_drainage_structures
+  // stormwater_channels
+  // stormwater_mainlines
+  // stormwater_manholes
+  // stormwater_nodes
+  // property_buildings
+  // polJuris
+  // lomrs
+  // lomas
+  // profBase
+  // waterLines
+  // crSections
+  // firmPanels
+  // baseFloodElev
+  // levees
+  // subInfo
+  // coastTrans
+  // transBase
+  // genStruc
+  // riverMileMark
+  // waterAreas
+  // plss
+  // modWave
+  // floodHazBound
+  // floodHazZone
+  // priFrontDunes
+  // baseIndex
+  // topoLowConfAreas
+  // datConvPoints
+  // coastGages
+  // gages
+  // nodes
+  // highWaterMark
+  // staStrPoints
+  // hydroReaches
+  // alluvFans
+  // subBasins
+  // blm_state
+  // township_plss
+  // section_plss
+  // intersected_plss
 ]
