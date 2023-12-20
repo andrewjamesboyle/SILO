@@ -3,8 +3,23 @@ import { MetaTags } from '@redwoodjs/web'
 import { useAuth } from 'src/auth'
 
 const ForgotPasswordPage = () => {
-  const { isAuthenticated, signUp, currentUser, logIn, logOut } = useAuth()
+  const { isAuthenticated, signUp, currentUser, logIn, logOut, resetPassword } =
+    useAuth()
   console.log('currentUser', currentUser)
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    const formData = new FormData(e.target)
+    const email = formData.get('email')
+    console.log('email', email)
+    try {
+      await resetPassword({ email })
+      // TODO: refresh UI to display something like "check your email for a reset link"
+      // unless it works out that we can authenticate the user automatically, then refresh UI to reset password page
+    } catch (error) {
+      console.error('Error submitting forgot password form:', error)
+    }
+  }
 
   return (
     <>

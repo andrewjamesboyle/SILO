@@ -119,8 +119,11 @@ const SignInPage = () => {
             alt="satellite view of Tacoma, Washington"
           />
         </div>
+        {/* remove this after login testing */}
+        <p className="text-4xl text-purple-500 absolute z-50">
+          {JSON.stringify({ isAuthenticated })}
+        </p>
       </div>
-      {/* <p>{JSON.stringify({ isAuthenticated })}</p> */}
     </>
   )
 }

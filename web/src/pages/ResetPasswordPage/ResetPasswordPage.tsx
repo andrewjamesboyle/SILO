@@ -4,7 +4,7 @@ import { useParams, navigate, routes } from '@redwoodjs/router'
 import { useAuth } from 'src/auth'
 
 const ResetPasswordPage = () => {
-  const { resetPassword, loginWithRedirect } = useAuth()
+  const { resetPassword } = useAuth()
   const { token } = useParams()
 
   const handleSubmit = async (event) => {
@@ -18,7 +18,7 @@ const ResetPasswordPage = () => {
       await resetPassword({ password, token })
 
       // Redirect to the login page
-      navigate(routes.login())
+      // Something like: navigate(routes.signIn())
     } catch (error) {
       console.error('Error submitting reset password form:', error)
     }
