@@ -1,18 +1,75 @@
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native"]
+}
+
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
-generator client {
-  provider      = "prisma-client-js"
-  binaryTargets = "native"
+model User {
+  id            Int            @id @default(autoincrement())
+  auth0Id       String         @unique
+  email         String?         @unique
+  roleId        Int?
+  role          Role?           @relation(fields: [roleId], references: [id])
+  organizations Organization[]
+  layers      Layer[]
+  points       Point[]
 }
 
-// Define your own datamodels here and run `yarn redwood prisma migrate dev`
-// to create migrations for them and apply to your dev DB.
-// TODO: Please remove the following example:
-model UserExample {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
-  name  String?
+model Role {
+  id    Int    @id @default(autoincrement())
+  name  String
+  users User[]
+}
+
+model Organization {
+  id       Int       @id @default(autoincrement())
+  name     String
+  users    User[]
+  layers Layer[]
+}
+
+model Layer {
+  id             Int          @id @default(autoincrement())
+  name           String
+  description    String?
+  createdById    String
+  createdBy      User         @relation(fields: [createdById], references: [auth0Id])
+  organizationId Int
+  organization   Organization @relation(fields: [organizationId], references: [id])
+  lines          Line[]
+  points         Point[]
+  polygons       Polygon[]
+}
+
+model Line {
+  id       Int     @id @default(autoincrement())
+  type     String? @db.VarChar
+  description    String? @db.VarChar
+  project  String? @db.VarChar
+  layerId Int?
+  layer Layer? @relation(fields: [layerId], references: [id])
+}
+
+model Point {
+  id       Int     @id @default(autoincrement())
+  type     String? @db.VarChar
+  description    String? @db.VarChar
+  project  String? @db.VarChar
+  layerId Int?
+  layer Layer? @relation(fields: [layerId], references: [id])
+  createdById    String
+  createdBy      User @relation(fields: [createdById], references: [auth0Id])
+}
+
+model Polygon {
+  id       Int     @id @default(autoincrement())
+  type     String? @db.VarChar
+  description    String? @db.VarChar
+  project  String? @db.VarChar
+  layerId Int?
+  layer Layer? @relation(fields: [layerId], references: [id])
 }

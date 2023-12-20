@@ -1,41 +1,26 @@
-import React, { useRef, useEffect } from 'react'
+import React, { useRef, useEffect, useState } from 'react'
 import maplibre from 'maplibre-gl'
+import MapBoxDraw from '@mapbox/mapbox-gl-draw'
+import '@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw.css'
 
-import { useMap } from 'src/context/MapContext'
-import { overlayLayers } from '../LayerToggle/layersConfig'
+import { useMap, useMapDispatch } from 'src/context/MapContext'
+import useMapDrawManager from 'src/hooks/useMapDrawManager'
+import useMapLayerManager from 'src/hooks/useMapLayerManager'
+
+// Needed to do some weird stuff to get this to work
+MapBoxDraw.constants.classes.CONTROL_BASE = 'maplibregl-ctrl'
+MapBoxDraw.constants.classes.CONTROL_PREFIX = 'maplibregl-ctrl-'
+MapBoxDraw.constants.classes.CONTROL_GROUP = 'maplibregl-ctrl-group'
 
 const MapComponent: React.FC = () => {
   const { state } = useMap()
+  const dispatch = useMapDispatch()
   const mapContainerRef = useRef(null)
   const mapRef = useRef<any>(null)
-  const overlayLayersRef = useRef([])
-
-  const addLayerToMap = (map, layerConfig) => {
-    // Add over lay layer to map
-    if (!map.getLayer(layerConfig.id)) {
-      map.addLayer({
-        id: layerConfig.id,
-        type: layerConfig.type,
-        source: {
-          type: 'vector',
-          tiles: [`${layerConfig.url}/{z}/{x}/{y}.pbf`],
-        },
-        'source-layer': layerConfig.sourceLayer,
-        layout: layerConfig.layout || {},
-        paint: layerConfig.paint || {},
-      })
-    }
-  }
-
-  const removeLayerFromMap = (map, layerId) => {
-    if (map.getLayer(layerId)) {
-      map.removeLayer(layerId)
-      map.removeSource(layerId)
-    }
-  }
 
   useEffect(() => {
     // Initialize map when component mounts
+
     const map = new maplibre.Map({
       container: mapContainerRef.current,
       style: state.baseLayer.url,
@@ -43,49 +28,28 @@ const MapComponent: React.FC = () => {
       zoom: 10,
     })
 
+    // Assign map to ref.current to persist the map object through component re-renders
     mapRef.current = map
+
     // Cleanup on component unmount
     return () => map.remove()
   }, [])
 
   useEffect(() => {
-    if (mapRef.current) {
-      const map = mapRef.current
+    mapRef.current.setStyle(state.baseLayer.url)
 
-      const handleStyleData = () => {
-        // Add overlay layers to map once base layer has loaded
-        overlayLayersRef.current.forEach((layerConfig) => {
-          addLayerToMap(map, layerConfig)
-        })
-      }
+    // Wait for style load, then re-invoke layer manager hook
+    mapRef.current.on('style.load', () => {
+      console.log('Map style loaded')
+    })
+  }, [state.baseLayer.url])
 
-      map.on('styledata', handleStyleData)
-      map.setStyle(state.baseLayer.url)
-
-      return () => {
-        // Clean up the event listener when the effect is re-run or the component is unmounted.
-        map.off('styledata', handleStyleData)
-      }
-    }
-  }, [state.baseLayer])
-
-  useEffect(() => {
-    if (mapRef.current) {
-      overlayLayersRef.current = state.overlayLayers // store a copy of the overlay layers in a ref
-      const activeLayerIds = state.overlayLayers.map((layer) => layer.id)
-
-      overlayLayers.forEach((layerConfig) => {
-        if (activeLayerIds.includes(layerConfig.id)) {
-          addLayerToMap(mapRef.current, layerConfig)
-        } else {
-          removeLayerFromMap(mapRef.current, layerConfig.id)
-        }
-      })
-    }
-  }, [state.overlayLayers])
+  // Custom Hooks for managing user interaction with the map
+  useMapDrawManager(mapRef, dispatch)
+  useMapLayerManager(mapRef, state.esriLayers)
 
   return (
-    <div ref={mapContainerRef} style={{ width: '100%', height: '100vh' }} />
+    <div ref={mapContainerRef} style={{ width: '100%', height: '100vh' }}></div>
   )
 }
 
