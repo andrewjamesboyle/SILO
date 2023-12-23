@@ -10,6 +10,7 @@ import {
 
 import type { EditPointById, CreatePointInput } from 'types/graphql'
 import type { RWGqlError } from '@redwoodjs/forms'
+import { useEffect, useState } from 'react'
 
 type FormPoint = NonNullable<EditPointById['point']>
 
@@ -22,6 +23,33 @@ interface PointFormProps {
 }
 
 const PointForm = (props: PointFormProps) => {
+  const [geometry, setGeometry] = useState(props.point?.geom || '')
+
+  const onMapPointMove = (newGeometry) => {
+    setGeometry(newGeometry)
+  }
+
+  // useEffect(() => {
+  //   const handlePointMove = (e) => {
+  //     const newGeometry = e.lngLat || point.getGeometry()
+  //     setGeometry(newGeometry)
+  //   }
+
+  //   map.on('dragend', handlePointMove)
+
+  //   return () => {
+  //     map.off('dragend', handlePointMove)
+  //   }
+  // }, [map])
+
+  // useEffect(() => {
+  //   mapboxInstance.on('pointMove', onMapPointMove)
+
+  //   return () => {
+  //     mapboxInstance.off('pointMove', onMapPointMove)
+  //   }
+  // }, [props.drawingData])
+
   const onSubmit = (data: FormPoint) => {
     props.onSave(data, props?.point?.id)
   }
@@ -104,11 +132,21 @@ const PointForm = (props: PointFormProps) => {
         /> */}
 
         {/* Pre-fill the geometry field with drawing data */}
-        <TextField
+        {/* <TextField
+          type="hidden"
           name="geom"
+          // value={geometry}
           defaultValue={props.drawingData || props.point?.geom}
           className="rw-input"
           errorClassName="rw-input rw-input-error"
+        /> */}
+
+        <input
+          type="hidden"
+          name="geom"
+          // value={geometry}
+          defaultValue={props.drawingData || props.point?.geom}
+          className="rw-input"
         />
 
         <FieldError name="geometry" className="rw-field-error" />
@@ -130,6 +168,9 @@ const PointForm = (props: PointFormProps) => {
         /> */}
 
         {/* <FieldError name="layerId" className="rw-field-error" /> */}
+
+        {/* TODO:  limit the # of numbers returned in the popout */}
+        <div className="rw-label">{props.drawingData || props.point?.geom}</div>
 
         <div className="rw-button-group">
           <Submit disabled={props.loading} className="rw-button rw-button-blue">
