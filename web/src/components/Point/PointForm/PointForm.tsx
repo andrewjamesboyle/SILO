@@ -25,34 +25,12 @@ interface PointFormProps {
 const PointForm = (props: PointFormProps) => {
   const [geometry, setGeometry] = useState(props.point?.geom || '')
 
-  const onMapPointMove = (newGeometry) => {
-    setGeometry(newGeometry)
-  }
-
-  // useEffect(() => {
-  //   const handlePointMove = (e) => {
-  //     const newGeometry = e.lngLat || point.getGeometry()
-  //     setGeometry(newGeometry)
-  //   }
-
-  //   map.on('dragend', handlePointMove)
-
-  //   return () => {
-  //     map.off('dragend', handlePointMove)
-  //   }
-  // }, [map])
-
-  // useEffect(() => {
-  //   mapboxInstance.on('pointMove', onMapPointMove)
-
-  //   return () => {
-  //     mapboxInstance.off('pointMove', onMapPointMove)
-  //   }
-  // }, [props.drawingData])
-
   const onSubmit = (data: FormPoint) => {
     props.onSave(data, props?.point?.id)
   }
+
+  const latitude = props.drawingData && props.drawingData[0]
+  const longitude = props.drawingData && props.drawingData[1]
 
   return (
     <div className="rw-form-wrapper">
@@ -170,7 +148,9 @@ const PointForm = (props: PointFormProps) => {
         {/* <FieldError name="layerId" className="rw-field-error" /> */}
 
         {/* TODO:  limit the # of numbers returned in the popout */}
-        <div className="rw-label">{props.drawingData || props.point?.geom}</div>
+        {/* <div className="rw-label">{props.drawingData || props.point?.geom}</div> */}
+        <div className="rw-label">Lat: {latitude.toFixed(8)}</div>
+        <div className="rw-label">Lon: {longitude.toFixed(8)}</div>
 
         <div className="rw-button-group">
           <Submit disabled={props.loading} className="rw-button rw-button-blue">
