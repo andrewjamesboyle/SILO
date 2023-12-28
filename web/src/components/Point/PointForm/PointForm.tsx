@@ -23,9 +23,23 @@ interface PointFormProps {
 }
 
 const PointForm = (props: PointFormProps) => {
+  const [type, setType] = useState(props.point?.type || '')
+  const [description, setDescription] = useState(props.point?.description || '')
   const [geometry, setGeometry] = useState(props.point?.geom || '')
 
+  useEffect(() => {
+    if (props.drawingData) {
+      const newGeometry = `${props.drawingData[0]}, ${props.drawingData[1]}}`
+      setGeometry(newGeometry)
+    }
+  }, [props.drawingData])
+
   const onSubmit = (data: FormPoint) => {
+    const formData = {
+      type,
+      description,
+      geom: geometry,
+    }
     props.onSave(data, props?.point?.id)
   }
 
@@ -52,7 +66,9 @@ const PointForm = (props: PointFormProps) => {
 
         <TextField
           name="type"
-          defaultValue={props.point?.type}
+          // defaultValue={props.point?.type}
+          value={type}
+          onChange={(e) => setType(e.target.value)}
           className="rw-input"
           errorClassName="rw-input rw-input-error"
         />
@@ -86,7 +102,9 @@ const PointForm = (props: PointFormProps) => {
 
         <TextField
           name="description"
-          defaultValue={props.point?.description}
+          // defaultValue={props.point?.description}
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
           className="rw-input"
           errorClassName="rw-input rw-input-error"
         />
@@ -122,8 +140,9 @@ const PointForm = (props: PointFormProps) => {
         <input
           type="hidden"
           name="geom"
-          // value={geometry}
-          defaultValue={props.drawingData || props.point?.geom}
+          value={geometry}
+          readOnly
+          // defaultValue={props.drawingData || props.point?.geom}
           className="rw-input"
         />
 
@@ -150,7 +169,7 @@ const PointForm = (props: PointFormProps) => {
         {/* TODO:  limit the # of numbers returned in the popout */}
         {/* <div className="rw-label">{props.drawingData || props.point?.geom}</div> */}
         <div className="rw-label">Lat: {latitude.toFixed(8)}</div>
-        <div className="rw-label">Lon: {longitude.toFixed(8)}</div>
+        <div className="rw-label">Long: {longitude.toFixed(8)}</div>
 
         <div className="rw-button-group">
           <Submit disabled={props.loading} className="rw-button rw-button-blue">
