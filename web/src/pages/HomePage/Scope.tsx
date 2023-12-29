@@ -1,10 +1,13 @@
-export default function About() {
+export default function Scope() {
   return (
-    <div id="about" className="bg-none py-24 sm:py-32 h-full w-full">
+    <div
+      id="scope"
+      className="flex justify-center items-center bg-none py-24 sm:py-32 h-full w-full"
+    >
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto max-w-2xl lg:mx-0 z-10 backdrop-blur p-4">
           <h2 className="text-4xl font-bold tracking-tight text-gray-100 sm:text-6xl">
-            About{' '}
+            Scope{' '}
           </h2>
           <p className="mt-6 text-lg leading-8 text-gray-100">
             We have sourced the public GIS data, at the Federal, State and
