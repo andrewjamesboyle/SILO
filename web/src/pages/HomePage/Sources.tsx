@@ -1,23 +1,21 @@
 import { useState } from 'react'
 import LocationDropdowns from './LocationDropdown'
+import ContactUs from './ContactUs'
 
 export default function Sources() {
-  const [activeDropdown, setActiveDropdown] = useState(null)
-
-  const dropdowns = [
-    { title: 'Country', content: 'List of Countries' },
-    { title: 'State', content: 'List of States' },
-    { title: 'County', content: 'List of Counties' },
-    { title: 'City', content: 'List of Cities' },
-  ]
-
-  const handleDropdownClick = (dropdownTitle) => {
-    setActiveDropdown(dropdownTitle === activeDropdown ? null : dropdownTitle)
-  }
+  const [selectedOptions, setSelectedOptions] = useState({
+    country: '',
+    state: '',
+    county: '',
+    city: '',
+  })
 
   const handleSelectionChange = (category, value) => {
     console.log(`Selected ${category}: ${value}`)
-    // Handle the selection change logic here
+    setSelectedOptions((prevState) => ({
+      ...prevState,
+      [category]: value,
+    }))
   }
 
   return (
@@ -55,26 +53,42 @@ export default function Sources() {
 
         {/* Dropdown divs */}
         <div className="flex justify-center space-x-4 mt-8">
-          {/* {dropdowns.map((dropdown) => (
-            <div key={dropdown.title} className="flex flex-col items-center">
-              <div
-                className="p-4 bg-gray-200 rounded cursor-pointer hover:bg-gray-300"
-                onClick={() => handleDropdownClick(dropdown.title)}
-              >
-                {dropdown.title}
-              </div>
-              {activeDropdown === dropdown.title && (
-                <div className="mt-2 p-4 bg-gray-100 rounded">
-                  {dropdown.content}
-                </div>
-              )}
-            </div>
-          ))} */}
           <div className="justify-between">
             <LocationDropdowns onSelectionChange={handleSelectionChange} />
           </div>
         </div>
+
+        <ContactUs />
+
+        {/* Containing div for layers */}
+        <div
+          id="layers"
+          className="flex text-l text-black justify-center items-center bg-white py-24 my-10 sm:py-32 h-full w-full shadow-xl rounded-md"
+        >
+          {/* It might be better to use this version, we'll  */}
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <div className="mx-auto max-w-2xl lg:mx-0 z-10 backdrop-blur p-4 text-gray-500">
+              {selectedOptions.country ? (
+                <LayerData selectedOptions={selectedOptions} />
+              ) : (
+                '(Layer data renders here)'
+              )}
+            </div>
+          </div>
+          {/* <LayerData selectedOptions={selectedOptions} /> */}
+        </div>
       </div>
+    </div>
+  )
+}
+// Used only in this component, keeping here for now to keep state in one place
+const LayerData = ({ selectedOptions }) => {
+  return (
+    <div className="flex justify-between space-x-4">
+      <div>{selectedOptions.country}</div>
+      <div>{selectedOptions.state}</div>
+      <div>{selectedOptions.county}</div>
+      <div>{selectedOptions.city}</div>
     </div>
   )
 }
