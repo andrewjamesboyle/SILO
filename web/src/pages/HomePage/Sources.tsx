@@ -58,6 +58,7 @@ export default function Sources() {
           </div>
         </div>
 
+        {/* Contact Us popup */}
         <ContactUs />
 
         {/* Containing div for layers */}
@@ -65,7 +66,6 @@ export default function Sources() {
           id="layers"
           className="flex text-l text-black justify-center items-center bg-white py-24 my-10 sm:py-32 h-full w-full shadow-xl rounded-md"
         >
-          {/* It might be better to use this version, we'll  */}
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="mx-auto max-w-2xl lg:mx-0 z-10 backdrop-blur p-4 text-gray-500">
               {selectedOptions.country ? (
@@ -75,7 +75,6 @@ export default function Sources() {
               )}
             </div>
           </div>
-          {/* <LayerData selectedOptions={selectedOptions} /> */}
         </div>
       </div>
     </div>

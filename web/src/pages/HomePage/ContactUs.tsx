@@ -1,67 +1,95 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState } from 'react'
 
 const ContactUs = () => {
   const [isPopupVisible, setPopupVisible] = useState(false)
-  const [popupPosition, setPopupPosition] = useState({ top: 0, left: 0 })
-  const buttonRef = useRef(null)
-  const popupRef = useRef(null)
 
   const togglePopup = () => {
-    if (!isPopupVisible) {
-      const buttonRect = buttonRef.current.getBoundingClientRect()
-      setPopupPosition({
-        top: buttonRect.top + window.scrollY,
-        left: buttonRect.left + window.scrollX,
-      })
-    }
     setPopupVisible(!isPopupVisible)
   }
 
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (popupRef.current && !popupRef.current.contains(event.target)) {
-        setPopupVisible(false)
-      }
-    }
-
-    const handleScroll = () => {
-      setPopupVisible(false)
-    }
-
-    document.addEventListener('mousedown', handleClickOutside)
-    window.addEventListener('scroll', handleScroll)
-
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside)
-      window.removeEventListener('scroll', handleScroll)
-    }
-  }, [popupRef])
-
   return (
-    <div className="mt-8 flex items-center justify-center gap-x-6">
+    <div className="mt-8 flex items-center justify-center">
       <button
-        ref={buttonRef}
         onClick={togglePopup}
-        className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+        className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-indigo-600"
       >
         Contact Us
       </button>
 
       {isPopupVisible && (
-        <div
-          ref={popupRef}
-          style={{
-            top: 'calc(`${popupPosition.top}px` - (width / 2))',
-            left: 'calc(`${popupPosition.left}px` - (height / 2))',
-          }}
-          className="absolute bg-white p-4 rounded shadow-lg transition-opacity duration-300 ease-out opacity-100"
-        >
-          {/* Contact Information Goes Here */}
-          <div className="text-xl">
-            <h3>Contact info placeholder</h3>
-            <p>phone: (831) 877- 2926</p>
-            <p>email: questions@concerns.net</p>
-            <p>postal mail: 2343 NE Main</p>
+        <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex items-center justify-center z-50">
+          <div className="bg-white p-6 rounded-lg shadow-lg relative w-1/3">
+            <button
+              className="absolute top-0 right-0 bg-white border border-gray-300 px-1 hover:bg-gray-300 hover:cursor-pointer"
+              onClick={togglePopup}
+            >
+              X
+            </button>
+            <form className="space-y-4">
+              <input
+                type="text"
+                placeholder="Name"
+                className="w-full px-3 py-2 border border-gray-300 rounded-md"
+                required
+              />
+              <select
+                title="profession"
+                name="profession"
+                // placeholder="profession"
+                defaultValue="Profession"
+                className="w-full px-3 py-2 border border-gray-300 rounded-md invalid:text-gray-400"
+                required
+              >
+                <option
+                  disabled
+                  hidden
+                  value="Profession"
+                  selected
+                  className="text-gray-500"
+                >
+                  Profession
+                </option>
+                <option>Architect</option>
+                <option>Biologist</option>
+                <option>Civil Engineer</option>
+                <option>Conservationist</option>
+                <option>Geotechnical Engineer</option>
+                <option>Landscape Architect</option>
+                <option>Land Surveyor</option>
+                <option>Planner</option>
+                <option>Other</option>
+              </select>
+              <input
+                type="email"
+                placeholder="Email"
+                className="w-full px-3 py-2 border border-gray-300 rounded-md"
+                required
+              />
+              <input
+                type="tel"
+                placeholder="Phone"
+                className="w-full px-3 py-2 border border-gray-300 rounded-md"
+                required
+              />
+              <input
+                type="text"
+                placeholder="Subject"
+                className="w-full px-3 py-2 border border-gray-300 rounded-md"
+                required
+              />
+              <input
+                type="text"
+                placeholder="Description"
+                className="w-full px-3 py-2 border border-gray-300 rounded-md"
+                required
+              />
+              <button
+                type="submit"
+                className="w-1/2 flex justify-center mx-auto bg-indigo-600 text-white py-2 rounded-md hover:bg-indigo-700"
+              >
+                Send
+              </button>
+            </form>
           </div>
         </div>
       )}

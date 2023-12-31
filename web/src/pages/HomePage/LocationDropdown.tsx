@@ -7,7 +7,6 @@ export default function LocationDropdowns({ onSelectionChange }) {
   const [selectedCounty, setSelectedCounty] = useState('')
   const [selectedCity, setSelectedCity] = useState('')
 
-  // Your dropdown data arrays (replace with actual data)
   const countries = ['United States']
   const states = ['Washington']
   const counties = ['Pierce']
