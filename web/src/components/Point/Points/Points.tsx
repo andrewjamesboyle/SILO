@@ -3,7 +3,6 @@ import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 
 import { QUERY } from 'src/components/Point/PointsCell'
-import { truncate } from 'src/lib/formatters'
 
 import type { DeletePointMutationVariables, FindPoints } from 'types/graphql'
 
@@ -53,12 +52,12 @@ const PointsList = ({ points }: FindPoints) => {
         <tbody>
           {points.map((point) => (
             <tr key={point.id}>
-              <td>{truncate(point.id)}</td>
-              <td>{truncate(point.type)}</td>
-              <td>{truncate(point.in_prj)}</td>
-              <td>{truncate(point.notes)}</td>
-              <td>{truncate(point.geometry)}</td>
-              <td>{truncate(point.layerId)}</td>
+              <td>{point.id}</td>
+              <td>{point.type}</td>
+              <td>{point.in_prj}</td>
+              <td>{point.notes}</td>
+              <td>{point.geometry}</td>
+              <td>{point.layerId}</td>
               <td>
                 <nav className="rw-table-actions">
                   <Link
