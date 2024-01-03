@@ -3,7 +3,7 @@ import type { FindPoints } from 'types/graphql'
 import { Link, routes } from '@redwoodjs/router'
 import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web'
 
-import PointsList from '../Points/Points'
+import PointsList from 'src/components/Point/Points'
 
 export const QUERY = gql`
   query FindPoints {
