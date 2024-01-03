@@ -3,8 +3,7 @@ import type { FindPoints } from 'types/graphql'
 import { Link, routes } from '@redwoodjs/router'
 import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web'
 
-import Points from 'src/components/Point/Points'
-
+import PointsList from '../Points/Points'
 export const QUERY = gql`
   query FindPoints {
     points {
@@ -36,5 +35,5 @@ export const Failure = ({ error }: CellFailureProps) => (
 )
 
 export const Success = ({ points }: CellSuccessProps<FindPoints>) => {
-  return <Points points={points} />
+  return <PointsList points={points} />
 }
