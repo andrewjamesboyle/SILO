@@ -1,7 +1,11 @@
 import PointsCell from 'src/components/Point/PointsCell'
 
-const PointsPage = () => {
-  return <PointsCell />
+type PointPageProps = {
+  id: number
 }
 
-export default PointsPage
+const PointPage = ({ id }: PointPageProps) => {
+  return <PointsCell id={id} />
+}
+
+export default PointPage
