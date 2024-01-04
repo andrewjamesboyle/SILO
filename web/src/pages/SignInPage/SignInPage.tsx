@@ -2,12 +2,56 @@ import { Link, routes } from '@redwoodjs/router'
 import { MetaTags } from '@redwoodjs/web'
 import { useAuth } from 'src/auth'
 import { useState } from 'react'
+import axios from 'axios'
 
 const SignInPage = () => {
   const { isAuthenticated, signUp, currentUser, logIn, logOut } = useAuth()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   console.log('currentUser: ', currentUser)
+  console.log('currentUser: ', email, password)
+
+  const createUserInAuth0 = async (email, password) => {
+    try {
+      const auth0TokenResponse = await axios.post(
+        `https://${process.env.AUTH0_DOMAIN}/oauth/token`,
+        {
+          grant_type: 'client_credentials',
+          client_id: process.env.AUTH0_CLIENT_ID,
+          client_secret: process.env.AUTH0_CLIENT_SECRET,
+          audience: process.env.AUTH0_AUDIENCE,
+        }
+      )
+
+      const accessToken = auth0TokenResponse.data.access_token
+
+      const createUserResponse = await axios.post(
+        `https://${process.env.AUTH0_DOMAIN}/api/v2/users`,
+        {
+          email,
+          password,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
+      )
+
+      return createUserResponse.data
+    } catch (error) {
+      console.error('Error creating user in Auth0:', error.message)
+      throw new Error('User creation failed')
+    }
+  }
+
+  createUserInAuth0(email, password)
+    .then((createdUser) => {
+      console.log('User created in Auth0:', createdUser)
+    })
+    .catch((error) => {
+      console.error('User creation failed:', error.message)
+    })
 
   return (
     <>
@@ -104,11 +148,10 @@ const SignInPage = () => {
                       </a>
                     </div>
                   </div>
-
                   <div>
                     <button
                       type="submit"
-                      onClick={() => signUp()}
+                      onClick={() => createUserInAuth0(email, password)}
                       className="flex w-full p-2 justify-center rounded-md bg-blue-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                     >
                       Sign in
@@ -127,7 +170,6 @@ const SignInPage = () => {
           />
         </div>
       </div>
-      {/* <p>{JSON.stringify({ isAuthenticated })}</p> */}
     </>
   )
 }

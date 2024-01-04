@@ -22467,6 +22467,7 @@ __metadata:
     "@redwoodjs/core": 6.1.0
     "@storybook/react": ^7.3.2
     axios: ^1.4.0
+    graphql-tag: ^2.12.6
     prettier: ^3.0.2
   languageName: unknown
   linkType: soft
