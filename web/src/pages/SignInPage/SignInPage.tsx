@@ -1,10 +1,16 @@
 import { Link, routes } from '@redwoodjs/router'
 import { MetaTags } from '@redwoodjs/web'
 import { useAuth } from 'src/auth'
+import { useState } from 'react'
+import axios from 'axios'
 
 const SignInPage = () => {
   const { isAuthenticated, signUp, currentUser, logIn, logOut } = useAuth()
-  console.log('currentUser', currentUser)
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  console.log('currentUser: ', currentUser)
+
+  console.log(isAuthenticated)
 
   return (
     <>
@@ -46,6 +52,8 @@ const SignInPage = () => {
                         id="email"
                         name="email"
                         type="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
                         autoComplete="email"
                         required
                         className="block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -65,6 +73,8 @@ const SignInPage = () => {
                         id="password"
                         name="password"
                         type="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
                         autoComplete="current-password"
                         required
                         className="block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -97,7 +107,6 @@ const SignInPage = () => {
                       </a>
                     </div>
                   </div>
-
                   <div>
                     <button
                       type="submit"
@@ -120,7 +129,6 @@ const SignInPage = () => {
           />
         </div>
       </div>
-      {/* <p>{JSON.stringify({ isAuthenticated })}</p> */}
     </>
   )
 }

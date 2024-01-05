@@ -9,10 +9,10 @@ export const QUERY = gql`
     points {
       id
       type
-      inPrj
-      notes
-      geom
-      layer
+      # inPrj
+      # notes
+      # geom
+      # layer
     }
   }
 `
