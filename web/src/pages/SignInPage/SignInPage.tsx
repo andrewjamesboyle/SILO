@@ -8,10 +8,6 @@ const SignInPage = () => {
   const { isAuthenticated, signUp, currentUser, logIn, logOut } = useAuth()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  console.log('currentUser: ', currentUser)
-
-  console.log(isAuthenticated)
-
   return (
     <>
       <MetaTags title="Sign In" description="Sign In page" />
