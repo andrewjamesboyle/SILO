@@ -1,21 +1,12 @@
-import { Fragment, useState } from 'react'
-import { Dialog, Menu, Transition } from '@headlessui/react'
 import {
   Bars3Icon,
-  BellIcon,
   CalendarIcon,
   ChartPieIcon,
-  ChevronDownIcon,
   Cog6ToothIcon,
   DocumentDuplicateIcon,
-  FolderIcon,
   HomeIcon,
-  UsersIcon,
-  XMarkIcon,
-  MagnifyingGlassIcon,
 } from '@heroicons/react/24/outline'
-import LayerToggle from '../LayerToggle/LayerToggle'
-import ProcessDataComponent from '../ProcessData/ProcessData'
+
 import { useMapDispatch } from 'src/context/MapContext'
 
 const navigation = [
@@ -41,7 +32,6 @@ const Sidebar = ({ onItemSelect }) => {
     <>
       {/* Static sidebar for desktop */}
       <div className="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-48 lg:flex-col">
-        {/* Sidebar component, swap this element with another sidebar if you like */}
         <div className="flex grow flex-col gap-y-5 overflow-y-auto border-r border-gray-200 bg-white px-6">
           <div className="flex h-16 shrink-0 items-center">
             <span className="text-lg font-semibold">SILO</span>
@@ -76,38 +66,7 @@ const Sidebar = ({ onItemSelect }) => {
                   ))}
                 </ul>
               </li>
-              {/* <li>
-                <div className="text-xs font-semibold leading-6 text-gray-400">
-                  Your teams
-                </div>
-                <ul role="list" className="-mx-2 mt-2 space-y-1">
-                  {teams.map((team) => (
-                    <li key={team.name}>
-                      <a
-                        href={team.href}
-                        className={classNames(
-                          team.current
-                            ? 'bg-gray-50 text-indigo-600'
-                            : 'text-gray-700 hover:text-indigo-600 hover:bg-gray-50',
-                          'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'
-                        )}
-                      >
-                        <span
-                          className={classNames(
-                            team.current
-                              ? 'text-indigo-600 border-indigo-600'
-                              : 'text-gray-400 border-gray-200 group-hover:border-indigo-600 group-hover:text-indigo-600',
-                            'flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border text-[0.625rem] font-medium bg-white'
-                          )}
-                        >
-                          {team.initial}
-                        </span>
-                        <span className="truncate">{team.name}</span>
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </li> */}
+
               <li className="mt-auto">
                 <a
                   href="#"
