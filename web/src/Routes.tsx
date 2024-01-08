@@ -3,10 +3,11 @@
 // prepended onto the component name.
 
 import { Router, Route, Set } from '@redwoodjs/router'
+
 import MapLayoutProvider from './layouts/MapLayout/MapLayoutProvider'
 import ForgotPasswordPage from './pages/ForgotPasswordPage/ForgotPasswordPage'
-import SignInPage from './pages/SignInPage/SignInPage'
 import SettingsPage from './pages/SettingsPage/SettingsPage'
+import SignInPage from './pages/SignInPage/SignInPage'
 const Routes = () => {
   return (
     <Router>
