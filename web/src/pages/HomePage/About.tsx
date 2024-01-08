@@ -4,7 +4,7 @@ export default function About() {
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto max-w-2xl lg:mx-0 z-10 backdrop-blur p-4">
           <h2 className="text-4xl font-bold tracking-tight text-gray-100 sm:text-6xl">
-            About{' '}
+            About
           </h2>
           <p className="mt-6 text-lg leading-8 text-gray-100">
             We have sourced the public GIS data, at the Federal, State and
@@ -25,10 +25,10 @@ export default function About() {
             programming interfaces (APIs), which offer a zero latency
             relationship between the data procurable from the jurisdiction and
             the data available through our database, meaning we are constantly
-            'streaming' the same data, or it is uploaded and overwritten at the
-            stated intervals found through the following link. If erroneous data
-            is found through our database, a service ticket can be placed to
-            investigate and rectify the issue.
+            &apos;streaming&apos; the same data, or it is uploaded and
+            overwritten at the stated intervals found through the following
+            link. If erroneous data is found through our database, a service
+            ticket can be placed to investigate and rectify the issue.
           </p>
         </div>
       </div>

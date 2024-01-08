@@ -1,9 +1,9 @@
-import { Link, routes } from '@redwoodjs/router'
 import { MetaTags } from '@redwoodjs/web'
+
 import { useAuth } from 'src/auth'
 
 const ForgotPasswordPage = () => {
-  const { isAuthenticated, signUp, currentUser, logIn, logOut } = useAuth()
+  const { signUp, currentUser } = useAuth()
   console.log('currentUser', currentUser)
 
   return (
@@ -67,7 +67,6 @@ const ForgotPasswordPage = () => {
           />
         </div>
       </div>
-      {/* <p>{JSON.stringify({ isAuthenticated })}</p> */}
     </>
   )
 }

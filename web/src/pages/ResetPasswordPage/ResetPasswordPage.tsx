@@ -1,10 +1,10 @@
-// web/src/pages/ResetPasswordPage/ResetPasswordPage.js
 import { MetaTags } from '@redwoodjs/web'
 import { useParams, navigate, routes } from '@redwoodjs/router'
+
 import { useAuth } from 'src/auth'
 
 const ResetPasswordPage = () => {
-  const { resetPassword, loginWithRedirect } = useAuth()
+  const { resetPassword } = useAuth()
   const { token } = useParams()
 
   const handleSubmit = async (event) => {

@@ -1,6 +1,8 @@
 import { useState, useEffect, useRef } from 'react'
+
 import { Dialog } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
+
 import About from './About'
 import Data from './Data'
 
