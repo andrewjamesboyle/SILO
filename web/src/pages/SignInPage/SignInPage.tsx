@@ -1,13 +1,12 @@
-import { Link, routes } from '@redwoodjs/router'
 import { MetaTags } from '@redwoodjs/web'
 import { useAuth } from 'src/auth'
 import { useState } from 'react'
-import axios from 'axios'
 
 const SignInPage = () => {
-  const { isAuthenticated, signUp, currentUser, logIn, logOut } = useAuth()
+  const { signUp } = useAuth()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+
   return (
     <>
       <MetaTags title="Sign In" description="Sign In page" />

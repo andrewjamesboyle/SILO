@@ -96,10 +96,7 @@ export default function SettingsPage() {
       <div className="mx-auto max-w-7xl pt-16 lg:flex lg:gap-x-16 lg:px-8">
         <aside className="flex overflow-x-auto border-b border-gray-900/5 py-4 lg:block lg:w-64 lg:flex-none lg:border-0 lg:py-20">
           <nav className="flex-none px-4 sm:px-6 lg:px-0">
-            <ul
-              role="list"
-              className="flex gap-x-3 gap-y-1 whitespace-nowrap lg:flex-col"
-            >
+            <ul className="flex gap-x-3 gap-y-1 whitespace-nowrap lg:flex-col">
               {secondaryNavigation.map((item) => (
                 <li key={item.name}>
                   <a
@@ -193,10 +190,7 @@ export default function SettingsPage() {
                 Connect bank accounts to your account.
               </p>
 
-              <ul
-                role="list"
-                className="mt-6 divide-y divide-gray-100 border-t border-gray-200 text-sm leading-6"
-              >
+              <ul className="mt-6 divide-y divide-gray-100 border-t border-gray-200 text-sm leading-6">
                 <li className="flex justify-between gap-x-6 py-6">
                   <div className="font-medium text-gray-900">
                     TD Canada Trust
@@ -239,10 +233,7 @@ export default function SettingsPage() {
                 Connect applications to your account.
               </p>
 
-              <ul
-                role="list"
-                className="mt-6 divide-y divide-gray-100 border-t border-gray-200 text-sm leading-6"
-              >
+              <ul className="mt-6 divide-y divide-gray-100 border-t border-gray-200 text-sm leading-6">
                 <li className="flex justify-between gap-x-6 py-6">
                   <div className="font-medium text-gray-900">QuickBooks</div>
                   <button

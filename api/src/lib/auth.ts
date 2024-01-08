@@ -1,5 +1,6 @@
 import type { Decoded } from '@redwoodjs/api'
 import { AuthenticationError, ForbiddenError } from '@redwoodjs/graphql-server'
+
 import { findOrCreateUser } from 'src/services/users/users'
 
 /**
