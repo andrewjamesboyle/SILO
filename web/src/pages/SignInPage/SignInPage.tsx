@@ -1,6 +1,8 @@
-import { MetaTags } from '@redwoodjs/web'
-import { useAuth } from 'src/auth'
 import { useState } from 'react'
+
+import { MetaTags } from '@redwoodjs/web'
+
+import { useAuth } from 'src/auth'
 
 const SignInPage = () => {
   const { signUp } = useAuth()
@@ -23,10 +25,7 @@ const SignInPage = () => {
               </h2>
               <p className="mt-2 text-sm leading-6 text-gray-500">
                 Not a member?{' '}
-                <a
-                  href="#"
-                  className="font-semibold text-indigo-600 hover:text-indigo-500"
-                >
+                <a className="font-semibold text-indigo-600 hover:text-indigo-500">
                   Start a 14 day free trial
                 </a>
               </p>
