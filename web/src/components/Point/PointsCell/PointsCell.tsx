@@ -1,17 +1,19 @@
 import type { FindPoints } from 'types/graphql'
 
+import { Link, routes } from '@redwoodjs/router'
 import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web'
 
-import PointsList from '../Points/Points'
+import Points from 'src/components/Point/Points'
+
 export const QUERY = gql`
   query FindPoints {
     points {
       id
       type
-      # inPrj
-      # notes
-      # geom
-      # layer
+      description
+      project
+      layerId
+      createdById
     }
   }
 `
@@ -22,9 +24,9 @@ export const Empty = () => {
   return (
     <div className="rw-text-center">
       {'No points yet. '}
-      {/* <Link to={routes.newPoint()} className="rw-link">
+      <Link to={routes.newPoint()} className="rw-link">
         {'Create one?'}
-      </Link> */}
+      </Link>
     </div>
   )
 }
@@ -34,5 +36,5 @@ export const Failure = ({ error }: CellFailureProps) => (
 )
 
 export const Success = ({ points }: CellSuccessProps<FindPoints>) => {
-  return <PointsList points={points} />
+  return <Points points={points} />
 }

@@ -1,7 +1,6 @@
 import { MetaTags } from '@redwoodjs/web'
 
 import { useAuth } from 'src/auth'
-
 import Map from 'src/components/Map'
 
 const MapPage = () => {

@@ -4,20 +4,20 @@ import {
   FieldError,
   Label,
   TextField,
+  NumberField,
   Submit,
 } from '@redwoodjs/forms'
 
-import type { EditPointById, CreatePointInput } from 'types/graphql'
+import type { EditPointById, UpdatePointInput } from 'types/graphql'
 import type { RWGqlError } from '@redwoodjs/forms'
 
 type FormPoint = NonNullable<EditPointById['point']>
 
 interface PointFormProps {
   point?: EditPointById['point']
-  onSave: (data: CreatePointInput, id?: FormPoint['id']) => void
+  onSave: (data: UpdatePointInput, id?: FormPoint['id']) => void
   error: RWGqlError
   loading: boolean
-  drawingData: any
 }
 
 const PointForm = (props: PointFormProps) => {
@@ -52,23 +52,6 @@ const PointForm = (props: PointFormProps) => {
 
         <FieldError name="type" className="rw-field-error" />
 
-        {/* <Label
-          name="in_prj"
-          className="rw-label"
-          errorClassName="rw-label rw-label-error"
-        >
-          In prj
-        </Label>
-
-        <TextField
-          name="in_prj"
-          defaultValue={props.point?.in_prj}
-          className="rw-input"
-          errorClassName="rw-input rw-input-error"
-        /> */}
-
-        {/* <FieldError name="inPrj" className="rw-field-error" /> */}
-
         <Label
           name="description"
           className="rw-label"
@@ -87,48 +70,57 @@ const PointForm = (props: PointFormProps) => {
         <FieldError name="description" className="rw-field-error" />
 
         <Label
-          name="geometry"
+          name="project"
           className="rw-label"
           errorClassName="rw-label rw-label-error"
         >
-          Geometry
+          Project
         </Label>
 
-        {/* <TextField
-          name="geom"
-          defaultValue={props.point?.geom}
-          className="rw-input"
-          errorClassName="rw-input rw-input-error"
-          // validation={{ required: true }}
-        /> */}
-
-        {/* Pre-fill the geometry field with drawing data */}
         <TextField
-          name="geom"
-          defaultValue={props.drawingData || props.point?.geom}
+          name="project"
+          defaultValue={props.point?.project}
           className="rw-input"
           errorClassName="rw-input rw-input-error"
         />
 
-        <FieldError name="geometry" className="rw-field-error" />
+        <FieldError name="project" className="rw-field-error" />
 
-        {/* <Label
+        <Label
           name="layerId"
           className="rw-label"
           errorClassName="rw-label rw-label-error"
         >
           Layer id
-        </Label> */}
+        </Label>
 
-        {/* <NumberField
+        <NumberField
           name="layerId"
           defaultValue={props.point?.layerId}
           className="rw-input"
           errorClassName="rw-input rw-input-error"
-          // validation={{ required: true }}
-        /> */}
+          emptyAs={'undefined'}
+        />
 
-        {/* <FieldError name="layerId" className="rw-field-error" /> */}
+        <FieldError name="layerId" className="rw-field-error" />
+
+        <Label
+          name="createdById"
+          className="rw-label"
+          errorClassName="rw-label rw-label-error"
+        >
+          Created by id
+        </Label>
+
+        <TextField
+          name="createdById"
+          defaultValue={props.point?.createdById}
+          className="rw-input"
+          errorClassName="rw-input rw-input-error"
+          validation={{ required: true }}
+        />
+
+        <FieldError name="createdById" className="rw-field-error" />
 
         <div className="rw-button-group">
           <Submit disabled={props.loading} className="rw-button rw-button-blue">

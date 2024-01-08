@@ -1,4 +1,5 @@
 import { MapProvider } from 'src/context/MapContext'
+
 import MapLayout from './MapLayout'
 
 type MapLayoutProps = {

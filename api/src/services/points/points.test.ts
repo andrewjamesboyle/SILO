@@ -1,4 +1,4 @@
-import type { point } from '@prisma/client'
+import type { Point } from '@prisma/client'
 
 import { points, point, createPoint, updatePoint, deletePoint } from './points'
 import type { StandardScenario } from './points.scenarios'
@@ -24,25 +24,24 @@ describe('points', () => {
 
   scenario('creates a point', async (scenario: StandardScenario) => {
     const result = await createPoint({
-      input: { geometry: 'String', layerId: scenario.point.two.layerId },
+      input: { createdById: scenario.point.two.createdById },
     })
 
-    expect(result.geometry).toEqual('String')
-    expect(result.layerId).toEqual(scenario.point.two.layerId)
+    expect(result.createdById).toEqual(scenario.point.two.createdById)
   })
 
   scenario('updates a point', async (scenario: StandardScenario) => {
-    const original = (await point({ id: scenario.point.one.id })) as point
+    const original = (await point({ id: scenario.point.one.id })) as Point
     const result = await updatePoint({
       id: original.id,
-      input: { geometry: 'String2' },
+      input: { createdById: scenario.point.two.createdById },
     })
 
-    expect(result.geometry).toEqual('String2')
+    expect(result.createdById).toEqual(scenario.point.two.createdById)
   })
 
   scenario('deletes a point', async (scenario: StandardScenario) => {
-    const original = (await deletePoint({ id: scenario.point.one.id })) as point
+    const original = (await deletePoint({ id: scenario.point.one.id })) as Point
     const result = await point({ id: original.id })
 
     expect(result).toEqual(null)

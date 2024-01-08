@@ -3,30 +3,37 @@ export const schema = gql`
     id: Int!
     type: String
     description: String
+    project: String
+    layerId: Int
+    layer: Layer
+    createdById: String!
+    createdBy: User!
   }
 
   type Query {
-    points: [Point!]! @skipAuth
-    point(id: Int!): Point @skipAuth
+    points: [Point!]! @requireAuth
+    point(id: Int!): Point @requireAuth
   }
 
   input CreatePointInput {
     type: String
-    notes: String
     description: String
-    geom: String
-    createdById: String
+    project: String
+    layerId: Int
+    createdById: String!
   }
 
   input UpdatePointInput {
     type: String
-    notes: String
-    department: String
+    description: String
+    project: String
+    layerId: Int
+    createdById: String
   }
 
   type Mutation {
     createPoint(input: CreatePointInput!): Point! @requireAuth
-    updatePoint(id: Int!, input: UpdatePointInput!): Point! @skipAuth
-    deletePoint(id: Int!): Point! @skipAuth
+    updatePoint(id: Int!, input: UpdatePointInput!): Point! @requireAuth
+    deletePoint(id: Int!): Point! @requireAuth
   }
 `

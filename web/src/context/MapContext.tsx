@@ -1,6 +1,7 @@
 import React, { createContext, useReducer, useContext } from 'react'
-import { MapState } from './mapTypes'
+
 import { mapReducer, initialState, Action } from './MapReducer'
+import { MapState } from './mapTypes'
 
 const MapStateContext = createContext<MapState | undefined>(undefined)
 const MapDispatchContext = createContext<React.Dispatch<Action> | undefined>(
