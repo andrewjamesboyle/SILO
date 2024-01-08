@@ -1,28 +1,40 @@
 import { useState, useEffect, useRef } from 'react'
 import { Dialog } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
-import About from './About'
-import Data from './Data'
+import Scope from './Scope'
+import Sources from './Sources'
 
 const navigation = [
-  { name: 'About', href: '#about' },
-  { name: 'Data', href: '#data' },
+  { name: 'Scope', href: '#scope' },
+  { name: 'Sources', href: '#sources' },
   { name: 'Features', href: '#features' },
 ]
 
 export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [aboutVisible, setAboutVisible] = useState(false)
-  const aboutRef = useRef(null)
-  const dataRef = useRef(null)
+  const scopeRef = useRef(null)
+  const sourcesRef = useRef(null)
   const featuresRef = useRef(null)
 
   const handleScroll = () => {
-    if (aboutRef.current) {
-      const aboutPosition = aboutRef.current.offsetTop
+    if (scopeRef.current) {
+      const scopePosition = scopeRef.current.offsetTop
       const scrollPosition = window.scrollY
 
-      setAboutVisible(scrollPosition >= aboutPosition)
+      setAboutVisible(scrollPosition >= scopePosition)
+    } else if (sourcesRef.current) {
+      const sourcesPosition = sourcesRef.current.offsetTop
+      const scrollPosition = window.scrollY
+
+      setAboutVisible(scrollPosition >= sourcesPosition)
+    } else if (featuresRef.current) {
+      const featuresPosition = featuresRef.current.offsetTop
+      const scrollPosition = window.scrollY
+
+      setAboutVisible(scrollPosition >= featuresPosition)
+    } else {
+      console.error('No ref found')
     }
   }
 
@@ -34,10 +46,10 @@ export default function Home() {
   }, [])
 
   const scrollToSection = () => {
-    if (aboutRef.current) {
-      aboutRef.current.scrollIntoView({ behavior: 'smooth' })
-    } else if (dataRef.current) {
-      dataRef.current.scrollIntoView({ behavior: 'smooth' })
+    if (scopeRef.current) {
+      scopeRef.current.scrollIntoView({ behavior: 'smooth' })
+    } else if (sourcesRef.current) {
+      sourcesRef.current.scrollIntoView({ behavior: 'smooth' })
     } else if (featuresRef.current) {
       featuresRef.current.scrollIntoView({ behavior: 'smooth' })
     } else {
@@ -171,20 +183,23 @@ export default function Home() {
                 href="/sign-in"
                 className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
-                Log in / Register
+                Register
               </a>
             </div>
           </div>
         </div>
         <div
           // className="relative isolate px-6 pt-14 lg:px-8 md:px-8"
-          ref={aboutRef}
+          ref={scopeRef}
         >
-          <About />
+          <Scope />
         </div>
-        <div ref={dataRef}>
-          <Data />
+        <div ref={sourcesRef}>
+          <Sources />
         </div>
+        {/* <div ref={featuresRef}>
+          <Features />
+        </div> */}
       </div>
     </div>
   )
