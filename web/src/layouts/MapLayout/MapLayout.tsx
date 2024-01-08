@@ -1,14 +1,11 @@
-import { Toaster } from '@redwoodjs/web/toast'
-import { useState } from 'react'
 import Flyout from 'src/components/Flyout/Flyout'
-import Header from 'src/components/Header/Header'
 import LayerToggle from 'src/components/LayerToggle/LayerToggle'
 
 import NewPoint from 'src/components/Point/NewPoint/NewPoint'
 import ProcessDataComponent from 'src/components/ProcessData/ProcessData'
 import SearchDataComponent from 'src/components/SearchData/SearchData'
 import Sidebar from 'src/components/Sidebar/Sidebar'
-import { MapProvider, useMap } from 'src/context/MapContext'
+import { useMap } from 'src/context/MapContext'
 
 type MapLayoutProps = {
   children?: React.ReactNode
