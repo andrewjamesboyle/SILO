@@ -1,4 +1,4 @@
-import { useMap, useMapDispatch, useMapState } from 'src/context/MapContext'
+import { useMapDispatch, useMapState } from 'src/context/MapContext'
 import { baseLayers, esriLayers } from './layersConfig'
 import { BaseLayer, EsriLayer } from '../../context/mapTypes'
 

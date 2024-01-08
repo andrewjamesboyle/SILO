@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react'
+import React, { useRef, useEffect } from 'react'
 import maplibre from 'maplibre-gl'
 import MapBoxDraw from '@mapbox/mapbox-gl-draw'
 import '@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw.css'
@@ -11,8 +11,6 @@ import useMapLayerManager from 'src/hooks/useMapLayerManager'
 MapBoxDraw.constants.classes.CONTROL_BASE = 'maplibregl-ctrl'
 MapBoxDraw.constants.classes.CONTROL_PREFIX = 'maplibregl-ctrl-'
 MapBoxDraw.constants.classes.CONTROL_GROUP = 'maplibregl-ctrl-group'
-
-// a comment
 
 const MapComponent: React.FC = () => {
   const { state } = useMap()

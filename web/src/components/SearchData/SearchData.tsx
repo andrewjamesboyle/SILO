@@ -3,8 +3,6 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline'
 
-import { useMap } from 'src/context/MapContext'
-
 const SearchDataComponent: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('')
   const [aoi, setAoi] = useState('')
