@@ -47,8 +47,8 @@ jobs:
       - run: yarn install
       # build the redwood app
       - run: yarn rw build
-      # Run type checking using TypeScript
-      - run: yarn tsc
+      - run: yarn rw lint
+      
       # run the api tests
       # - run: yarn rw test api --no-watch
       # run the web tests
