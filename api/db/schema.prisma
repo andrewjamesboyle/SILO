@@ -36,8 +36,8 @@ model Layer {
   id             Int          @id @default(autoincrement())
   name           String
   description    String?
-  createdById    String
-  createdBy      User         @relation(fields: [createdById], references: [auth0Id])
+  createdById    Int
+  createdBy      User @relation(fields: [createdById], references: [id])
   organizationId Int
   organization   Organization @relation(fields: [organizationId], references: [id])
   lines          Line[]

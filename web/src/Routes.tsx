@@ -19,9 +19,17 @@ const Routes = () => {
         <Route path="/points/{id:Int}" page={PointPointPage} name="point" />
         <Route path="/points" page={PointPointsPage} name="points" />
       </Set>
-      <Set wrap={ScaffoldLayout} title="Layers" titleTo="layers" buttonLabel="New Layer" buttonTo="newLayer">
+      <Set wrap={ScaffoldLayout} title="Polygons" titleTo="polygons" buttonLabel="New Polygon" buttonTo="newPolygon">
+        <Route path="/polygons/new" page={PolygonNewPolygonPage} name="newPolygon" />
+        <Route path="/polygons/{id:Int}/edit" page={PolygonEditPolygonPage} name="editPolygon" />
+        <Route path="/polygons/{id:Int}" page={PolygonPolygonPage} name="polygon" />
+        <Route path="/polygons" page={PolygonPolygonsPage} name="polygons" />
       </Set>
-      <Set wrap={ScaffoldLayout} title="Points" titleTo="points" buttonLabel="New Point" buttonTo="newPoint">
+      <Set wrap={ScaffoldLayout} title="Lines" titleTo="lines" buttonLabel="New Line" buttonTo="newLine">
+        <Route path="/lines/new" page={LineNewLinePage} name="newLine" />
+        <Route path="/lines/{id:Int}/edit" page={LineEditLinePage} name="editLine" />
+        <Route path="/lines/{id:Int}" page={LineLinePage} name="line" />
+        <Route path="/lines" page={LineLinesPage} name="lines" />
       </Set>
       <Route path="/home" page={HomePage} name="home" />
       <Route path="/sign-in" page={SignInPage} name="sign-in" />
